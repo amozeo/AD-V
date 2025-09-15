@@ -189,6 +189,6 @@ export default {
       </div>
       <OpenModalHotkeysButton />
     </div>
-    </div>
+  </div>
   </div>
 </template>

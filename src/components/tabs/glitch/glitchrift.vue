@@ -1,11 +1,16 @@
 <script>
-  
 import GlitchRiftBar from "./glitchriftbar";
 
 export default {
   name: "GlitchRift",
   components: {
     GlitchRiftBar
+  },
+  props: {
+    rift: {
+      type: Object,
+      required: true
+    },
   },
   data() {
     return {
@@ -14,12 +19,6 @@ export default {
       hasEffectiveFill: false,
       effects: []
     };
-  },
-  props: {
-    rift: {
-      type: Object,
-      required: true
-    },
   },
   computed: {
     Grift() {
@@ -51,7 +50,7 @@ export default {
 
 <template>
   <div
-  v-if="this.rift.isUnlocked"
+    v-if="rift.isUnlocked"
     class="c-pelle-single-bar"
   >
     <div class="c-pelle-rift">

@@ -163,7 +163,7 @@ export const MultiplierTabIcons = {
   SPECIFIC_GLYPH(type) {
     return {
       symbol: `<b>${GlyphInfo[type].regularGlyphSymbol}</b>`,
-      textColor: `${GlyphInfo[type].color == '#000000' ? 'white' : ''}`,
+      textColor: `${GlyphInfo[type].color == "#000000" ? "white" : ""}`,
       color: GlyphInfo[type].color,
     };
   },

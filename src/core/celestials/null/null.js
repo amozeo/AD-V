@@ -5,8 +5,8 @@ export const Null = {
   displayName: "Null",
   possessiveName: "Null's",
   get isTabUnlocked() {
-    if(this.isCorrupt) return (player.celestials.null.isUnlocked & 1 << 6) > 0
-    return (player.celestials.null.isUnlocked & ( 1 << player.celestials.null.parallax.min(5).toNumber())) > 0;
+    if (this.isCorrupt) return (player.celestials.null.isUnlocked & 1 << 6) > 0;
+    return (player.celestials.null.isUnlocked & (1 << player.celestials.null.parallax.min(5).toNumber())) > 0;
   },
 
   get isUnlocked() {
@@ -24,23 +24,23 @@ export const Null = {
   initializeRun() {
     player.celestials.null.run = true;
   },
-  
+
   leaveRun() {
     player.celestials.null.run = false;
   },
 
-  get ADnerf(){
+  get ADnerf() {
     return 1e-35;
   },
-  get IDnerf(){
+  get IDnerf() {
     return 1e-35;
   },
-  get TDnerf(){
+  get TDnerf() {
     return 1e-35;
   },
-  
+
   get description() {
-    return GameDatabase.celestials.descriptions[8].effects()
+    return GameDatabase.celestials.descriptions[8].effects();
   },
 
   get isRunning() {
@@ -50,12 +50,12 @@ export const Null = {
   quotes: Quotes.null,
   symbol: "Θ",
 
-  reset(){
+  reset() {
     const N = player.celestials.null;
   },
 
 };
 
 EventHub.logic.on(GAME_EVENT.TAB_CHANGED, () => {
-  if(Tab.meta.NullTab.isOpen) Null.quotes.show.show();
+  if (Tab.meta.NullTab.isOpen) Null.quotes.show.show();
 });

@@ -35,7 +35,7 @@ export default {
       this.isInEffarig = Effarig.isRunning;
       if (this.isInEffarig) {
         this.effarigMultNerfText = `${formatPow(Effarig.nerfFactor(Currency.infinityPower.value).add(1).div(4).min(0.9999), 4, 4)}`;
-        this.effarigTickNerfText = `${formatPow(Effarig.nerfFactor(Currency.timeShards.value).add(7).div(10).min(0.9999) , 4, 4)}`;
+        this.effarigTickNerfText = `${formatPow(Effarig.nerfFactor(Currency.timeShards.value).add(7).div(10).min(0.9999), 4, 4)}`;
       }
       this.isInLaitela = Laitela.isRunning;
       if (this.isInLaitela && !Glitch.isRunning) {

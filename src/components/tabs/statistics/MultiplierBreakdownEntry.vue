@@ -59,8 +59,8 @@ export default {
       };
     },
     isEmpty() {
-      return this.entries.filter(entry => 
-      (Decimal.neq(entry.data.mult, 1) && Decimal.neq(entry.data.mult, 0)) ||
+      return this.entries.filter(entry =>
+        (Decimal.neq(entry.data.mult, 1) && Decimal.neq(entry.data.mult, 0)) ||
       (Decimal.neq(entry.data.pow, 1) && Decimal.neq(entry.data.pow, 0)) ||
       (Decimal.neq(entry.data.tet, 1) && Decimal.neq(entry.data.tet, 0))).length === 0;
     },
@@ -132,17 +132,17 @@ export default {
       const sty = entry.icon;
       const isNerf = (Decimal.lt(entry.data.mult, 1) && Decimal.neq(entry.data.mult, 0)) ||
       (Decimal.lt(entry.data.pow, 1) && Decimal.neq(entry.data.pow, 0)) ||
-      (Decimal.lt(entry.data.tet, 1) && Decimal.neq(entry.data.tet, 0))
+      (Decimal.lt(entry.data.tet, 1) && Decimal.neq(entry.data.tet, 0));
       return {
         color: sty?.color ?? "white",
         background: isNerf
           ? `repeating-linear-gradient(-45deg, var(--color-bad), ${sty?.textColor} 0.8rem)`
           : sty?.textColor,
-          width: '35px',
-          display: 'inline-block',
-          textAlign: 'center'
+        width: "35px",
+        display: "inline-block",
+        textAlign: "center"
 
-      }
+      };
     },
     hasChildEntries(index) {
       return this.isRecent(this.hadChildEntriesAt[index]);
@@ -162,7 +162,7 @@ export default {
       if (!entry.data.isVisible) {
         return `${entry.name}: No Effect`;
       }
-      
+
       if ((Decimal.lt(entry.mult ? entry.mult : 1, 1) ||
       Decimal.lt(entry.pow ? entry.pow : 1, 1) ||
       Decimal.lt(entry.tet ? entry.tet : 1, 1)) &&
@@ -206,10 +206,10 @@ export default {
       else {
         const values = [];
 
-          if (Decimal.neq(entry.data.mult, 1) && Decimal.neq(entry.data.mult, 0) ) values.push(`x${formatSmall(entry.data.mult, 2, 2)}`);
-          if (Decimal.neq(entry.data.pow, 1) && Decimal.neq(entry.data.pow, 0) ) values.push(formatPow(entry.data.pow, 2, 3));
-          if (Decimal.neq(entry.data.tet, 1) && Decimal.neq(entry.data.tet, 0)) values.push(formatTet(entry.data.tet, 2, 3));
-        
+        if (Decimal.neq(entry.data.mult, 1) && Decimal.neq(entry.data.mult, 0)) values.push(`x${formatSmall(entry.data.mult, 2, 2)}`);
+        if (Decimal.neq(entry.data.pow, 1) && Decimal.neq(entry.data.pow, 0)) values.push(formatPow(entry.data.pow, 2, 3));
+        if (Decimal.neq(entry.data.tet, 1) && Decimal.neq(entry.data.tet, 0)) values.push(formatTet(entry.data.tet, 2, 3));
+
         valueStr = values.length === 0 ? "No Effect" : `(${values.join(", ")})`;
       }
 
@@ -300,16 +300,15 @@ export default {
           v-if="shouldShowEntry(entry)"
           :class="singleEntryClass(index)"
         >
-          <div @click="showGroup[index] = !showGroup[index]"
-          >
+          <div @click="showGroup[index] = !showGroup[index]">
             <span
               :class="expandIcon(index)"
               :style="expandIconStyle(index)"
             />
             <span
-            style="margin-left: 5px"
-            :style="barColour(index)"
-            v-html="barSymbol(index)"
+              style="margin-left: 5px"
+              :style="barColour(index)"
+              v-html="barSymbol(index)"
             />
             {{ entryString(index) }}
           </div>

@@ -83,7 +83,7 @@ export default {
       const buyUntil10 = player.buyUntil10;
 
       const allow = (Enslaved.isRunning && !Glitch.isRunning) || Glitch.augmentEffectActive(3);
-      
+
       this.isCapped = tier === 8 && allow && dimension.bought.gte(1);
       this.multiplier.copyFrom(AntimatterDimension(tier).multiplier);
       this.amount.copyFrom(dimension.totalAmount);

@@ -1,4 +1,5 @@
 import TWEEN from "@tweenjs/tween.js";
+
 import { DC } from "./core/constants";
 import { deepmergeAll } from "@/utility/deepmerge";
 import { DEV } from "@/env";
@@ -88,7 +89,7 @@ export function gainedInfinityPoints() {
     TimeStudy(111)
   )).toNumber();
   if (Pelle.isDisabled("IPMults")) {
-    let x = Decimal.add(1)
+    let x = Decimal.add(1);
     x = x.times(preInfinityUGs.all[6].effectOrDefault(1));
     x = x.times(preInfinityUGs.all[7].effectOrDefault(1));
 
@@ -97,7 +98,7 @@ export function gainedInfinityPoints() {
     x = x.times(breakInfinityUGs.all[3].effectOrDefault(1));
 
     x = x.times(GlitchRifts.alpha.milestones[3].effectOrDefault(1));
-    
+
     return Decimal.pow10(player.records.thisInfinity.maxAM.log10().div(div).sub(0.75))
       .timesEffectsOf(PelleRifts.vacuum)
       .times(Pelle.specialGlyphEffect.infinity).times(x)
@@ -110,7 +111,7 @@ export function gainedInfinityPoints() {
     ip = ip.min(DC.E200);
   }
   ip = ip.times(GameCache.totalIPMult.value);
-  
+
   ip = ip.times(preInfinityUGs.all[6].effectOrDefault(1));
   ip = ip.times(preInfinityUGs.all[7].effectOrDefault(1));
 
@@ -118,7 +119,7 @@ export function gainedInfinityPoints() {
   ip = ip.times(breakInfinityUGs.all[1].effectOrDefault(1));
   ip = ip.times(breakInfinityUGs.all[2].effectOrDefault(1));
   ip = ip.times(breakInfinityUGs.all[3].effectOrDefault(1));
-  
+
   ip = ip.pow(MetaMilestone.metaProgress.effectOrDefault(1));
 
   if (Teresa.isRunning) {
@@ -137,10 +138,10 @@ export function gainedInfinityPoints() {
     ip = ip.pow(getSecondaryGlyphEffect("infinityIP"));
   }
 
-  if(ip.gt("ee50")) ip = ip.pow( ip.log10().div(1e50).pow(0.3).recip() );
-  if(ip.gt("ee100")) ip = ip.pow( ip.log10().div(1e100).pow(0.75).recip() );
-  if(ip.gt("ee200")) ip = ip.pow( ip.log10().div(1e200).pow(0.95).recip() );
-  
+  if (ip.gt("ee50")) ip = ip.pow(ip.log10().div(1e50).pow(0.3).recip());
+  if (ip.gt("ee100")) ip = ip.pow(ip.log10().div(1e100).pow(0.75).recip());
+  if (ip.gt("ee200")) ip = ip.pow(ip.log10().div(1e200).pow(0.95).recip());
+
   return ip.floor();
 }
 
@@ -167,7 +168,7 @@ export function gainedEternityPoints() {
   ep = ep.times(eternityUGs.all[0].effectOrDefault(1));
   ep = ep.times(eternityUGs.all[4].effectOrDefault(1));
   ep = ep.times(realityUGs.all[0].effectOrDefault(1));
-  
+
   ep = ep.pow(MetaMilestone.metaProgress.effectOrDefault(1));
 
   if (Teresa.isRunning) {
@@ -186,9 +187,9 @@ export function gainedEternityPoints() {
     ep = ep.pow(getSecondaryGlyphEffect("timeEP"));
   }
 
-  if(ep.gt("ee50")) ep = ep.pow( ep.log10().div(1e50).pow(0.3).recip() );
-  if(ep.gt("ee100")) ep = ep.pow( ep.log10().div(1e100).pow(0.75).recip() );
-  if(ep.gt("ee200")) ep = ep.pow( ep.log10().div(1e200).pow(0.95).recip() );
+  if (ep.gt("ee50")) ep = ep.pow(ep.log10().div(1e50).pow(0.3).recip());
+  if (ep.gt("ee100")) ep = ep.pow(ep.log10().div(1e100).pow(0.75).recip());
+  if (ep.gt("ee200")) ep = ep.pow(ep.log10().div(1e200).pow(0.95).recip());
 
   return ep.floor();
 }
@@ -214,7 +215,7 @@ export function gainedMetas() {
   metas = metas.mul(MetaFabricatorUpgrade(21).effectOrDefault(1));
   metas = metas.mul(Ra.unlocks.nullMetaBoost.effectOrDefault(1));
   metas = metas.mul(Ra.unlocks.canteMetaBoost.effectOrDefault(1));
-  
+
   return metas;
 }
 
@@ -227,12 +228,12 @@ export function gainedMetaRelays() {
   mr = mr.mul(Ra.unlocks.canteMetaBoost.effectOrDefault(1));
 
   let ArtM = Currency.artificialMatter.value.add(1).pow(0.2).min(Decimal.NUMBER_MAX_VALUE.pow(Currency.chaosMatter.value.add(10).log10().pow(2)));
-  if(ArtM.gt('e100')) ArtM = ArtM.div(ArtM.div('e100').pow(0.25));
-  if(ArtM.gt('e1000')) ArtM = ArtM.div(ArtM.div('e1000').pow(0.75));
-  if(ArtM.gt('e5000')) ArtM = ArtM.div(ArtM.div('e5000').pow(0.65));
-  if(ArtM.gt('ee4')) ArtM = ArtM.div(ArtM.div('ee4').pow(0.75));
+  if (ArtM.gt("e100")) ArtM = ArtM.div(ArtM.div("e100").pow(0.25));
+  if (ArtM.gt("e1000")) ArtM = ArtM.div(ArtM.div("e1000").pow(0.75));
+  if (ArtM.gt("e5000")) ArtM = ArtM.div(ArtM.div("e5000").pow(0.65));
+  if (ArtM.gt("ee4")) ArtM = ArtM.div(ArtM.div("ee4").pow(0.75));
   mr = mr.mul(ArtM);
-  
+
   mr = mr.pow(Ra.unlocks.nullDamagedMRGain.effectOrDefault(1));
 
   return mr.floor();
@@ -439,9 +440,9 @@ export function getGameSpeedupFactor(effectsToConsider, blackHolesActiveOverride
 
   factor = factor.mul(GlitchRifts.alpha.milestones[2].effectOrDefault(1));
   factor = factor.pow(VUnlocks.gamespeedPower.effectOrDefault(1));
-  factor = factor.pow(MetaFabricatorUpgrades.all[2].effectOrDefault(1)); 
+  factor = factor.pow(MetaFabricatorUpgrades.all[2].effectOrDefault(1));
 
-  
+
   if (Enslaved.isStoringGameTime && effects.includes(GAME_SPEED_EFFECT.TIME_STORAGE)) {
     const storedTimeWeight = Ra.unlocks.autoPulseTime.canBeApplied ? 0.99 : 1;
     factor = factor.mul(1 - storedTimeWeight).add(storedTimeWeight);
@@ -451,7 +452,7 @@ export function getGameSpeedupFactor(effectsToConsider, blackHolesActiveOverride
   // otherwise it gets applied twice
   if (effects.includes(GAME_SPEED_EFFECT.NERFS)) {
     if (Effarig.isRunning) {
-      if(factor.gt(1)) factor = Effarig.multiplier(factor);
+      if (factor.gt(1)) factor = Effarig.multiplier(factor);
     } else if (Laitela.isRunning && !GlitchRealityUpgrade(8).isBought) {
       const nerfModifier = Time.thisRealityRealTime.totalMinutes.div(10).clampMax(1);
       factor = factor.pow(nerfModifier);
@@ -463,7 +464,7 @@ export function getGameSpeedupFactor(effectsToConsider, blackHolesActiveOverride
   factor = factor.pow(MetaFabricatorUpgrade(3).effectOrDefault(1));
   // 1e-300 is now possible with max inverted BH, going below it would be possible with
   // an effarig glyph.
- if(player.records.fullGameCompletions == 0) factor = Decimal.max(factor, 1e-300);
+  if (player.records.fullGameCompletions == 0) factor = Decimal.max(factor, 1e-300);
 
   return factor;
 }
@@ -511,8 +512,8 @@ export function realTimeMechanics(realDiff) {
 
   Currency.riftForce.add(Glitch.riftForceGain.mul(Decimal.div(1000, realDiff)));
 
-  if(MetaFabricatorUpgrade(8).isBought && !Pelle.isDoomed) player.celestials.teresa.bestRunAM = player.celestials.teresa.bestRunAM.max(Currency.antimatter.value);
-  
+  if (MetaFabricatorUpgrade(8).isBought && !Pelle.isDoomed) player.celestials.teresa.bestRunAM = player.celestials.teresa.bestRunAM.max(Currency.antimatter.value);
+
   player.celestials.v.metaTheorems = player.celestials.v.metaTheorems.add(MetaFabricatorUpgrade(20).effectOrDefault(DC.D0).div(Decimal.div(1000, realDiff))).min(25000);
   V.updateTotalRunUnlocks();
 
@@ -524,41 +525,39 @@ export function realTimeMechanics(realDiff) {
       realDiff.times(Achievement(175).effectOrDefault(1)));
   }
 
-  if (MetaFabricatorUpgrade(17).isBought){
+  if (MetaFabricatorUpgrade(17).isBought) {
     AlchemyResource.all.forEach(a => a.amount = Ra.alchemyResourceCap);
-  }
-  else if(Ra.unlocks.PassiveAlc.isEffectActive)
-  {
+  } else if (Ra.unlocks.PassiveAlc.isEffectActive) {
     Ra.applyAlchemyReactions(realDiff);
   }
-  
+
   DarkMatterDimensions.tick(realDiff);
 
   CanteReplicators.tick(realDiff);
-  if(Null.isUnlocked) NullCycles.tick(realDiff);
+  if (Null.isUnlocked) NullCycles.tick(realDiff);
   Currency.artificialMatter.add(CanteUpgrades.all[11].canBeApplied ? CanteReplicators.totalArtMatterGain().mul(realDiff.div(1000)) : 0);
   Currency.chaosMatter.add(CanteUpgrades.all[17].effectOrDefault(DC.D0).mul(realDiff.div(1000)));
 
   // When storing real time, skip everything else having to do with production once stats are updated
   if (Enslaved.isStoringRealTime || realityUGs.all[7].isBought) {
-    if(Enslaved.isStoringRealTime){
-    player.records.realTimePlayed = player.records.realTimePlayed.add(realDiff);
-    player.records.thisInfinity.realTime = player.records.thisInfinity.realTime.add(realDiff);
-    player.records.thisEternity.realTime = player.records.thisEternity.realTime.add(realDiff);
-    player.records.thisReality.realTime = player.records.thisReality.realTime.add(realDiff);
-    player.records.thisMeta.realTime = player.records.thisMeta.realTime.add(realDiff);
+    if (Enslaved.isStoringRealTime) {
+      player.records.realTimePlayed = player.records.realTimePlayed.add(realDiff);
+      player.records.thisInfinity.realTime = player.records.thisInfinity.realTime.add(realDiff);
+      player.records.thisEternity.realTime = player.records.thisEternity.realTime.add(realDiff);
+      player.records.thisReality.realTime = player.records.thisReality.realTime.add(realDiff);
+      player.records.thisMeta.realTime = player.records.thisMeta.realTime.add(realDiff);
     }
     Enslaved.storeRealTime(realDiff);
     // Most autobuyers will only tick usefully on the very first tick, but this needs to be here in order to allow
     // the autobuyers unaffected by time storage to tick as well
     GameUI.update();
-    if(realityUGs.all[7].isBought) {
+    if (realityUGs.all[7].isBought) {
       Autobuyers.tick();
       return false;
     }
-    return true
+    return true;
   }
-  
+
   Autobuyers.tick();
   BlackHoles.updatePhases(realDiff);
   return false;
@@ -573,7 +572,7 @@ export function gameLoop(passedDiff, options = {}) {
   PerformanceStats.start("Game Update");
 
   EventHub.dispatch(GAME_EVENT.GAME_TICK_BEFORE);
-  
+
   // In certain cases we want to allow the player to interact with the game's settings and tabs, but prevent any actual
   // resource generation from happening - in these cases, we have to make sure this all comes before the hibernation
   // check or else it'll attempt to run the game anyway
@@ -623,7 +622,7 @@ export function gameLoop(passedDiff, options = {}) {
   GameCache.infinityDimensionCommonMultiplier.invalidate();
   GameCache.timeDimensionCommonMultiplier.invalidate();
   GameCache.totalIPMult.invalidate();
-  
+
   const fixedSpeedActive = EternityChallenge(12).isRunning;
   if (!Enslaved.isReleaseTick && !fixedSpeedActive) {
     let speedFactor;
@@ -659,7 +658,7 @@ export function gameLoop(passedDiff, options = {}) {
   // These need to all be done consecutively in order to minimize the chance of a reset occurring between real time
   // updating and game time updating. This is only particularly noticeable when game speed is 1 and the player
   // expects to see identical numbers. We also don't increment the timers if the game has been beaten (Achievement 188)
-  const isEndReached = Achievement(188).isUnlocked && Pelle.isDoomed && Currency.antimatter.gte('ee100');
+  const isEndReached = Achievement(188).isUnlocked && Pelle.isDoomed && Currency.antimatter.gte("ee100");
   if (!isEndReached) {
     player.records.realTimeDoomed = player.records.realTimeDoomed.add(realDiff);
     player.records.realTimePlayed = player.records.realTimePlayed.add(realDiff);
@@ -824,7 +823,7 @@ function passivePrestigeGen() {
     eternitiedGain = Decimal.times(eternitiedGain, getAdjustedGlyphEffect("timeetermult"));
     eternitiedGain = new Decimal(Time.deltaTime).times(
       Decimal.pow(eternitiedGain, AlchemyResource.eternity.effectValue));
-    if(Pelle.isDoomed) eternitiedGain = MetaFabricatorUpgrade(7).isBought ? DC.D1 :DC.D0;
+    if (Pelle.isDoomed) eternitiedGain = MetaFabricatorUpgrade(7).isBought ? DC.D1 : DC.D0;
     player.reality.partEternitied = player.reality.partEternitied.plus(eternitiedGain);
     Currency.eternities.add(player.reality.partEternitied.floor());
     player.reality.partEternitied = player.reality.partEternitied.sub(player.reality.partEternitied.floor());
@@ -854,7 +853,7 @@ function passivePrestigeGen() {
       infGen = infGen.plus(gainedInfinities().times(
         Currency.eternities.value.minus(eternitiedGain.div(2).floor())).times(Time.deltaTime));
     }
-    if(Pelle.isDoomed) infGen = MetaFabricatorUpgrade(7).isBought ? DC.D1 :DC.D0;
+    if (Pelle.isDoomed) infGen = MetaFabricatorUpgrade(7).isBought ? DC.D1 : DC.D0;
 
     infGen = infGen.plus(player.partInfinitied);
     Currency.infinities.add(infGen.floor());
@@ -974,16 +973,16 @@ function updateTachyonGalaxies() {
   player.dilation.baseTachyonGalaxies = Decimal.max(player.dilation.baseTachyonGalaxies,
     DC.D1.plus(Decimal.floor(Decimal.log(Currency.dilatedTime.value.dividedBy(1000), thresholdMult))));
   player.dilation.nextThreshold = DC.E3.times(thresholdMult
-      .pow(player.dilation.baseTachyonGalaxies));
-    player.dilation.totalTachyonGalaxies =
+    .pow(player.dilation.baseTachyonGalaxies));
+  player.dilation.totalTachyonGalaxies =
     Decimal.min(player.dilation.baseTachyonGalaxies.times(tachyonGalaxyMult), tachyonGalaxyThreshold)
       .add(Decimal.max(player.dilation.baseTachyonGalaxies.times(tachyonGalaxyMult).sub(tachyonGalaxyThreshold), 0)
         .div(tachyonGalaxyMult));
 
-    let a = player.dilation.totalTachyonGalaxies.times(DilationUpgrade.galaxyMultiplier.effectValue);
-    if(a.gt(500000)) a = a.div(a.div(500000).pow(0.8));
+  let a = player.dilation.totalTachyonGalaxies.times(DilationUpgrade.galaxyMultiplier.effectValue);
+  if (a.gt(500000)) a = a.div(a.div(500000).pow(0.8));
 
-    player.dilation.totalTachyonGalaxies = a;
+  player.dilation.totalTachyonGalaxies = a;
 }
 
 export function getTTPerSecond() {
@@ -1053,16 +1052,16 @@ export function simulateTime(seconds, real, fast) {
   const playerStart = deepmergeAll([{}, player]);
 
   let totalGameTime;
-  
+
   if (BlackHoles.areUnlocked && !BlackHoles.arePaused) {
     totalGameTime = BlackHoles.calculateGameTimeFromRealTime(seconds, BlackHoles.calculateSpeedups());
   } else {
     totalGameTime = getGameSpeedupFactor().mul(seconds);
   }
-  
+
   const infinitiedMilestone = getInfinitiedMilestoneReward(totalGameTime.mul(1000));
   const eternitiedMilestone = getEternitiedMilestoneReward(totalGameTime.mul(1000));
-  
+
   if (eternitiedMilestone.gt(0)) {
     Currency.eternities.add(eternitiedMilestone);
   } else if (infinitiedMilestone.gt(0)) {
@@ -1070,7 +1069,7 @@ export function simulateTime(seconds, real, fast) {
   } else {
     Currency.eternityPoints.add(getOfflineEPGain(seconds * 1000));
   }
-  
+
   if (InfinityUpgrade.ipOffline.isBought && player.options.offlineProgress) {
     Currency.infinityPoints.add(player.records.thisEternity.bestIPMsWithoutMaxAll.times(seconds * 500));
   }
@@ -1231,8 +1230,8 @@ export function init() {
   Tabs.all.find(t => t.config.id === player.options.lastOpenTab).show(true);
   Payments.init();
 
-  // funny title
-  document.title = "Antimatter Dimensions: " + titles[randomInt(0,titles.length++)];
+  // Funny title
+  document.title = `Antimatter Dimensions: ${titles[randomInt(0, titles.length++)]}`;
 }
 
 window.tweenTime = 0;
@@ -1254,10 +1253,10 @@ function animateTweens(time) {
 
 animateTweens();
 
-function randomInt(min = 0, max = 10) {return Math.floor(min + (Math.random() * (max - min)))};
+function randomInt(min = 0, max = 10) { return Math.floor(min + (Math.random() * (max - min))); };
 
 var titles = ["Help me", "Now with upgrades", "The Antimatter update", "Uhhh, I think I broke something", "No don't do that", "Now with a 9th dimension",
-              "THERE'S NEW CONTENT?!?!?!", "Also try minecraft", "You know what that means FISHHHHH", "Now with dimensions", "THE NEWS IS NOT FAKE", "Now's you chance to make [ANTIMATTER]",
-              "That's bananas", "update in 5 hours", "Hevipelle is good at using GitHub :)", "The update that makes the game bad", " I'm poor now :(", "Nerf the galaxies plz",
-              "Get more antimatter", "Can give me more galaxies please?", "NG+infinite", "How do I cheat", "When do the memes get added?", "How much is infinity?",
-              "Never gonna give you up", "Hexa you need to slow down with all your mods!", "Stop looking at me", "Who is \"Royal\"?", "Join the Discord"];
+  "THERE'S NEW CONTENT?!?!?!", "Also try minecraft", "You know what that means FISHHHHH", "Now with dimensions", "THE NEWS IS NOT FAKE", "Now's you chance to make [ANTIMATTER]",
+  "That's bananas", "update in 5 hours", "Hevipelle is good at using GitHub :)", "The update that makes the game bad", " I'm poor now :(", "Nerf the galaxies plz",
+  "Get more antimatter", "Can give me more galaxies please?", "NG+infinite", "How do I cheat", "When do the memes get added?", "How much is infinity?",
+  "Never gonna give you up", "Hexa you need to slow down with all your mods!", "Stop looking at me", "Who is \"Royal\"?", "Join the Discord"];

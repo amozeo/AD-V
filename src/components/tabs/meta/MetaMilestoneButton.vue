@@ -39,7 +39,8 @@ export default {
     },
   },
   methods: {
-    update() {;
+    update() {
+      ;
       this.isReached = this.milestone.isReached;
     }
   }

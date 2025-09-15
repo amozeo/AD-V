@@ -181,9 +181,7 @@ Array.dimensionTiers = Array.range(1, 8);
 /**
  * @type {any[]}
  */
-Array.fromObject = object => {
-  return Object.values(object);
-};
+Array.fromObject = object => Object.values(object);
 
 /**
  * @returns {Number}

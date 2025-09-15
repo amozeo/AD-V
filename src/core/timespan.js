@@ -51,7 +51,7 @@ window.TimeSpan = class TimeSpan {
    * @param {Decimal} ms
    */
   constructor(ms) {
-    if(typeof ms == 'number') console.log('This was a number: ', ms, '(Hexa is mad)');
+    if (typeof ms === "number") console.log("This was a number: ", ms, "(Hexa is mad)");
     Guard.isDecimal(ms, "Value 'ms' must be a decimal or number");
     this._ms = ms;
   }

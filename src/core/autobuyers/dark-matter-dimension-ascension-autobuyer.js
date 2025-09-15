@@ -1,7 +1,7 @@
 import { IntervaledAutobuyerState } from "./autobuyer";
 
 export class DarkMatterDimensionAscensionAutobuyerState extends IntervaledAutobuyerState {
-  get realTime(){
+  get realTime() {
     return true;
   }
 

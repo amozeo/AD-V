@@ -38,22 +38,22 @@ export default {
     };
   },
   computed: {
-    sName(){
-      if(player.options.themeModern == "S15") return "Teresa-Lai'tela's";
-      if(player.options.themeModern == "S16") return "Effarig-Lai'tela's";
-      if(player.options.themeModern == "S17") return `The Nameless Lai'tela's'`;
-      if(player.options.themeModern == "S14") return "Ra-Lai'tela's";
-      if(player.options.themeModern == "S19") return `Pelle-Lai'tela's`;
-      if(player.options.themeModern == "S13") return "V-Lai'tela's";
+    sName() {
+      if (player.options.themeModern == "S15") return "Teresa-Lai'tela's";
+      if (player.options.themeModern == "S16") return "Effarig-Lai'tela's";
+      if (player.options.themeModern == "S17") return `The Nameless Lai'tela's'`;
+      if (player.options.themeModern == "S14") return "Ra-Lai'tela's";
+      if (player.options.themeModern == "S19") return `Pelle-Lai'tela's`;
+      if (player.options.themeModern == "S13") return "V-Lai'tela's";
       return "Lai'tela's";
     },
-    sCel(){
-      if(player.options.themeModern == "S15") return "Teresa-Lai'tela";
-      if(player.options.themeModern == "S16") return "Effarig-Lai'tela";
-      if(player.options.themeModern == "S17") return `The Nameless Lai'tela`;
-      if(player.options.themeModern == "S14") return "Ra-Lai'tela";
-      if(player.options.themeModern == "S19") return `Pelle-Lai'tela`;
-      if(player.options.themeModern == "S13") return "V-Lai'tela";
+    sCel() {
+      if (player.options.themeModern == "S15") return "Teresa-Lai'tela";
+      if (player.options.themeModern == "S16") return "Effarig-Lai'tela";
+      if (player.options.themeModern == "S17") return `The Nameless Lai'tela`;
+      if (player.options.themeModern == "S14") return "Ra-Lai'tela";
+      if (player.options.themeModern == "S19") return `Pelle-Lai'tela`;
+      if (player.options.themeModern == "S13") return "V-Lai'tela";
       return "Lai'tela";
     },
     styleObject() {
@@ -103,7 +103,7 @@ export default {
         class="o-primary-btn--subtab-option"
         @click="showLaitelaHowTo()"
       >
-        Click for {{sName}} info
+        Click for {{ sName }} info
       </PrimaryButton>
       <PrimaryButton
         class="o-primary-btn--subtab-option"

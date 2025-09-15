@@ -1,4 +1,5 @@
 import { DC } from "../../constants";
+
 import { MultiplierTabHelper } from "./helper-functions";
 import { MultiplierTabIcons } from "./icons";
 

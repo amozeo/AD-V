@@ -1,21 +1,20 @@
 <script>
 import preinfinityupgradebutton from "./preinfinityupgrade";
-  
+
 export default {
-  name: "glitcheternity",
+  name: "Glitcheternity",
   components: {
     preinfinityupgradebutton
+  },
+  computed: {
+    upgrades: () => eternityUGs.all
   },
   methods: {
     id(row, column) {
       return (row - 1) * 3 + column - 1;
     }
-  },
-  computed: {
-    upgrades: () => eternityUGs.all
   }
 };
-  
 </script>
 
 <template>
@@ -25,18 +24,18 @@ export default {
       <br>
       Get a many as you can
     </div>
-  
-      <div
+
+    <div
       v-for="row in 2"
       :key="row"
-      class="l-reality-upgrade-grid__row">
-        
+      class="l-reality-upgrade-grid__row"
+    >
       <preinfinityupgradebutton
         v-for="column in 3"
         :key="id(row, column)"
-        :upgrade="upgrades[id(row, column)]"/>
+        :upgrade="upgrades[id(row, column)]"
+      />
     </div>
-    
   </div>
 </template>
 

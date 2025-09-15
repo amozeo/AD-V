@@ -37,7 +37,7 @@ export default {
   >
     <BlobSnowflakes v-if="animations.blob" />
     <TachyonParticles v-if="animations.animateTachyons" />
-    <MetaReset v-if="animations.metaReset"/>
+    <MetaReset v-if="animations.metaReset" />
   </div>
 </template>
 

@@ -1,7 +1,8 @@
 <script>
+import { Celestials, V } from "../../../core/globals";
+
 import EnterCelestialsRaPet from "@/components/modals/prestige/EnterCelestialsRaPet";
 import ModalWrapperChoice from "@/components/modals/ModalWrapperChoice";
-import { Celestials, V } from "../../../core/globals";
 
 export default {
   name: "EnterCelestialsModal",
@@ -37,7 +38,7 @@ export default {
   },
   computed: {
     effects() {
-      if(this.isHarder) return GameDatabase.celestials.descriptions[this.number].extremeEffects().split("\n");
+      if (this.isHarder) return GameDatabase.celestials.descriptions[this.number].extremeEffects().split("\n");
       return GameDatabase.celestials.descriptions[this.number].effects().split("\n");
     },
     description() {
@@ -74,7 +75,7 @@ export default {
           : `Your fastest completion on this tier is ${this.laitelaTime}.`;
         case 6: {
           let augments = makeEnumeration(Glitch.activeAugments);
-          if(augments == "") augments = "Nothing";
+          if (augments == "") augments = "Nothing";
           return `start ${this.name} reality with ${augments} active?`;
         }
         case 7: {
@@ -105,7 +106,7 @@ export default {
         case 1: return Effarig.initializeRun();
         case 2: return Enslaved.initializeRun();
         case 3: {
-          if(this.isHarder) return V.initializeExtremeRun();
+          if (this.isHarder) return V.initializeExtremeRun();
           return V.initializeRun();
         }
         case 4: return Ra.initializeRun();

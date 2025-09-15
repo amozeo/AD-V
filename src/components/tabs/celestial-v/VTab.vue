@@ -1,10 +1,11 @@
 <script>
+import { Glyphs } from "../../../core/globals";
+
 import CelestialQuoteHistory from "@/components/CelestialQuoteHistory";
 import GlyphSetPreview from "@/components/GlyphSetPreview";
 import PrimaryButton from "@/components/PrimaryButton";
 import { V_REDUCTION_MODE } from "@/core/secret-formula";
 import VUnlockRequirement from "./VUnlockRequirement";
-import { Glyphs } from "../../../core/globals";
 
 export default {
   name: "VTab",
@@ -44,7 +45,7 @@ export default {
     },
     // If V is flipped, change the layout of the grid
     hexGrid() {
-      if(this.isExtreme && this.hasExtremeUnlocked) return [
+      if (this.isExtreme && this.hasExtremeUnlocked) return [
         VRunUnlocks.all[10],
         VRunUnlocks.all[11],
         {},
@@ -81,7 +82,7 @@ export default {
     },
     vUnlock: () => VUnlocks.vAchievementUnlock,
     runMilestones() {
-      let list = [
+      const list = [
         [
           VUnlocks.shardReduction,
           VUnlocks.adPow,
@@ -93,7 +94,7 @@ export default {
           VUnlocks.raUnlock
         ],
       ];
-      if(this.hasExtremeUnlocked) list.push([VUnlocks.gamespeedPower, VUnlocks.RMcap, VUnlocks.TScap], [VUnlocks.glyphCap, VUnlocks.newStudies, VUnlocks.metaReset]);
+      if (this.hasExtremeUnlocked) list.push([VUnlocks.gamespeedPower, VUnlocks.RMcap, VUnlocks.TScap], [VUnlocks.glyphCap, VUnlocks.newStudies, VUnlocks.metaReset]);
       return list;
     },
     runButtonClassObject() {
@@ -115,7 +116,7 @@ export default {
       };
     },
     runDescription() {
-      if(this.isExtreme) return GameDatabase.celestials.descriptions[3].extremeEffectsShort().replace(/^\w/u, c => c.toUpperCase());
+      if (this.isExtreme) return GameDatabase.celestials.descriptions[3].extremeEffectsShort().replace(/^\w/u, c => c.toUpperCase());
       return GameDatabase.celestials.descriptions[3].effects().replace(/^\w/u, c => c.toUpperCase());
     },
     isDoomed: () => Pelle.isDoomed,
@@ -137,22 +138,22 @@ export default {
       this.isRunningExtreme = V.isRunningExtreme;
       this.hasAlchemy = Ra.unlocks.unlockGlyphAlchemy.canBeApplied;
     },
-    sName(){
-      if(player.options.themeModern == "S15") return "Teresa-V's";
-      if(player.options.themeModern == "S16") return "Effarig-V's";
-      if(player.options.themeModern == "S17") return `The Nameless V's`;
-      if(player.options.themeModern == "S18") return `Lai'tela-V's`;
-      if(player.options.themeModern == "S19") return `Pelle-V's`;
-      if(player.options.themeModern == "S14") return "Ra-V's";
+    sName() {
+      if (player.options.themeModern == "S15") return "Teresa-V's";
+      if (player.options.themeModern == "S16") return "Effarig-V's";
+      if (player.options.themeModern == "S17") return `The Nameless V's`;
+      if (player.options.themeModern == "S18") return `Lai'tela-V's`;
+      if (player.options.themeModern == "S19") return `Pelle-V's`;
+      if (player.options.themeModern == "S14") return "Ra-V's";
       return "V's";
     },
-    sCel(){
-      if(player.options.themeModern == "S15") return "Teresa-V";
-      if(player.options.themeModern == "S16") return "Effarig-V";
-      if(player.options.themeModern == "S17") return `The Nameless V`;
-      if(player.options.themeModern == "S18") return `Lai'tela-V`;
-      if(player.options.themeModern == "S19") return `Pelle-V`;
-      if(player.options.themeModern == "S14") return "Ra-V";
+    sCel() {
+      if (player.options.themeModern == "S15") return "Teresa-V";
+      if (player.options.themeModern == "S16") return "Effarig-V";
+      if (player.options.themeModern == "S17") return `The Nameless V`;
+      if (player.options.themeModern == "S18") return `Lai'tela-V`;
+      if (player.options.themeModern == "S19") return `Pelle-V`;
+      if (player.options.themeModern == "S14") return "Ra-V";
       return "V";
     },
     unlockCelestial() {
@@ -218,20 +219,20 @@ export default {
       }
       Achievement(197).unlock();
       V.updateTotalRunUnlocks();
-      if(VUnlocks.metaReset.isUnlocked) Quotes.v.thankYou.show();
+      if (VUnlocks.metaReset.isUnlocked) Quotes.v.thankYou.show();
     },
     createCursedGlyph() {
       Glyphs.giveCursedGlyph();
     },
-    fear(){
+    fear() {
       const a = VRunUnlock(10).completions;
-      if(a == 0 || a == 4) return;
-      const rand1 = (Math.random() - 0.5) *2;
-      const rand2 = (Math.random() - 0.5) *2;
+      if (a == 0 || a == 4) return;
+      const rand1 = (Math.random() - 0.5) * 2;
+      const rand2 = (Math.random() - 0.5) * 2;
       return {
-        left: ((3 * a) * rand1) + "px",
-        top: ((3 * a) * rand2) + "px",
-        transitionDuration: player.options.updateRate + "ms"
+        left: `${(3 * a) * rand1}px`,
+        top: `${(3 * a) * rand2}px`,
+        transitionDuration: `${player.options.updateRate}ms`
       };
     },
   }
@@ -266,18 +267,18 @@ export default {
         class="c-v-info-text"
       >
         <PrimaryButton
+          v-if="hasHardUnlocked"
           class="o-primary-btn--subtab-option"
           @click="toggleHard"
-          v-if="hasHardUnlocked"
         >
           <span v-if="isHard">Hide</span>
           <span v-else>Show</span>
           Hard {{ sCel() }}
         </PrimaryButton>
         <PrimaryButton
+          v-if="hasExtremeUnlocked"
           class="o-primary-btn--subtab-option"
           @click="toggleExtreme"
-          v-if="hasExtremeUnlocked"
         >
           <span v-if="isExtreme">Hide</span>
           <span v-else>Show</span>
@@ -285,9 +286,9 @@ export default {
         </PrimaryButton>
 
         <PrimaryButton
+          v-if="hasExtremeUnlocked"
           class="o-primary-btn--subtab-option"
           @click="unworthy"
-          v-if="hasExtremeUnlocked"
         >
           Reset Extreme {{ sCel() }}-Achievements
         </PrimaryButton>
@@ -311,15 +312,14 @@ export default {
         Goal reduction is significantly more expensive for Hard {{ sCel() }}-Achievements.
 
         <div
-        v-if="hasExtremeUnlocked"
-        class="c-v-info-text"
+          v-if="hasExtremeUnlocked"
+          class="c-v-info-text"
         >
           <br>
           Each Extreme {{ sCel() }}-Achievement counts as five {{ sCel() }}-Achievements.
           <br>
           Goal reduction is significantly more expensive for Extreme {{ sCel() }}-Achievements.
         </div>
-
       </div>
       <div
         v-if="showReduction"
@@ -395,9 +395,9 @@ export default {
             <div :style="{ 'font-size': hasAlchemy ? '1.2rem' : '' }">
               {{ runDescription }}
             </div>
-            <div class="c-v-run-button__line c-v-run-button__line--1"/>
-            <div class="c-v-run-button__line c-v-run-button__line--2"/>
-            <div class="c-v-run-button__line c-v-run-button__line--3"/>
+            <div class="c-v-run-button__line c-v-run-button__line--1" />
+            <div class="c-v-run-button__line c-v-run-button__line--2" />
+            <div class="c-v-run-button__line c-v-run-button__line--3" />
           </div>
           <div
             v-else-if="hex.isRunButtonExtreme"

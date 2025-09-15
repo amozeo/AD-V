@@ -260,7 +260,7 @@ ${player.celestials.null.corrupts > 0 ? "- <b>CoM</b>: Corrupt Matter<br>" : ""}
 `,
       isUnlocked: () => true,
       tags: ["abbreviation", "shorten", "am", "ad", "ag", "ip", "nc", "ic", "id", "rg", "ep", "tt", "td", "ec", "tp",
-        "dt", "tg", "rm", "ap", "bh", "im", "dm", "de", 'artm', 'cm', 'abm', 'com'],
+        "dt", "tg", "rm", "ap", "bh", "im", "dm", "de", "artm", "cm", "abm", "com"],
       tab: ""
     }, {
       name: "Antimatter Dimensions",
@@ -452,7 +452,7 @@ Dimensions, Dimension Boosts, and your Antimatter Galaxies. Doing a Big Crunch i
 You will eventually be able to pass ${formatPostBreak(Number.MAX_VALUE, 6)}, but until then any larger numbers will
 display as Infinity.
 <br>
-Very large number display as ${format(new Decimal('F3.50195'))}.<br>
+Very large number display as ${format(new Decimal("F3.50195"))}.<br>
 Very small number display as ${formatSmall(0.005)} (0.005), ${formatSmall(0.0005)} (0.0005).
 <br>
 <br>
@@ -1821,9 +1821,9 @@ ${Pelle.isDoomed
         "Filling" at any given time. When active, Rifts consume ${formatInt(3)}% of a Rift-specific resource per second. Each
         Rift offers a Rift-specific effect which are based on the total amount filled.
         ${PelleStrikes.eternity.hasStrike
-            ? `An exception for this is Decay/Collapse/Disarray, whose effect gets capped once you have drained a total of
+    ? `An exception for this is Decay/Collapse/Disarray, whose effect gets capped once you have drained a total of
             ${formatPostBreak(DC.E2000)} Replicanti.`
-            : ""}
+    : ""}
         In addition, each Rift offers three milestone rewards for filling them up to a certain percentage.
 `,
       isUnlocked: () => PelleStrikes.infinity.hasStrike,
@@ -1873,7 +1873,7 @@ ${Pelle.isDoomed
 
       Going Meta will reset Celestials and Achivements along with all of Reality.
       `,
-    },{
+    }, {
       name: "Cante",
       tags: ["Cante", "Recplicanor", "Celestial", "Artificial Matter", "Chaotic Matter"],
       tab: "meta/CanteTab",
@@ -1885,13 +1885,13 @@ ${Pelle.isDoomed
       Cante has Replicators with can be reforged to make Artificial Matter. <br>
       Artificial Matter is used to make replicators faster and buy upgrades. <br>
       <br>
-      ${ Cante.purged ?
-        `Purging is like reforgeing but you get Chaotic Matter instead. <br>
+      ${Cante.purged
+    ? `Purging is like reforgeing but you get Chaotic Matter instead. <br>
         Chaotic Matter boost every Replicators base and per purchase multiplier. <br>
-        Chaotic Matter is only used for buying upgrades. <br>` : ''
-      }
+        Chaotic Matter is only used for buying upgrades. <br>` : ""
+}
       `,
-    },{
+    }, {
       name: "Null",
       tags: ["Null", "Cycle", "Dark Circles", "Abyssal Matter"],
       tab: "meta/NullTab",
@@ -1905,11 +1905,11 @@ ${Pelle.isDoomed
 
       Each Cycle's multipler deceases based on how much you have. <br>
       <br>
-      ${ Null.isCorrupt ?
-        `Corrupt is like Parallax. <br>
+      ${Null.isCorrupt
+    ? `Corrupt is like Parallax. <br>
         Corrupts generate Corrupt Matter based on the highest unlocked Cycle. <br>
-        Corrupt Matter is only used for buying upgrades. <br>` : ''
-      }
+        Corrupt Matter is only used for buying upgrades. <br>` : ""
+}
 
       `,
     }, {

@@ -19,8 +19,9 @@ export class NullUpgradeAutobuyerState extends AutobuyerState {
 
   tick() {
     if (player.auto.nullUG.isActive) {
-    for (let i = 0; i < 12; i++) {
-      NullUpgrade(i).purchase();
-    }}
+      for (let i = 0; i < 12; i++) {
+        NullUpgrade(i).purchase();
+      }
+    }
   }
 }

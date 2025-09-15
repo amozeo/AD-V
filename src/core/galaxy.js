@@ -169,12 +169,11 @@ export function manualRequestGalaxyReset(bulk) {
   if (!Galaxy.canBeBought || !Galaxy.requirement.isSatisfied) return;
   if (GameEnd.creditsEverClosed) return;
 
-  if((!preInfinityUGs.all[3].config.hasFailed() && !preInfinityUGs.all[3].isBought) && (player.options.confirmations.glitchCL && 
- !PlayerProgress.metaUnlocked()) && player.galaxies.eq(0)){
+  if ((!preInfinityUGs.all[3].config.hasFailed() && !preInfinityUGs.all[3].isBought) && (player.options.confirmations.glitchCL &&
+ !PlayerProgress.metaUnlocked()) && player.galaxies.eq(0)) {
     Modal.message.show(`you will fail glitch challenge ${preInfinityUGs.all[3].config.name} <br> which is to ${preInfinityUGs.all[3].config.requirement()} <br> you can disable this for <i>all</i> challenges in confirmations`);
-  }
-  else if((!preInfinityUGs.all[6].config.hasFailed() && !preInfinityUGs.all[6].isBought) && (player.options.confirmations.glitchCL && 
- !PlayerProgress.metaUnlocked()) && player.galaxies.eq(1)){
+  } else if ((!preInfinityUGs.all[6].config.hasFailed() && !preInfinityUGs.all[6].isBought) && (player.options.confirmations.glitchCL &&
+ !PlayerProgress.metaUnlocked()) && player.galaxies.eq(1)) {
     Modal.message.show(`you will fail glitch challenge ${preInfinityUGs.all[6].config.name} <br> which is to ${preInfinityUGs.all[6].config.requirement()} <br> you can disable this for <i>all</i> challenges in confirmations`);
   }
 
@@ -193,12 +192,11 @@ export function manualRequestGalaxyReset(bulk) {
 // to restrict galaxy count for RUPG7's requirement here and nowhere else
 export function requestGalaxyReset(bulk, limit = DC.NUMMAX) {
   let restrictedLimit = RealityUpgrade(7).isLockingMechanics ? DC.D1 : limit;
-  if((!preInfinityUGs.all[3].config.hasFailed() && !preInfinityUGs.all[3].isBought) && (player.options.confirmations.glitchCL && 
- !PlayerProgress.metaUnlocked()) && player.galaxies.eq(0)){
+  if ((!preInfinityUGs.all[3].config.hasFailed() && !preInfinityUGs.all[3].isBought) && (player.options.confirmations.glitchCL &&
+ !PlayerProgress.metaUnlocked()) && player.galaxies.eq(0)) {
     restrictedLimit = DC.D0;
-  }
-  else if((!preInfinityUGs.all[6].config.hasFailed() && !preInfinityUGs.all[6].isBought) && (player.options.confirmations.glitchCL && 
- !PlayerProgress.metaUnlocked()) && player.galaxies.eq(1)){
+  } else if ((!preInfinityUGs.all[6].config.hasFailed() && !preInfinityUGs.all[6].isBought) && (player.options.confirmations.glitchCL &&
+ !PlayerProgress.metaUnlocked()) && player.galaxies.eq(1)) {
     restrictedLimit = DC.D1;
   }
   if (EternityMilestone.autobuyMaxGalaxies.isReached && bulk) return maxBuyGalaxies(restrictedLimit);

@@ -1,7 +1,8 @@
 <script>
+import { Glitch } from "../../../core/globals";
+
 import PrimaryButton from "@/components/PrimaryButton";
 import ChaosDimensionRow from "./ModernChaosDimensionRow.vue";
-import { Glitch } from "../../../core/globals";
 
 export default {
   name: "ModernChaosDimensionsTab",
@@ -18,14 +19,14 @@ export default {
   },
   methods: {
     update() {
-      this.cores = format(Currency.chaosCores.value,2);
+      this.cores = format(Currency.chaosCores.value, 2);
       this.gain = Glitch.riftToCoreGain;
       this.RFGain = format(Currency.chaosCores.value.mul(Currency.chaosCores.value.add(2).log(2)).pow(5).max(1), 2);
     },
     riftToCore() {
       Glitch.riftToCore();
     },
-    STEffect(){
+    STEffect() {
       return formatPercents(Glitch.chaosCoresBoost.toNumber() - 1);
     },
     maxAll() {
@@ -40,7 +41,8 @@ export default {
     <div class="c-subtab-option-container">
       <PrimaryButton
         class="o-primary-btn--subtab-option"
-        @click="maxAll">
+        @click="maxAll"
+      >
         Max all
       </PrimaryButton>
     </div>
@@ -48,7 +50,7 @@ export default {
     <div>
       you have
       <span class="l-CC-text">
-        {{this.cores}}
+        {{ cores }}
       </span>
       Chaos Cores
     </div>
@@ -56,18 +58,19 @@ export default {
     <div>
       Chaos Cores will Boost Tickspeed by
       <span class="l-TSE">
-        {{STEffect()}}
+        {{ STEffect() }}
       </span>
       per galaxy and
       <span class="l-RFE">
-        x{{ this.RFGain }}
+        x{{ RFGain }}
       </span>
-      Rift Force gain 
+      Rift Force gain
     </div>
-      
+
     <PrimaryButton
-    @click="riftToCore">
-    convert all of Rift Force to {{gain}} Chaos Cores
+      @click="riftToCore"
+    >
+      convert all of Rift Force to {{ gain }} Chaos Cores
     </PrimaryButton>
 
 
@@ -78,7 +81,6 @@ export default {
         :tier="tier"
       />
     </div>
-
   </div>
 </template>
 

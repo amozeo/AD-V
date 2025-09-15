@@ -191,7 +191,7 @@ export const MultiplierTabHelper = {
     switch (gr) {
       case 1:
         return dimStr === "AD1";
-        case 2:
+      case 2:
         return dimStr === "AD8";
       default:
         return false;
@@ -207,7 +207,7 @@ export const MultiplierTabHelper = {
     const bh1 = BlackHole(1);
     const bh2 = BlackHole(2);
     const avgBH = (bh1.isUnlocked ? bh1.dutyCycle.mul(bh1.power.sub(1)) : DC.D0).add(1).add(
-        (bh2.isUnlocked ? bh1.dutyCycle.mul(bh2.dutyCycle).mul(bh1.power).mul(bh2.power.sub(1)) : DC.D0));
+      (bh2.isUnlocked ? bh1.dutyCycle.mul(bh2.dutyCycle).mul(bh1.power).mul(bh2.power.sub(1)) : DC.D0));
 
     return {
       current: currBH,

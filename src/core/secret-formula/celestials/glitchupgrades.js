@@ -12,9 +12,9 @@ const rebuyable = props => {
     props.initialCost.mul(props.costMult)
   );
   const { effect } = props;
-  props.effect = () =>  props.id == 3 ? (player.celestials.glitch.upgrades.rebuyable[props.id].mul(effect)) : Decimal.pow( (typeof effect == "function") ? effect() : effect ,player.celestials.glitch.upgrades.rebuyable[props.id]);
-  props.description = () => props.id == 3 ? props.textTemplate.replace("{value}", "+" + format(effect)) : props.textTemplate.replace("{value}", formatX( (typeof effect == "function") ? effect() : effect , 2, 2));
-  props.formatEffect = value => props.id == 3 ? ("+" + format(value, 2, 2)) : formatX(value, 2, 2);
+  props.effect = () => (props.id == 3 ? (player.celestials.glitch.upgrades.rebuyable[props.id].mul(effect)) : Decimal.pow((typeof effect === "function") ? effect() : effect, player.celestials.glitch.upgrades.rebuyable[props.id]));
+  props.description = () => (props.id == 3 ? props.textTemplate.replace("{value}", `+${format(effect)}`) : props.textTemplate.replace("{value}", formatX((typeof effect === "function") ? effect() : effect, 2, 2)));
+  props.formatEffect = value => (props.id == 3 ? (`+${format(value, 2, 2)}`) : formatX(value, 2, 2));
   props.formatCost = value => format(value, 2, 2);
   props.cost = () => hybrid(player.celestials.glitch.upgrades.rebuyable[props.id]);
   props.hybridCostScaling = hybrid;
@@ -65,9 +65,9 @@ export const glitchRealityUpgrades = [
     checkRequirement: () => player.infinities.gt(0) && Glitch.isRunning && Glitch.activeAugments.length >= 9,
     checkEvent: GAME_EVENT.BIG_CRUNCH_AFTER,
     description: "Rift Force multiplies ADs uneffected by Celestial Reality's or Dilation but nerfed while Doomed (comes back based on RS)",
-    effect: () =>  {
+    effect: () => {
       let effect = Currency.riftForce.value.pow(Currency.riftForce.value.log(1.5).pow(2)).max(1);
-      if(effect.gt("1e1E12")) effect = effect.pow(effect.log10().div(1e12).pow(0.7).recip());
+      if (effect.gt("1e1E12")) effect = effect.pow(effect.log10().div(1e12).pow(0.7).recip());
 
       return effect;
     },
@@ -77,14 +77,14 @@ export const glitchRealityUpgrades = [
     name: "Augmentation of IP",
     id: 6,
     cost: new Decimal(100),
-    requirement: () => `Infinity for ${format("1e500",2,2)} Infinity Points with all effects active`,
+    requirement: () => `Infinity for ${format("1e500", 2, 2)} Infinity Points with all effects active`,
     ReqBits: () => 511,
     hasFailed: () => !(Glitch.activeAugments.length >= 9),
     checkRequirement: () => Currency.infinityPoints.gte("1e500") && Glitch.isRunning && Glitch.activeAugments.length >= 9,
     checkEvent: GAME_EVENT.BIG_CRUNCH_AFTER,
     description: "While Augmented, Laitela's max Dimension count is one higher",
-    effect: () =>  1,
-    formatEffect: value => ("+" + format(value))
+    effect: () => 1,
+    formatEffect: value => (`+${format(value)}`)
   },
   {
     name: "Reinforcement",
@@ -96,8 +96,8 @@ export const glitchRealityUpgrades = [
     checkRequirement: () => Currency.antimatter.gte("1e5E13") && Glitch.isRunning && player.celestials.glitch.augment.effectbits == 265,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     description: "You are only forced to have 4 Cursed Glyphs",
-    effect: () =>  1,
-    formatEffect: value => ("+" + format(value))
+    effect: () => 1,
+    formatEffect: value => (`+${format(value)}`)
   },
   {
     name: "Uncounted Forces",
@@ -109,7 +109,7 @@ export const glitchRealityUpgrades = [
     checkRequirement: () => Currency.antimatter.gte("1e1E9") && Glitch.isRunning && Glitch.augmentEffectBits == 320,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     description: "You start with 5 DimBoosts and Lai'tela's Reality at 10 minutes",
-    effect: () =>  1,
+    effect: () => 1,
     formatEffect: value => "active"
   },
   {
@@ -121,7 +121,7 @@ export const glitchRealityUpgrades = [
     checkRequirement: () => Currency.antimatter.gte("e6e6") && Glitch.isRunning && Glitch.activeAugments.length >= 9,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     description: "Infinity Dimensions are not effected by lai'tela",
-    effect: () =>  1,
+    effect: () => 1,
     formatEffect: value => "active"
   },
   {
@@ -134,7 +134,7 @@ export const glitchRealityUpgrades = [
     checkRequirement: () => Currency.antimatter.gte("1e1.66e9") && Glitch.isRunning && Glitch.augmentEffectBits == 202,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     description: "You start with the default IP, EP and Eternities",
-    effect: () =>  1,
+    effect: () => 1,
     formatEffect: value => "active"
   },
   {
@@ -147,7 +147,7 @@ export const glitchRealityUpgrades = [
     checkRequirement: () => Currency.antimatter.gte("1e15E10") && Glitch.isRunning && Glitch.augmentEffectBits == 63,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     description: "Game speed from Black holes are always in effect while Augmented",
-    effect: () =>  1,
+    effect: () => 1,
     formatEffect: value => "active"
   },
   {
@@ -160,20 +160,20 @@ export const glitchRealityUpgrades = [
     checkRequirement: () => player.dilation.studies.includes(6) && Glitch.isRunning && Glitch.augmentEffectBits == 464,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     description: "Teresa Sacrifice ^1.5, DMDs ^2.5 and Singularities ^1.25",
-    effect: () =>  1,
+    effect: () => 1,
     formatEffect: value => "^1.5, ^2.5, ^1.25"
   },
   {
-    name: () => (GlitchRealityUpgrades.all[12].isAvailableForPurchase ? "The Darkness Arizes" : "Unknown") ,
+    name: () => (GlitchRealityUpgrades.all[12].isAvailableForPurchase ? "The Darkness Arizes" : "Unknown"),
     id: 13,
     cost: 1e23,
     requirement: () => `Reach ${format("1e1E9")} Antimatter with all but The Nameless One's Reality`,
     ReqBits: () => 507,
     hasFailed: () => Glitch.augmentEffectBits != 507,
-    checkRequirement: () =>  Currency.antimatter.gte("1e1E9") && Glitch.isRunning && Glitch.augmentEffectBits == 507,
+    checkRequirement: () => Currency.antimatter.gte("1e1E9") && Glitch.isRunning && Glitch.augmentEffectBits == 507,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     description: "Rift Force gain is squared, Rift OverDrive effect changed from 2 to 2.5 per upgrade, Augmented Infinity is cubed",
-    effect: () =>  1,
+    effect: () => 1,
     formatEffect: value => "^2, +0.5, ^3"
   },
   {
@@ -183,10 +183,10 @@ export const glitchRealityUpgrades = [
     requirement: () => `Reach ${format("1e2E15")} Antimatter with Effarig Reality, Nameless one's Dim limit and low tachyon gain, V's Reality and Lai'tela's Reality (also requires ${GlitchRealityUpgrades.all[12].name})`,
     ReqBits: () => 314,
     hasFailed: () => !GlitchRealityUpgrades.all[12].isBought || Glitch.augmentEffectBits != 314,
-    checkRequirement: () =>  GlitchRealityUpgrades.all[12].isBought && Currency.antimatter.gte("1e2E15") && Glitch.isRunning && Glitch.augmentEffectBits == 314,
+    checkRequirement: () => GlitchRealityUpgrades.all[12].isBought && Currency.antimatter.gte("1e2E15") && Glitch.isRunning && Glitch.augmentEffectBits == 314,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     description: "Riftoverdrive effect is doubled, Glyphs softcap 3 is at 1M",
-    effect: () =>  DC.D2,
+    effect: () => DC.D2,
     formatEffect: value => "x2, Glyph softcap 3 is now at 1M"
   },
   {
@@ -196,10 +196,10 @@ export const glitchRealityUpgrades = [
     requirement: () => `Reach ${format("1e500E15")} Antimatter (also requires ${GlitchRealityUpgrades.all[13].name})`,
     ReqBits: () => 0,
     hasFailed: () => !GlitchRealityUpgrades.all[13].isBought || Glitch.augmentEffectBits != 0,
-    checkRequirement: () =>  GlitchRealityUpgrades.all[13].isBought && Currency.antimatter.gte("1e500E15") && Glitch.isRunning && Glitch.augmentEffectBits == 0,
+    checkRequirement: () => GlitchRealityUpgrades.all[13].isBought && Currency.antimatter.gte("1e500E15") && Glitch.isRunning && Glitch.augmentEffectBits == 0,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     description: "You have 2 less forced Cursed Glyphs",
-    effect: () =>  2,
+    effect: () => 2,
     formatEffect: value => "-2"
   },
   {
@@ -209,10 +209,10 @@ export const glitchRealityUpgrades = [
     requirement: () => `Reach ${format("1.8e308")} Projected RM with all effects excluding Ra's and Nameless One's Reality (also requires ${GlitchRealityUpgrades.all[14].name})`,
     ReqBits: () => 315,
     hasFailed: () => !GlitchRealityUpgrades.all[14].isBought || Glitch.augmentEffectBits != 315,
-    checkRequirement: () =>  GlitchRealityUpgrades.all[14].isBought && MachineHandler.gainedRealityMachines.times(simulatedRealityCount()).gte("1.8e308") && Glitch.isRunning && Glitch.augmentEffectBits == 315,
+    checkRequirement: () => GlitchRealityUpgrades.all[14].isBought && MachineHandler.gainedRealityMachines.times(simulatedRealityCount()).gte("1.8e308") && Glitch.isRunning && Glitch.augmentEffectBits == 315,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     description: "Glitch stays complete past Pelle and unlock Glitch's second layer after beating Pelle, also ADs are powered by 2.5",
-    effect: () =>  2.5,
+    effect: () => 2.5,
     formatEffect: value => (GlitchRealityUpgrades.all[15].isBought ? "Unlocked, ^2.5 AD" : "Locked")
   },
 ];

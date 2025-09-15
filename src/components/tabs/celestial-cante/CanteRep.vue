@@ -9,14 +9,14 @@ export default {
     PrimaryButton,
   },
   props: {
-    tier:{
+    tier: {
       type: Number,
       required: true,
     }
   },
   data() {
     return {
-      unlockReq: '',
+      unlockReq: "",
       unlocked: false,
       purged: false,
       rep: {},
@@ -37,10 +37,10 @@ export default {
       this.cost.copyFrom(this.rep.cost);
       this.amount.copyFrom(this.rep.amount);
       this.multiplier.copyFrom(this.rep.multiplier);
-      this.purged  = Cante.purged;
+      this.purged = Cante.purged;
     },
-    buy(bulk = false){
-      if(this.unlocked){
+    buy(bulk = false) {
+      if (this.unlocked) {
         this.rep.buy(bulk);
       }
     }
@@ -50,15 +50,15 @@ export default {
 
 <template>
   <PrimaryButton
-  :class="this.tier > 5 ? 'c-cante-button-chaos': 'c-cante-button'"
-  v-if='(purged && this.tier > 5) || this.tier < 6'
-  @click.exact="buy(false)"
-  @click.shift.exact="buy(true)"
+    v-if="(purged && tier > 5) || tier < 6"
+    :class="tier > 5 ? 'c-cante-button-chaos': 'c-cante-button'"
+    @click.exact="buy(false)"
+    @click.shift.exact="buy(true)"
   >
-    {{rep.shortDisplayName}} Replicator
+    {{ rep.shortDisplayName }} Replicator
     <div v-if="unlocked">
-        {{ format(amount, 2, 2) }} <br> x{{ formatSmall(multiplier) }}
-        <br>
+      {{ format(amount, 2, 2) }} <br> x{{ formatSmall(multiplier) }}
+      <br>
       <div>
         Cost: {{ format(cost, 2) }} Artificial Matter
       </div>

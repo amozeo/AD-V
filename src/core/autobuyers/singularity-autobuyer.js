@@ -1,7 +1,7 @@
 import { AutobuyerState } from "./autobuyer";
 
 export class SingularityAutobuyerState extends AutobuyerState {
-  get realTime(){
+  get realTime() {
     return true;
   }
 

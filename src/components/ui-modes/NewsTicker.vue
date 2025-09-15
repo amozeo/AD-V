@@ -1,5 +1,4 @@
 <script>
-
 export default {
   name: "NewsTicker",
   data() {
@@ -58,13 +57,12 @@ export default {
         this.currentNews = GameDatabase.news
           .filter(message => message.isAdvertising && canShow(message))
           .randomElement();
-      } 
-      else if (player.options.news.onlyVisNews) {
+      } else if (player.options.news.onlyVisNews) {
         this.currentNews = GameDatabase.news
           .filter(message => message.id.includes("vis"))
           .filter(message => canShow(message))
           .randomElement();
-      }else {
+      } else {
         const isAI = Math.random() < player.options.news.AIChance;
         this.currentNews = GameDatabase.news
           .filter(message => message.id.includes("ai") === isAI)
@@ -79,7 +77,7 @@ export default {
         this.currentNews.reset();
       }
 
-      let text = this.currentNews.text;
+      const text = this.currentNews.text;
       line.innerHTML = text;
 
       line.style["transition-duration"] = "0ms";

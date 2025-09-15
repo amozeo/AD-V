@@ -47,10 +47,10 @@ export class NonRepeatableGlitchUpgradeAutobuyerState extends AutobuyerState {
 
   tick() {
     if (player.auto.nrgu.isActive) {
-    for (let i = 1; i <= 12; i++) {
-      if (Currency.riftForce.gte(GlitchRealityUpgrade(i+4).cost) && !GlitchRealityUpgrade(i+4).isBought) {
-        GlitchRealityUpgrade(i+4).purchase();
-      }
+      for (let i = 1; i <= 12; i++) {
+        if (Currency.riftForce.gte(GlitchRealityUpgrade(i + 4).cost) && !GlitchRealityUpgrade(i + 4).isBought) {
+          GlitchRealityUpgrade(i + 4).purchase();
+        }
       }
       for (let i = 1; i <= 4; i++) {
         if (Currency.riftForce.gte(GlitchSpeedUpgrade(i).cost) && !GlitchSpeedUpgrade(i).isBought) {

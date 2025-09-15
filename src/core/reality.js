@@ -14,7 +14,7 @@ export const GlyphSelection = {
 
   get choiceCount() {
     let m = 0;
-    if(Perk.simReality.isBought){
+    if (Perk.simReality.isBought) {
       m += 2;
     }
     return Effects.nMax(1, Perk.firstPerk) *
@@ -134,8 +134,8 @@ export function simulatedRealityCount(advancePartSimCounters) {
   const amplifiedSim = Enslaved.boostReality ? Enslaved.realityBoostRatio.sub(1) : new Decimal();
   const multiversalSim = AlchemyResource.multiversal.effectValue;
   const simCount = amplifiedSim.add(1).mul(multiversalSim.add(1)).add(player.partSimulatedReality.sub(1));
-  let c = 0
-  if(Perk.simReality.isBought){
+  let c = 0;
+  if (Perk.simReality.isBought) {
     c++;
   }
   if (advancePartSimCounters) {
@@ -152,32 +152,32 @@ export function requestManualReality() {
   if (GlyphSelection.active || !isRealityAvailable()) return;
   if (GameEnd.creditsEverClosed) return;
 
-  if((!realityUGs.all[0].config.hasFailed() && !realityUGs.all[0].isBought) && (player.options.confirmations.glitchCL && 
- !PlayerProgress.metaUnlocked())){
+  if ((!realityUGs.all[0].config.hasFailed() && !realityUGs.all[0].isBought) && (player.options.confirmations.glitchCL &&
+ !PlayerProgress.metaUnlocked())) {
     Modal.message.show(`you will fail glitch challenge ${realityUGs.all[0].config.name} <br> which is to ${realityUGs.all[0].config.requirement()} <br> you can disable this for <i>all</i> challenges in confirmations`);
     return;
   }
-  else if((!realityUGs.all[1].config.hasFailed() && !realityUGs.all[1].isBought) && (player.options.confirmations.glitchCL && 
- !PlayerProgress.metaUnlocked())){
+  if ((!realityUGs.all[1].config.hasFailed() && !realityUGs.all[1].isBought) && (player.options.confirmations.glitchCL &&
+ !PlayerProgress.metaUnlocked())) {
     Modal.message.show(`you will fail glitch challenge ${realityUGs.all[1].config.name} <br> which is to ${realityUGs.all[1].config.requirement()} <br> you can disable this for <i>all</i> challenges in confirmations`);
     return;
   }
-  else if((!realityUGs.all[2].config.hasFailed() && !realityUGs.all[2].isBought) && (player.options.confirmations.glitchCL && 
- !PlayerProgress.metaUnlocked())){
+  if ((!realityUGs.all[2].config.hasFailed() && !realityUGs.all[2].isBought) && (player.options.confirmations.glitchCL &&
+ !PlayerProgress.metaUnlocked())) {
     Modal.message.show(`you will fail glitch challenge ${realityUGs.all[2].config.name} <br> which is to ${realityUGs.all[2].config.requirement()} <br> you can disable this for <i>all</i> challenges in confirmations`);
     return;
   }
-  else if((!realityUGs.all[4].config.hasFailed() && !realityUGs.all[4].isBought) && (player.options.confirmations.glitchCL && 
- !PlayerProgress.metaUnlocked()) && Teresa.isRunning){
+  if ((!realityUGs.all[4].config.hasFailed() && !realityUGs.all[4].isBought) && (player.options.confirmations.glitchCL &&
+ !PlayerProgress.metaUnlocked()) && Teresa.isRunning) {
     Modal.message.show(`you will fail glitch challenge ${realityUGs.all[4].config.name} <br> which is to ${realityUGs.all[4].config.requirement()} <br> you can disable this for <i>all</i> challenges in confirmations`);
     return;
   }
-  else if((!realityUGs.all[6].config.hasFailed() && !realityUGs.all[6].isBought) && (player.options.confirmations.glitchCL && 
- !PlayerProgress.metaUnlocked()) && Effarig.isRunning && Effarig.currentStage == 1){
+  if ((!realityUGs.all[6].config.hasFailed() && !realityUGs.all[6].isBought) && (player.options.confirmations.glitchCL &&
+ !PlayerProgress.metaUnlocked()) && Effarig.isRunning && Effarig.currentStage == 1) {
     Modal.message.show(`you will fail glitch challenge ${realityUGs.all[6].config.name} <br> which is to ${realityUGs.all[6].config.requirement()} <br> you can disable this for <i>all</i> challenges in confirmations`);
     return;
   }
-  
+
   if (player.options.confirmations.glyphSelection || ui.view.shiftDown) {
     Modal.reality.show();
     return;
@@ -336,7 +336,7 @@ function updateRealityRecords(realityProps) {
     player.records.bestReality.realTime = player.records.thisReality.realTime;
     player.records.bestReality.speedSet = Glyphs.copyForRecords(Glyphs.active.filter(g => g !== null));
   }
-  player.records.bestReality.trueTime = Math.min(player.records.bestReality.trueTime, player.records.thisReality.trueTime)
+  player.records.bestReality.trueTime = Math.min(player.records.bestReality.trueTime, player.records.thisReality.trueTime);
 }
 
 function giveRealityRewards(realityProps) {
@@ -355,7 +355,7 @@ function giveRealityRewards(realityProps) {
     multiplier,
     MachineHandler.projectedIMCap);
   Currency.realities.add(realityAndPPMultiplier);
-  Currency.perkPoints.add(realityAndPPMultiplier.mul(GlitchRifts.gamma.milestones[1].effectOrDefault(1) + realityUGs.all[5].effectOrDefault(1)) );
+  Currency.perkPoints.add(realityAndPPMultiplier.mul(GlitchRifts.gamma.milestones[1].effectOrDefault(1) + realityUGs.all[5].effectOrDefault(1)));
   if (TeresaUnlocks.effarig.canBeApplied) {
     Currency.relicShards.add(realityProps.gainedShards.times(multiplier));
   }
@@ -405,10 +405,10 @@ function giveRealityRewards(realityProps) {
 
   if (Glitch.isRunning) {
 
-    const effects = Glitch.activeAugments.length > 0 ? (makeEnumeration(Glitch.activeAugments) + " active, congratulations"): "nothing active";
-    const modalText = `You have completed Glitch's Reality! with ${ effects }`;
+    const effects = Glitch.activeAugments.length > 0 ? (`${makeEnumeration(Glitch.activeAugments)} active, congratulations`) : "nothing active";
+    const modalText = `You have completed Glitch's Reality! with ${effects}`;
     Modal.message.show(modalText, {}, 2);
-    
+
   };
 }
 
@@ -450,23 +450,23 @@ export function beginProcessReality(realityProps) {
       }
     }
 
-    let gl = Decimal.min(glyphLevel.actualLevel, Decimal.floor(Glyphs.levelCap))
-    
-    if(Perk.autoGlyph.canBeApplied && !Pelle.isDoomed){
-      for (let i=0; i < player.reality.glyphs.inventory.length; i++){
-        if(!(player.reality.glyphs.inventory[i].type == "reality" || player.reality.glyphs.inventory[i].type == "cursed" || player.reality.glyphs.inventory[i].type == "glitch") ){
-          player.reality.glyphs.inventory[i].level = Decimal.max(gl, Decimal.min(player.reality.glyphs.inventory[i].level, Glyphs.levelCap) );
+    const gl = Decimal.min(glyphLevel.actualLevel, Decimal.floor(Glyphs.levelCap));
+
+    if (Perk.autoGlyph.canBeApplied && !Pelle.isDoomed) {
+      for (let i = 0; i < player.reality.glyphs.inventory.length; i++) {
+        if (!(player.reality.glyphs.inventory[i].type == "reality" || player.reality.glyphs.inventory[i].type == "cursed" || player.reality.glyphs.inventory[i].type == "glitch")) {
+          player.reality.glyphs.inventory[i].level = Decimal.max(gl, Decimal.min(player.reality.glyphs.inventory[i].level, Glyphs.levelCap));
         }
-        if (MetaMilestone.metaRealityAndGlitchGlyphAuto.isReached && (player.reality.glyphs.inventory[i].type == "reality" || player.reality.glyphs.inventory[i].type == "glitch")){
-          player.reality.glyphs.inventory[i].level = Decimal.max(Ra.alchemyResourceCap, Decimal.min(player.reality.glyphs.inventory[i].level, Glyphs.levelCap) )
+        if (MetaMilestone.metaRealityAndGlitchGlyphAuto.isReached && (player.reality.glyphs.inventory[i].type == "reality" || player.reality.glyphs.inventory[i].type == "glitch")) {
+          player.reality.glyphs.inventory[i].level = Decimal.max(Ra.alchemyResourceCap, Decimal.min(player.reality.glyphs.inventory[i].level, Glyphs.levelCap));
         }
       }
-      for (let i=0; i < player.reality.glyphs.active.length; i++){
-        if(!(player.reality.glyphs.active[i].type == "reality" || player.reality.glyphs.active[i].type == "cursed" || player.reality.glyphs.active[i].type == "glitch") ){
-          player.reality.glyphs.active[i].level = Decimal.max(gl, Decimal.min(player.reality.glyphs.active[i].level, Glyphs.levelCap) );
+      for (let i = 0; i < player.reality.glyphs.active.length; i++) {
+        if (!(player.reality.glyphs.active[i].type == "reality" || player.reality.glyphs.active[i].type == "cursed" || player.reality.glyphs.active[i].type == "glitch")) {
+          player.reality.glyphs.active[i].level = Decimal.max(gl, Decimal.min(player.reality.glyphs.active[i].level, Glyphs.levelCap));
         }
-        if (MetaMilestone.metaRealityAndGlitchGlyphAuto.isReached && (player.reality.glyphs.active[i].type == "reality" || player.reality.glyphs.active[i].type == "glitch")){
-          player.reality.glyphs.active[i].level = Decimal.max(Ra.alchemyResourceCap, Decimal.min(player.reality.glyphs.active[i].level, Glyphs.levelCap) )
+        if (MetaMilestone.metaRealityAndGlitchGlyphAuto.isReached && (player.reality.glyphs.active[i].type == "reality" || player.reality.glyphs.active[i].type == "glitch")) {
+          player.reality.glyphs.active[i].level = Decimal.max(Ra.alchemyResourceCap, Decimal.min(player.reality.glyphs.active[i].level, Glyphs.levelCap));
         }
       }
     }
@@ -709,7 +709,7 @@ export function finishProcessReality(realityProps) {
   player.galaxies = DC.D0;
   player.partInfinityPoint = 0;
   player.partInfinitied = 0;
-  if(!MetaMilestone.glyphKeep.isReached) player.break = false;
+  if (!MetaMilestone.glyphKeep.isReached) player.break = false;
   player.IPMultPurchases = DC.D0;
   Currency.infinityPower.reset();
   Currency.timeShards.reset();
@@ -824,7 +824,7 @@ export function finishProcessReality(realityProps) {
 
   if (realityProps.restoreCelestialState || player.options.retryCelestial) restoreCelestialRuns(celestialRunState);
   else if (glitch) Glitch.leaveRun();
-  
+
   if (Pelle.isDoomed && PelleUpgrade.keepAutobuyers.canBeApplied && Autobuyer.bigCrunch.hasMaxedInterval) {
     player.break = true;
   }
@@ -845,7 +845,7 @@ function restoreCelestialRuns(celestialRunState) {
   if (player.celestials.ra.run) Ra.initializeRun();
   player.celestials.laitela.run = celestialRunState.laitela;
   if (player.celestials.laitela.run) Laitela.initializeRun();
-  
+
   player.celestials.glitch.run = celestialRunState.glitch;
   if (player.celestials.glitch.run) Glitch.initializeRun();
 }
@@ -914,7 +914,7 @@ export function clearCelestialRuns() {
   player.celestials.v.runExtreme = false;
   player.celestials.ra.run = false;
   player.celestials.laitela.run = false;
-  
+
   player.celestials.glitch.run = false;
   return saved;
 }

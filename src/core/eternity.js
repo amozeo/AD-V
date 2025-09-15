@@ -65,18 +65,18 @@ export function eternityResetRequest() {
   if (!Player.canEternity) return;
   if (GameEnd.creditsEverClosed) return;
 
-  if((!breakInfinityUGs.all[0].config.hasFailed() && !breakInfinityUGs.all[0].isBought) && (player.options.confirmations.glitchCL && 
- !PlayerProgress.metaUnlocked())){
+  if ((!breakInfinityUGs.all[0].config.hasFailed() && !breakInfinityUGs.all[0].isBought) && (player.options.confirmations.glitchCL &&
+ !PlayerProgress.metaUnlocked())) {
     Modal.message.show(`you will fail glitch challenge ${breakInfinityUGs.all[0].config.name} <br> which is to ${breakInfinityUGs.all[0].config.requirement()} <br> you can disable this for <i>all</i> challenges in confirmations`);
     return;
   }
-  else if((!breakInfinityUGs.all[1].config.hasFailed() && !breakInfinityUGs.all[1].isBought) && (player.options.confirmations.glitchCL && 
- !PlayerProgress.metaUnlocked())){
+  if ((!breakInfinityUGs.all[1].config.hasFailed() && !breakInfinityUGs.all[1].isBought) && (player.options.confirmations.glitchCL &&
+ !PlayerProgress.metaUnlocked())) {
     Modal.message.show(`you will fail glitch challenge ${breakInfinityUGs.all[1].config.name} <br> which is to ${breakInfinityUGs.all[1].config.requirement()} <br> you can disable this for <i>all</i> challenges in confirmations`);
     return;
   }
-  else if((!eternityUGs.all[0].config.hasFailed() && !eternityUGs.all[0].isBought) && (player.options.confirmations.glitchCL && 
- !PlayerProgress.metaUnlocked())){
+  if ((!eternityUGs.all[0].config.hasFailed() && !eternityUGs.all[0].isBought) && (player.options.confirmations.glitchCL &&
+ !PlayerProgress.metaUnlocked())) {
     Modal.message.show(`you will fail glitch challenge ${eternityUGs.all[0].config.name} <br> which is to ${eternityUGs.all[0].config.requirement()} <br> you can disable this for <i>all</i> challenges in confirmations`);
     return;
   }
@@ -328,7 +328,7 @@ class EPMultiplierState extends GameMechanicState {
 
   purchase() {
     if (!this.isAffordable) return false;
-    if(Currency.eternityPoints.lt('ee15')) Currency.eternityPoints.subtract(this.cost);
+    if (Currency.eternityPoints.lt("ee15")) Currency.eternityPoints.subtract(this.cost);
     this.boughtAmount = this.boughtAmount.add(1);
     return true;
   }

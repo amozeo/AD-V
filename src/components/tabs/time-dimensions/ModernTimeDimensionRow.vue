@@ -88,9 +88,9 @@ export default {
     update() {
       const tier = this.tier;
       const dimension = TimeDimension(tier);
-      
+
       const allow = (Enslaved.isRunning && !Glitch.isRunning) || Glitch.augmentEffectActive(3);
-      
+
       this.isCapped = allow && dimension.bought.gt(0);
       this.isoverloaded = dimension.bought.gte(1e15);
       this.isUnlocked = dimension.isUnlocked;

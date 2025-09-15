@@ -222,7 +222,7 @@ Modal.enterSpeedrun = new Modal(SpeedrunModeModal);
 Modal.modifySeed = new Modal(ModifySeedModal);
 Modal.changeName = new Modal(ChangeNameModal);
 Modal.armageddon = new Modal(ArmageddonModal, 1);
-Modal.meta = new Modal(MetaResetModal, 1, GAME_EVENT.META_RESET_AFTER)
+Modal.meta = new Modal(MetaResetModal, 1, GAME_EVENT.META_RESET_AFTER);
 
 Modal.confirmationOptions = new Modal(ConfirmationOptionsModal);
 Modal.infoDisplayOptions = new Modal(InfoDisplayOptionsModal);

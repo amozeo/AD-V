@@ -162,7 +162,7 @@ export class DarkMatterDimensionState extends DimensionState {
         .times(POWER_DE_START_COST),
       baseIncrease: this.powerDECostIncrease,
       costScale: new Decimal(100),
-      scalingCostThreshold: new Decimal('ee6')
+      scalingCostThreshold: new Decimal("ee6")
     });
   }
 
@@ -172,7 +172,7 @@ export class DarkMatterDimensionState extends DimensionState {
         .times(POWER_DM_START_COST),
       baseIncrease: this.powerDMCostIncrease,
       costScale: new Decimal(100),
-      scalingCostThreshold: new Decimal('ee6')
+      scalingCostThreshold: new Decimal("ee6")
     });
   }
 
@@ -182,7 +182,7 @@ export class DarkMatterDimensionState extends DimensionState {
         .times(INTERVAL_START_COST),
       baseIncrease: this.intervalCostIncrease,
       costScale: new Decimal(100),
-      scalingCostThreshold: new Decimal('ee6')
+      scalingCostThreshold: new Decimal("ee6")
     });
   }
 
@@ -218,11 +218,11 @@ export class DarkMatterDimensionState extends DimensionState {
     if (calc === null) return;
     if (Decimal.lte(x, quant.clampMax(this.maxIntervalPurchases))) {
       // eslint-disable-next-line max-len
-      if(Currency.darkMatter.lt('ee15')) Currency.darkMatter.purchase(this.costScaleInterval.calculateCost(this.data.intervalUpgrades.add(x).sub(1)));
+      if (Currency.darkMatter.lt("ee15")) Currency.darkMatter.purchase(this.costScaleInterval.calculateCost(this.data.intervalUpgrades.add(x).sub(1)));
       this.data.intervalUpgrades = this.data.intervalUpgrades.add(x);
     }
     // eslint-disable-next-line max-len
-    if(Currency.darkMatter.lt('ee15')) Currency.darkMatter.purchase(this.costScaleInterval.calculateCost(this.data.intervalUpgrades.add(quant).sub(1)));
+    if (Currency.darkMatter.lt("ee15")) Currency.darkMatter.purchase(this.costScaleInterval.calculateCost(this.data.intervalUpgrades.add(quant).sub(1)));
     this.data.intervalUpgrades = this.data.intervalUpgrades.add(quant);
     // S this.data.intervalUpgrades
   }
@@ -231,10 +231,10 @@ export class DarkMatterDimensionState extends DimensionState {
     const calc = this.costScaleDM.getMaxBought(this.data.powerDMUpgrades, Currency.darkMatter.value, DC.D1);
     if (calc === null) return;
     if (Decimal.lte(x, calc.quantity)) {
-      if(Currency.darkMatter.lt('ee15')) Currency.darkMatter.purchase(this.costScaleDM.calculateCost(this.data.powerDMUpgrades.add(x).sub(1)));
+      if (Currency.darkMatter.lt("ee15")) Currency.darkMatter.purchase(this.costScaleDM.calculateCost(this.data.powerDMUpgrades.add(x).sub(1)));
       this.data.powerDMUpgrades = this.data.powerDMUpgrades.add(x);
     }
-    if(Currency.darkMatter.lt('ee15')) Currency.darkMatter.purchase(this.costScaleDM.calculateCost(this.data.powerDMUpgrades.add(calc.quantity.sub(1))));
+    if (Currency.darkMatter.lt("ee15")) Currency.darkMatter.purchase(this.costScaleDM.calculateCost(this.data.powerDMUpgrades.add(calc.quantity.sub(1))));
     this.data.powerDMUpgrades = this.data.powerDMUpgrades.add(calc.quantity);
     // S this.data.powerDMUpgrades
   }
@@ -243,10 +243,10 @@ export class DarkMatterDimensionState extends DimensionState {
     const calc = this.costScaleDE.getMaxBought(this.data.powerDEUpgrades, Currency.darkMatter.value, DC.D1);
     if (calc === null) return;
     if (Decimal.lte(x, calc.quantity)) {
-      if(Currency.darkMatter.lt('ee15')) Currency.darkMatter.purchase(this.costScaleDE.calculateCost(this.data.powerDEUpgrades.add(x).sub(1)));
+      if (Currency.darkMatter.lt("ee15")) Currency.darkMatter.purchase(this.costScaleDE.calculateCost(this.data.powerDEUpgrades.add(x).sub(1)));
       this.data.powerDEUpgrades = this.data.powerDEUpgrades.add(x);
     }
-    if(Currency.darkMatter.lt('ee15')) Currency.darkMatter.purchase(this.costScaleDE.calculateCost(this.data.powerDEUpgrades.add(calc.quantity.sub(1))));
+    if (Currency.darkMatter.lt("ee15")) Currency.darkMatter.purchase(this.costScaleDE.calculateCost(this.data.powerDEUpgrades.add(calc.quantity.sub(1))));
     this.data.powerDEUpgrades = this.data.powerDEUpgrades.add(calc.quantity);
     // S this.data.powerDEUpgrades
   }

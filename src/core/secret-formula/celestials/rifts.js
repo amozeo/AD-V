@@ -240,7 +240,7 @@ export const pelleRifts = {
       },
       set value(val) {
         const spent = player.galaxies.sub(val);
-        player.celestials.pelle.rifts.glitch.fill = 
+        player.celestials.pelle.rifts.glitch.fill =
         player.celestials.pelle.rifts.glitch.fill.add(spent);
       }
     }),

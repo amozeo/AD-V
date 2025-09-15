@@ -130,7 +130,7 @@ export const metaFabricatorUpgrades = [
     cost: 3,
     description: "Nameless do not reset and gain bonus Tesseracts based on Metas. You also get a autobuyer for Tesseracts",
     effect: () => Currency.metas.value.div(5).pow(2.2),
-    formatEffect: value => "+" + format(value,2,2)
+    formatEffect: value => `+${format(value, 2, 2)}`
   },
   {
     name: "Glitch-lite",
@@ -146,7 +146,7 @@ export const metaFabricatorUpgrades = [
     id: 13,
     cost: 4,
     description: "Metas boost Meta Relay gain",
-    effect: () => Currency.metas.value.pow(1.44).div(15).add(1).min(1e10), // just in case of someone getting alot (we don't need that much yet)
+    effect: () => Currency.metas.value.pow(1.44).div(15).add(1).min(1e10), // Just in case of someone getting alot (we don't need that much yet)
     formatEffect: value => formatX(value, 2, 2)
   },
   {
@@ -208,7 +208,7 @@ export const metaFabricatorUpgrades = [
     cost: 80,
     description: "Generate Space Theorems based on Metas (caps at 25000)",
     effect: () => Currency.metas.value.pow(1.2).div(60),
-    formatEffect: value => format(value, 2, 2) + "/s"
+    formatEffect: value => `${format(value, 2, 2)}/s`
   },
   {
     name: "Meta Charger",
@@ -233,7 +233,7 @@ export const metaFabricatorUpgrades = [
     cost: 2e9,
     description: "Increase the Antimatter hardcap based on Metas",
     effect: () => Currency.metas.value.div(15).pow(2.5).add(1).min(1e50),
-    formatEffect: value => formatPow(value,2,2),
+    formatEffect: value => formatPow(value, 2, 2),
   },
   {
     name: "Some pointless stuff",

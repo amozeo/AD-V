@@ -202,7 +202,7 @@ Currency.antimatter = new class extends DecimalCurrency {
   get value() { return player.antimatter; }
 
   set value(value) {
-    if(value.gte('ee100')) value = value.pow(value.add('ee100').log('ee100').pow(0.99).recip());
+    if (value.gte("ee100")) value = value.pow(value.add("ee100").log("ee100").pow(0.99).recip());
 
     if (InfinityChallenges.nextIC) InfinityChallenges.notifyICUnlock(value);
     if (!PlayerProgress.realityUnlocked() && GameCache.cheapestAntimatterAutobuyer.value && value.gte(GameCache.cheapestAntimatterAutobuyer.value)) {
@@ -304,9 +304,10 @@ Currency.infinityPoints = new class extends DecimalCurrency {
 Currency.infinityPower = new class extends DecimalCurrency {
   get value() { return player.infinityPower; }
   set value(value) {
-    if(value.gt("1e1E25")) value = value.pow(value.log10().div(1e25).pow(MetaFabricatorUpgrade(15).isBought ? 0.5 : 0.9).recip());
+    if (value.gt("1e1E25")) value = value.pow(value.log10().div(1e25).pow(MetaFabricatorUpgrade(15).isBought ? 0.5 : 0.9).recip());
 
-     player.infinityPower = value; }
+    player.infinityPower = value;
+  }
 }();
 
 Currency.eternities = new class extends DecimalCurrency {
@@ -404,8 +405,8 @@ Currency.dilatedTime = new class extends DecimalCurrency {
 Currency.realities = new class extends DecimalCurrency {
   get value() { return player.realities; }
   set value(value) { player.realities = value; }
-  get startingValue(){
-    if(MetaMilestone.realityStart.isReached) return DC.E6;
+  get startingValue() {
+    if (MetaMilestone.realityStart.isReached) return DC.E6;
     return DC.D0;
   }
 }();
@@ -422,7 +423,8 @@ Currency.realityMachines = new class extends DecimalCurrency {
       player.records.bestReality.RMSet = Glyphs.copyForRecords(Glyphs.active.filter(g => g !== null));
     }
   }
-  reset(){
+
+  reset() {
     this.value = new Decimal();
   }
 }();
@@ -430,7 +432,7 @@ Currency.realityMachines = new class extends DecimalCurrency {
 Currency.perkPoints = new class extends DecimalCurrency {
   get value() { return player.reality.perkPoints; }
   set value(value) { player.reality.perkPoints = value; }
-  reset(){
+  reset() {
     this.value = DC.D0;
   }
 }();
@@ -445,7 +447,8 @@ Currency.imaginaryMachines = new class extends DecimalCurrency {
   set value(value) {
     player.reality.imaginaryMachines = Decimal.clampMax(value, MachineHandler.currentIMCap);
   }
-  reset(){
+
+  reset() {
     this.value = DC.D0;
   }
 }();
@@ -476,7 +479,7 @@ Currency.darkEnergy = new class extends DecimalCurrency {
 Currency.singularities = new class extends DecimalCurrency {
   get value() { return player.celestials.laitela.singularities; }
   set value(value) { player.celestials.laitela.singularities = value; }
-  get startingValue(){
+  get startingValue() {
     return MetaMilestone.metaRaAndLai.isReached ? DC.E1 : DC.D0;
   }
 }();
@@ -484,7 +487,7 @@ Currency.singularities = new class extends DecimalCurrency {
 Currency.remnants = new class extends DecimalCurrency {
   get value() { return player.celestials.pelle.remnants; }
   set value(value) { player.celestials.pelle.remnants = value; }
-  reset(){
+  reset() {
     this.value = DC.D0;
   }
 }();
@@ -492,7 +495,7 @@ Currency.remnants = new class extends DecimalCurrency {
 Currency.realityShards = new class extends DecimalCurrency {
   get value() { return player.celestials.pelle.realityShards; }
   set value(value) { player.celestials.pelle.realityShards = value; }
-  reset(){
+  reset() {
     this.value = DC.D0;
   }
 }();
@@ -512,7 +515,8 @@ Currency.galaxyGeneratorGalaxies = new class extends DecimalCurrency {
     player.celestials.pelle.galaxyGenerator.spentGalaxies =
       player.celestials.pelle.galaxyGenerator.spentGalaxies.add(spent);
   }
-  reset(){
+
+  reset() {
     this.value = DC.D0;
   }
 }();
@@ -520,7 +524,7 @@ Currency.galaxyGeneratorGalaxies = new class extends DecimalCurrency {
 Currency.riftForce = new class extends DecimalCurrency {
   get value() { return player.celestials.glitch.riftForce; }
   set value(value) { player.celestials.glitch.riftForce = value; }
-  reset(){
+  reset() {
     this.value = DC.D0;
   }
 }();
@@ -528,7 +532,7 @@ Currency.riftForce = new class extends DecimalCurrency {
 Currency.chaosCores = new class extends DecimalCurrency {
   get value() { return player.celestials.glitch.chaosCores; }
   set value(value) { player.celestials.glitch.chaosCores = value; }
-  reset(){
+  reset() {
     this.value = DC.D0;
   }
 }();
@@ -536,7 +540,7 @@ Currency.chaosCores = new class extends DecimalCurrency {
 Currency.metaRelays = new class extends DecimalCurrency {
   get value() { return player.meta.metaRelays; }
   set value(value) { player.meta.metaRelays = value; }
-  reset(){
+  reset() {
     this.value = DC.D0;
   }
 }();
@@ -544,7 +548,7 @@ Currency.metaRelays = new class extends DecimalCurrency {
 Currency.metas = new class extends DecimalCurrency {
   get value() { return player.meta.metas; }
   set value(value) { player.meta.metas = value; }
-  reset(){
+  reset() {
     this.value = DC.D0;
   }
 }();
@@ -552,7 +556,7 @@ Currency.metas = new class extends DecimalCurrency {
 Currency.artificialMatter = new class extends DecimalCurrency {
   get value() { return player.celestials.cante.artificialMatter; }
   set value(value) { player.celestials.cante.artificialMatter = value; }
-  reset(){
+  reset() {
     this.value = DC.D0;
   }
 }();
@@ -560,7 +564,7 @@ Currency.artificialMatter = new class extends DecimalCurrency {
 Currency.chaosMatter = new class extends DecimalCurrency {
   get value() { return player.celestials.cante.chaoticMatter; }
   set value(value) { player.celestials.cante.chaoticMatter = value; }
-  reset(){
+  reset() {
     this.value = DC.D0;
   }
 }();
@@ -568,7 +572,7 @@ Currency.chaosMatter = new class extends DecimalCurrency {
 Currency.abyssalMatter = new class extends DecimalCurrency {
   get value() { return player.celestials.null.abyssalMatter; }
   set value(value) { player.celestials.null.abyssalMatter = value; }
-  reset(){
+  reset() {
     this.value = DC.D0;
   }
 }();
@@ -576,7 +580,7 @@ Currency.abyssalMatter = new class extends DecimalCurrency {
 Currency.corruptMatter = new class extends DecimalCurrency {
   get value() { return player.celestials.null.corruptMatter; }
   set value(value) { player.celestials.null.corruptMatter = value; }
-  reset(){
+  reset() {
     this.value = DC.D0;
   }
 }();

@@ -132,10 +132,10 @@ export default {
     close() {
       Quote.clearHistory();
     },
-    displayedLines(lines){
-      return lines.config.lines.filter((x,i) => lines._lines[i].isDisplayed);
+    displayedLines(lines) {
+      return lines.config.lines.filter((x, i) => lines._lines[i].isDisplayed);
     },
-    totalLines(){
+    totalLines() {
       return this.displayedLines(this.focusedQuote.quote).length;
     }
   }

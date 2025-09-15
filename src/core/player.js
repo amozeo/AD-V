@@ -780,7 +780,7 @@ window.player = {
           memoryUpgrades: 0,
           chunkUpgrades: 0
         },
-        glitchyfishys: {// i don't want to change this to glitch
+        glitchyfishys: { // I don't want to change this to glitch
           level: 1,
           memories: DC.D0,
           memoryChunks: DC.D0,
@@ -1179,7 +1179,7 @@ window.player = {
     eternity: {
       upgradebits: 0
     },
-    reality:{
+    reality: {
       upgradebits: 0
     }
   },
@@ -1187,7 +1187,7 @@ window.player = {
     metaRelays: DC.D0,
     metas: DC.D0,
     upgrades: {
-      rebuyable: [DC.D0,DC.D0,DC.D0,DC.D0,DC.D0,DC.D0],
+      rebuyable: [DC.D0, DC.D0, DC.D0, DC.D0, DC.D0, DC.D0],
       metaBits: 0,
     },
   },
@@ -1276,12 +1276,12 @@ export const Player = {
     // This switch case intentionally falls through because every lower layer should be reset as well
     switch (key) {
       case "meta":
-      player.requirementChecks.meta = {
-        noGlyphs: false,
-        maxStudies: 1000,
-        noTriads: false,
-      };
-      break;
+        player.requirementChecks.meta = {
+          noGlyphs: false,
+          maxStudies: 1000,
+          noTriads: false,
+        };
+        break;
       case "reality":
         player.requirementChecks.reality = {
           noAM: true,

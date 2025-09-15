@@ -80,8 +80,8 @@ export default {
     },
     toggleLock(upgrade) {
       if (this.isRebuyable) {
-        for(let a=0; a < 25; a++) this.upgrade.purchase();
-      }else{
+        for (let a = 0; a < 25; a++) this.upgrade.purchase();
+      } else {
         upgrade.toggleMechanicLock();
       }
     }

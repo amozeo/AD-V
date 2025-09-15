@@ -25,7 +25,7 @@ export const enslavedQuotes = {
       "So little space... but no... prison... is perfect.",
       "They squeezed... this Reality... too tightly. Cracks appeared.",
       "Search... everywhere. We will help... where we can.",
-      {text: "You seem lost.", displayed: () => {return Parallax.parallaxes.gte(3) }, name: 'Null', background: celBackground('null'), glitched: true}
+      { text: "You seem lost.", displayed: () => Parallax.parallaxes.gte(3), name: "Null", background: celBackground("null"), glitched: true }
     ]
   },
   hintUnlock: {
@@ -45,8 +45,8 @@ export const enslavedQuotes = {
   completeReality: {
     id: 5,
     lines: [
-      {text: "Huh there's one here too?", displayed: () => CanteUpgrades.all[19].isUnlocked, name: "Glitch", background: celBackground('glitch'), glitched: true},
-      {text: "Is there one in each Reality?", displayed: () => CanteUpgrades.all[19].isUnlocked, name: "Glitch", background: celBackground('glitch'), glitched: true},
+      { text: "Huh there's one here too?", displayed: () => CanteUpgrades.all[19].isUnlocked, name: "Glitch", background: celBackground("glitch"), glitched: true },
+      { text: "Is there one in each Reality?", displayed: () => CanteUpgrades.all[19].isUnlocked, name: "Glitch", background: celBackground("glitch"), glitched: true },
       "All... fragments... clones... freed.",
       "We have given... tools... of our imprisoning. Use them...",
       "Freedom from torture... is torture itself.",

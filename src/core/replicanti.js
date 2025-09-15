@@ -40,10 +40,10 @@ export function replicantiGalaxy(auto) {
   const galaxyGain = Replicanti.galaxies.gain;
   if (galaxyGain.lt(1)) return;
   player.replicanti.timer = DC.D0;
-  if(replicantiMult().lt('e5')) Replicanti.amount = Achievement(126).isUnlocked && !Pelle.isDoomed
+  if (replicantiMult().lt("e5")) Replicanti.amount = Achievement(126).isUnlocked && !Pelle.isDoomed
     ? Decimal.pow10(Replicanti.amount.max(1).log10().sub(galaxyGain.mul(LOG10_MAX_VALUE)))
     : new Decimal(1);
-  addReplicantiGalaxies( galaxyGain);
+  addReplicantiGalaxies(galaxyGain);
 }
 
 // Only called on manual RG requests
@@ -166,7 +166,7 @@ export function totalReplicantiSpeedMult(overCap) {
   totalMult = totalMult.timesEffectsOf(AlchemyResource.replication, Ra.unlocks.continuousTTBoost.effects.replicanti);
 
   totalMult = totalMult.pow(MetaMilestone.metaProgress.effectOrDefault(DC.D1));
-  
+
   return totalMult;
 }
 
@@ -319,18 +319,18 @@ class ReplicantiUpgradeState {
   purchase() {
     if (!this.canBeBought) return;
 
-    if((!breakInfinityUGs.all[4].config.hasFailed() && !breakInfinityUGs.all[4].isBought) && (player.options.confirmations.glitchCL && 
- !PlayerProgress.metaUnlocked()) && (this.id == 1 || this.id == 2)){
+    if ((!breakInfinityUGs.all[4].config.hasFailed() && !breakInfinityUGs.all[4].isBought) && (player.options.confirmations.glitchCL &&
+ !PlayerProgress.metaUnlocked()) && (this.id == 1 || this.id == 2)) {
       Modal.message.show(`you will fail glitch challenge ${breakInfinityUGs.all[4].config.name} <br> which is to ${breakInfinityUGs.all[4].config.requirement()} <br> you can disable this for <i>all</i> challenges in confirmations`);
       return;
     }
-    else if((!breakInfinityUGs.all[5].config.hasFailed() && !breakInfinityUGs.all[5].isBought) && (player.options.confirmations.glitchCL && 
- !PlayerProgress.metaUnlocked()) && (this.id == 1 || this.id == 2)){
+    if ((!breakInfinityUGs.all[5].config.hasFailed() && !breakInfinityUGs.all[5].isBought) && (player.options.confirmations.glitchCL &&
+ !PlayerProgress.metaUnlocked()) && (this.id == 1 || this.id == 2)) {
       Modal.message.show(`you will fail glitch challenge ${breakInfinityUGs.all[5].config.name} <br> which is to ${breakInfinityUGs.all[5].config.requirement()} <br> you can disable this for <i>all</i> challenges in confirmations`);
       return;
     }
-    
-    if(Currency.infinityPoints.lt('ee15')) Currency.infinityPoints.subtract(this.cost);
+
+    if (Currency.infinityPoints.lt("ee15")) Currency.infinityPoints.subtract(this.cost);
     this.baseCost = Decimal.times(this.baseCost, this.costIncrease);
     this.value = this.nextValue;
     if (EternityChallenge(8).isRunning) player.eterc8repl--;
@@ -386,7 +386,7 @@ export const ReplicantiUpgrade = {
       N = Decimal.round(Decimal.min(N.floor().div(100).add(this.value), this.cap).sub(this.value).mul(100));
       if (N.lte(0)) return;
       const totalCost = this.cost.times(Decimal.pow(this.costIncrease, N).minus(1).dividedBy(this.costIncrease - 1));
-      if(Currency.infinityPoints.lt('ee15')) Currency.infinityPoints.subtract(totalCost);
+      if (Currency.infinityPoints.lt("ee15")) Currency.infinityPoints.subtract(totalCost);
       this.baseCost = this.baseCost.times(Decimal.pow(this.costIncrease, N));
       this.value = this.nearestPercent(N.div(100).add(this.value));
     }
@@ -522,7 +522,7 @@ export const ReplicantiUpgrade = {
         .add(logDistantScaling.times(4.5)).add(remoteReplicatedGalaxyStart.pow(2).mul(logRemoteScaling))
         .sub(remoteReplicatedGalaxyStart.mul(logRemoteScaling));
 
-      let d = cur.neg().add(170).add(distantReplicatedGalaxyStart.pow(2).mul(logDistantScaling).div(2))
+      const d = cur.neg().add(170).add(distantReplicatedGalaxyStart.pow(2).mul(logDistantScaling).div(2))
         .sub(distantReplicatedGalaxyStart.mul(4.5).mul(logDistantScaling))
         .sub(remoteReplicatedGalaxyStart.pow(3).mul(logRemoteScaling).div(3))
         .add(remoteReplicatedGalaxyStart.pow(2).mul(logRemoteScaling).div(2))
@@ -532,13 +532,13 @@ export const ReplicantiUpgrade = {
 
       const gain = decimalCubicSolution(a, b, c, d, true);
       // eslint-disable-next-line consistent-return
-      if(gain.floor().add(1).lt(galacticReplicatedGalaxyStart)) return gain.floor().add(1);
+      if (gain.floor().add(1).lt(galacticReplicatedGalaxyStart)) return gain.floor().add(1);
 
       return gain.div(gain.div(remoteReplicatedGalaxyStart).pow(0.75)).floor().add(1);
 
     }
 
-    get maxGalaxies(){
+    get maxGalaxies() {
       return DC.E5.mul(Ra.unlocks.repCap.effectOrDefault(1));
     }
 
@@ -546,7 +546,7 @@ export const ReplicantiUpgrade = {
       // This isn't a hot enough autobuyer to worry about doing an actual inverse.
       const bulk = this.bulkPurchaseCalc().min(this.maxGalaxies);
       if (!bulk || bulk.floor().sub(this.value).lte(0)) return;
-      if(Currency.infinityPoints.lt('ee15')) Currency.infinityPoints.subtract(this.baseCostAfterCount(this.value).sub(1));
+      if (Currency.infinityPoints.lt("ee15")) Currency.infinityPoints.subtract(this.baseCostAfterCount(this.value).sub(1));
       this.value = this.value.add(bulk.sub(this.value));
       this.baseCost = this.baseCostAfterCount(this.value);
       // The code is weird and if we add one the whole thing goes out to like double + 1, for no reason, so
@@ -579,8 +579,8 @@ export const ReplicantiUpgrade = {
         );
       }
 
-      if(count.gt(galacticReplicatedGalaxyStart)){
-          logCost = logCost.pow(2);
+      if (count.gt(galacticReplicatedGalaxyStart)) {
+        logCost = logCost.pow(2);
       }
       return Decimal.pow10(logCost);
     }
@@ -663,7 +663,7 @@ export const Replicanti = {
       if (Achievement(126).isUnlocked) {
         const maxGain = Replicanti.galaxies.max.sub(player.replicanti.galaxies);
         const logReplicanti = Replicanti.amount.max(1).log10();
-        return Decimal.min(maxGain, replicantiMult().gt('ee5') ? 1e300 : Decimal.floor(logReplicanti.div(LOG10_MAX_VALUE)));
+        return Decimal.min(maxGain, replicantiMult().gt("ee5") ? 1e300 : Decimal.floor(logReplicanti.div(LOG10_MAX_VALUE)));
       }
       return DC.D1;
     },

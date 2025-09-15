@@ -236,13 +236,13 @@ export const Singularity = {
   },
 
   get singularitiesGained() {
-    let gain =  Decimal.floor(Decimal.pow(this.gainPerCapIncrease, player.celestials.laitela.singularityCapIncreases)
+    let gain = Decimal.floor(Decimal.pow(this.gainPerCapIncrease, player.celestials.laitela.singularityCapIncreases)
       .mul(SingularityMilestone.singularityMult.effectOrDefault(DC.D1))
       .mul(ImaginaryUpgrade(10).effectOrDefault(DC.D0).add(1))).times(realityUGs.all[11].effectOrDefault(1)).times(GlitchRealityUpgrades.all[3].effectOrDefault(1));
-    
-      if(GlitchRealityUpgrades.all[11].isBought) gain = gain.pow(1.25);
-      
-      return gain.floor();
+
+    if (GlitchRealityUpgrades.all[11].isBought) gain = gain.pow(1.25);
+
+    return gain.floor();
   },
 
   // Time (in seconds) to go from 0 DE to the condensing requirement
@@ -264,37 +264,33 @@ export const Singularity = {
     return Currency.darkEnergy.gte(this.cap);
   },
 
-  get maxCap(){
-    return MetaFabricatorUpgrades.all[3].effectOrDefault(new Decimal(1)).mul(1000)
+  get maxCap() {
+    return MetaFabricatorUpgrades.all[3].effectOrDefault(new Decimal(1)).mul(1000);
   },
 
-  increaseCap(t =false) {
+  increaseCap(t = false) {
     const cap = this.maxCap;
-  if (player.celestials.laitela.singularityCapIncreases.gte(cap) ) return;
-    if(t){
-      if(Currency.darkEnergy.productionPerSecond.gt(0)) player.celestials.laitela.singularityCapIncreases = Currency.darkEnergy.productionPerSecond.div(200).log10().floor().min(cap);
-    }
-    else if (player.celestials.laitela.singularityCapIncreases.gt(5e11)) {
+    if (player.celestials.laitela.singularityCapIncreases.gte(cap)) return;
+    if (t) {
+      if (Currency.darkEnergy.productionPerSecond.gt(0)) player.celestials.laitela.singularityCapIncreases = Currency.darkEnergy.productionPerSecond.div(200).log10().floor().min(cap);
+    } else if (player.celestials.laitela.singularityCapIncreases.gt(5e11)) {
       player.celestial.laitela.singularityCapIncreases
         .add(Decimal.pow10(player.celestial.laitela.singularityCapIncreases.log(10).sub(10).floor()));
-    }
-    else{
+    } else {
       player.celestials.laitela.singularityCapIncreases = player.celestials.laitela.singularityCapIncreases.add(1);
     }
   },
 
-  decreaseCap(t =false) {
+  decreaseCap(t = false) {
     if (player.celestials.laitela.singularityCapIncreases.eq(0)) return;
-    if(!t){
+    if (!t) {
       if (player.celestials.laitela.singularityCapIncreases.gt(5e11)) {
         player.celestial.laitela.singularityCapIncreases
-        .sub(Decimal.pow10(player.celestial.laitela.singularityCapIncreases.log(10).sub(10).floor()));
-      }
-      else{
+          .sub(Decimal.pow10(player.celestial.laitela.singularityCapIncreases.log(10).sub(10).floor()));
+      } else {
         player.celestials.laitela.singularityCapIncreases = player.celestials.laitela.singularityCapIncreases.sub(1);
       }
-    }
-    else  player.celestials.laitela.singularityCapIncreases = DC.D0;
+    } else player.celestials.laitela.singularityCapIncreases = DC.D0;
   },
 
   perform() {

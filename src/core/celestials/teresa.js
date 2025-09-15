@@ -69,7 +69,7 @@ export const Teresa = {
     player.celestials.teresa.lastRepeatedMachines = DC.D0;
     player.celestials.teresa.lastRepeatediM = DC.D0;
     player.celestials.teresa.bestAMSet = [];
-    if(MetaFabricatorUpgrade(8).isBought) return;
+    if (MetaFabricatorUpgrade(8).isBought) return;
     player.celestials.teresa.pouredAmount = 0;
     player.celestials.teresa.unlockBits = 0;
     player.celestials.teresa.perkShop = [DC.D0, DC.D0, DC.D0, DC.D0, DC.D0, DC.D0, DC.D0, DC.D0];

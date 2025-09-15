@@ -121,15 +121,15 @@ export default {
       if (this.dilatedTimeIncome.lte(0)) this.toMaxTooltip = "No DT gain";
       else this.toMaxTooltip = estimateText.startsWith("<") ? "Currently Increasing" : estimateText;
     },
-    bulk(){
+    bulk() {
       DilationUpgrades.rebuyable[0].purchase(1e300);
-      if(!Pelle.isDoomed) DilationUpgrades.rebuyable[2].purchase(1e300);
-      if(PelleRifts.paradox.milestones[0].canBeApplied){
+      if (!Pelle.isDoomed) DilationUpgrades.rebuyable[2].purchase(1e300);
+      if (PelleRifts.paradox.milestones[0].canBeApplied) {
         DilationUpgrade.dtGainPelle.purchase(1e300);
         DilationUpgrade.galaxyMultiplier.purchase(1e300);
         DilationUpgrade.tickspeedPower.purchase(1e300);
       }
-      // do resetting one last
+      // Do resetting one last
       DilationUpgrades.rebuyable[1].purchase(1e300);
     }
   }
@@ -179,10 +179,11 @@ export default {
     </span>
     <PrimaryButton
       class="o-primary-btn--subtab-option"
-      @click="bulk()">
+      @click="bulk()"
+    >
       max rebuyable
     </PrimaryButton>
-    
+
     <div class="l-dilation-upgrades-grid">
       <div
         v-for="(upgradeRow, row) in allRebuyables"

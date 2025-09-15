@@ -26,10 +26,10 @@ export const ID = {
       ? InfinityDimension(dim).isProducing
       : (PlayerProgress.eternityUnlocked() || InfinityDimension(1).isProducing)),
     dilationEffect: () => {
-        const baseEff = (player.dilation.active || Enslaved.isRunning)
-          ? Decimal.mul(0.75, Effects.product(DilationUpgrade.dilationPenalty))
-          : DC.D1;
-        return baseEff.mul(Effarig.isRunning ? Effarig.multDilation : 1);
+      const baseEff = (player.dilation.active || Enslaved.isRunning)
+        ? Decimal.mul(0.75, Effects.product(DilationUpgrade.dilationPenalty))
+        : DC.D1;
+      return baseEff.mul(Effarig.isRunning ? Effarig.multDilation : 1);
     },
     isDilated: true,
     overlay: ["∞", "<i class='fa-solid fa-cube' />"],
@@ -86,7 +86,7 @@ export const ID = {
         if (id === 8) return DC.D1;
         const purchases = Decimal.floor(InfinityDimension(id).baseAmount.div(10));
         return Decimal.pow(InfinityDimension(id)._powerMultiplier,
-        purchases.sub(InfinityDimensions.HARDCAP_PURCHASES).clampMin(0));
+          purchases.sub(InfinityDimensions.HARDCAP_PURCHASES).clampMin(0));
       };
       if (dim) return getMult(dim);
       return InfinityDimensions.all

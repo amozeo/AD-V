@@ -181,7 +181,7 @@ export const shortcuts = [
       GameUI.notify.info(`Glyph respec is now ${player.reality.respec ? "active" : "inactive"}`);
     },
     visible: () => Pelle.isDoomed
-  },  {
+  }, {
     name: "Meta",
     keys: ["v"],
     type: "bindRepeatableHotkey",

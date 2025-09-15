@@ -122,13 +122,13 @@ export const awayProgressTypes = [
     reference: ["celestials", "ra", "pets", "cante", "memories"],
     isUnlocked: () => Ra.pets.cante.isUnlocked && !Ra.pets.cante.isCapped,
     showOption: false,
-  },{
+  }, {
     name: "nullMemories",
     awayOption: "celestialMemories",
     reference: ["celestials", "ra", "pets", "null", "memories"],
     isUnlocked: () => Ra.pets.null.isUnlocked && !Ra.pets.null.isCapped,
     showOption: false,
-  },{
+  }, {
     name: "imaginaryMachines",
     reference: ["reality", "imaginaryMachines"],
     isUnlocked: () => MachineHandler.isIMUnlocked,
@@ -165,12 +165,12 @@ export const awayProgressTypes = [
   },
   {
     name: "artificialMatter",
-    reference: ["celestials", "cante","artificialMatter"],
+    reference: ["celestials", "cante", "artificialMatter"],
     isUnlocked: () => Cante.isUnlocked,
   },
   {
     name: "chaosMatter",
-    reference: ["celestials", "cante","chaosMatter"],
+    reference: ["celestials", "cante", "chaosMatter"],
     isUnlocked: () => Cante.isUnlocked,
   },
 ];

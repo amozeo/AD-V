@@ -93,7 +93,7 @@ export default {
       Tab.dimensions.infinity.show(true);
     },
     buytess() {
-      Tesseracts.buyTesseract()
+      Tesseracts.buyTesseract();
     },
     crunch() {
       if (!Player.canCrunch) return;

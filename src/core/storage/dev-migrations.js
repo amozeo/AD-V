@@ -1542,13 +1542,13 @@ export const devMigrations = {
     player => {
       // Glitch stuff
 
-      player.celestials.v.runUnlocks.push([0,0,0,0,0,0]);
+      player.celestials.v.runUnlocks.push([0, 0, 0, 0, 0, 0]);
       player.celestials.v.runUnlocks = player.celestials.v.runUnlocks.flat();
 
-      player.celestials.v.runRecords.push([0,0,0,0,0,0]);
+      player.celestials.v.runRecords.push([0, 0, 0, 0, 0, 0]);
       player.celestials.v.runRecords = player.celestials.v.runRecords.flat();
 
-      player.celestials.v.goalReductionSteps.push([0,0,0,0,0,0]);
+      player.celestials.v.goalReductionSteps.push([0, 0, 0, 0, 0, 0]);
       player.celestials.v.goalReductionSteps = player.celestials.v.goalReductionSteps.flat();
 
       player.celestials.v.runGlyphs.push([]);
@@ -1558,7 +1558,7 @@ export const devMigrations = {
       player.celestials.v.runGlyphs.push([]);
       player.celestials.v.runGlyphs.push([]);
       player.celestials.v.runGlyphs.push([]);
-      
+
     },
   ],
 

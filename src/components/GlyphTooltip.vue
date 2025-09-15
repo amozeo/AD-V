@@ -100,9 +100,9 @@ export default {
     descriptionStyle() {
       const nColor = GlyphAppearanceHandler.getRarityColor(this.strength, this.type);
       const cursedColor = GlyphAppearanceHandler.isLightBG ? "white" : "black";
-      const color = this.type === "cursed" ? cursedColor : ( this.type == "glitch" ? 'lime' : nColor)
+      const color = this.type === "cursed" ? cursedColor : (this.type == "glitch" ? "lime" : nColor);
       return {
-        color: color,
+        color,
         animation: this.type === "reality" ? "a-reality-glyph-name-cycle 10s infinite" : undefined
       };
     },
@@ -163,7 +163,7 @@ export default {
         "border-color": borderColor,
         "box-shadow": `0 0 0.5rem ${borderColor}, 0 0 0.5rem ${borderColor} inset`,
         animation: this.type === "reality" ? "a-reality-glyph-tooltip-cycle 10s infinite" : undefined,
-        color: this.type == "glitch" ? 'lime' : this.textColor,
+        color: this.type == "glitch" ? "lime" : this.textColor,
         background: this.baseColor
       };
     },
@@ -178,7 +178,7 @@ export default {
         "border-color": color,
         "box-shadow": `0 0 0.5rem 0.1rem ${color}, 0 0 0.8rem ${color} inset`,
         animation: isReality ? "a-reality-glyph-tooltip-header-cycle 2s infinite" : undefined,
-        color: this.type == "glitch" ? 'lime' : this.textColor,
+        color: this.type == "glitch" ? "lime" : this.textColor,
         background: this.baseColor
       };
     }

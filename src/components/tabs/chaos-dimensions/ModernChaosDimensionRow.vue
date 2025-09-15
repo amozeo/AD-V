@@ -1,6 +1,7 @@
 <script>
-import GenericDimensionRowText from "@/components/GenericDimensionRowText";
 import { ChaosDimension } from "../../../core/globals";
+
+import GenericDimensionRowText from "@/components/GenericDimensionRowText";
 
 export default {
   name: "ModernChaosDimensionRow",
@@ -64,7 +65,7 @@ export default {
       this.isUnlocked = dimension.isAvailableForPurchase;
       this.isCapped = dimension.bought.gte(1e100);
 
-      this.cost.copyFrom(dimension.cost)
+      this.cost.copyFrom(dimension.cost);
       this.multiplier.copyFrom(dimension.multiplier);
       this.amount.copyFrom(dimension.totalAmount);
       this.bought.copyFrom(dimension.bought);
@@ -75,7 +76,7 @@ export default {
       }
       this.isAffordable = dimension.isAffordable;
       this.isShown = true;
-      this.amountDisplay = this.tier < 8 ? format(this.amount, 2) : formatInt(this.amount,2);
+      this.amountDisplay = this.tier < 8 ? format(this.amount, 2) : formatInt(this.amount, 2);
     },
     buy() {
       buyMaxChaosDimension(this.tier);
@@ -142,5 +143,4 @@ export default {
 .o-non-clickable {
   cursor: auto;
 }
-
 </style>

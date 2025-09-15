@@ -22,7 +22,7 @@ export const EP = {
     isBase: true,
     fakeValue: DC.D5,
     multValue: () => DC.D5.pow(player.records.thisEternity.maxIP.plus(
-      gainedInfinityPoints()).log10().div(Decimal.sub(308,PelleRifts.recursion.effectValue).sub(0.7))),
+      gainedInfinityPoints()).log10().div(Decimal.sub(308, PelleRifts.recursion.effectValue).sub(0.7))),
     isActive: () => PlayerProgress.eternityUnlocked(),
     icon: MultiplierTabIcons.CONVERT_FROM("IP"),
   },
@@ -37,10 +37,10 @@ export const EP = {
   divisor: {
     name: "Pelle - EP Formula Improvement",
     displayOverride: () => {
-      const div = Decimal.sub(308,PelleRifts.recursion.effectValue);
+      const div = Decimal.sub(308, PelleRifts.recursion.effectValue);
       return `log(IP)/${formatInt(308)} ➜ log(IP)/${format(div, 2, 2)}`;
     },
-    powValue: () => Decimal.div(308, Decimal.sub(308,PelleRifts.recursion.effectValue)),
+    powValue: () => Decimal.div(308, Decimal.sub(308, PelleRifts.recursion.effectValue)),
     isActive: () => PelleRifts.recursion.canBeApplied,
     icon: MultiplierTabIcons.DIVISOR("EP"),
   },

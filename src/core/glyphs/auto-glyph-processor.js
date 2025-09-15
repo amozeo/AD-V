@@ -1,4 +1,5 @@
 import { DC } from "../constants";
+
 import { Glyphs } from "./glyph-core";
 
 export const AutoGlyphProcessor = {
@@ -335,7 +336,7 @@ export function getGlyphLevelInputs() {
     const excess = (level.sub(begin)).div(rate);
     return begin.plus(rate.div(2).times(Decimal.sqrt(excess.times(4).add(1)).sub(1)));
   };
-  scaledLevel = instabilitySoftcap(scaledLevel, staticFactors.instability, new Decimal (MetaFabricatorUpgrade(15).isBought ? 1.5e5 : 500));
+  scaledLevel = instabilitySoftcap(scaledLevel, staticFactors.instability, new Decimal(MetaFabricatorUpgrade(15).isBought ? 1.5e5 : 500));
   scaledLevel = instabilitySoftcap(scaledLevel, staticFactors.hyperInstability, new Decimal(MetaFabricatorUpgrade(15).isBought ? 1e8 : 400));
   scaledLevel = instabilitySoftcap(scaledLevel, staticFactors.glitchInstability, new Decimal(1e4));
   scaledLevel = instabilitySoftcap(scaledLevel, staticFactors.chaosInstability, new Decimal(250));

@@ -1,4 +1,5 @@
 import { DC } from "../../constants";
+
 import { MultiplierTabHelper } from "./helper-functions";
 import { MultiplierTabIcons } from "./icons";
 
@@ -43,7 +44,7 @@ export const galaxies = {
     displayOverride: () => {
       const num = player.dilation.totalTachyonGalaxies;
       const mult = MultiplierTabHelper.globalGalaxyMult().mul(
-          (Decimal.max(0, Replicanti.amount.max(1).log10().div(1e6)).mul(AlchemyResource.alternation.effectValue).add(1)));
+        (Decimal.max(0, Replicanti.amount.max(1).log10().div(1e6)).mul(AlchemyResource.alternation.effectValue).add(1)));
       return `${format(num)}, ${formatX(mult, 2, 2)} strength`;
     },
     multValue: () => {

@@ -9,19 +9,19 @@ const glyphEffects = {
   power: ["powerpow", "powermult", "powerdimboost", "powerbuy10"],
   infinity: ["infinitypow", "infinityinfmult", "infinityIP", "infinityrate"],
   replication: ["replicationpow", "replicationdtgain", "replicationspeed", "replicationglyphlevel"],
-  time: ["timepow", "timeEP", "timeetermult", "timespeed","timeshardpow"],
+  time: ["timepow", "timeEP", "timeetermult", "timespeed", "timeshardpow"],
   dilation: ["dilationpow", "dilationTTgen", "dilationDT", "dilationgalaxyThreshold"],
   effarig: ["effarigrm", "effarigglyph", "effarigblackhole", "effarigachievement",
-  "effarigforgotten", "effarigdimensions", "effarigantimatter"],
+    "effarigforgotten", "effarigdimensions", "effarigantimatter"],
   cursed: ["cursedgalaxies", "cursedtickspeed", "curseddimensions", "cursedEP"],
   reality: ["realityglyphlevel", "realitygalaxies", "realityrow1pow", "realityDTglyph"],
   companion: ["companiondescription", "companionEP"],
   glitch: ["glitchChaosPow", "glitchADCelPow"],
-}
+};
 
 function updateGlyphs(glyph) {
   if (Array.isArray(glyph.effects)) return glyph;
-  console.log(glyph)
+  console.log(glyph);
   glyph.effects = glyphEffects[glyph.type].filter((e, ind) => ((1 << ind) & glyph.effects) != 0);
   delete glyph.isGenerated;
   glyph.level = D(glyph.level);

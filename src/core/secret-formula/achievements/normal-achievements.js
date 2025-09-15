@@ -506,10 +506,10 @@ export const normalAchievements = [
   {
     id: 76,
     name: "An hour for each dimension",
-    get description() { return `Play for ${formatInt(8)} Hours. ${ PlayerProgress.metaUnlocked() ? "(in this Meta)" : ""}`; },
+    get description() { return `Play for ${formatInt(8)} Hours. ${PlayerProgress.metaUnlocked() ? "(in this Meta)" : ""}`; },
     checkRequirement: () => Time.thisMetaTime.totalHours.gte(8),
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
-    reward: () => `Extremely small multiplier to Antimatter Dimensions based on ${ PlayerProgress.metaUnlocked() ? "time played in this Meta" : "time played"} .`,
+    reward: () => `Extremely small multiplier to Antimatter Dimensions based on ${PlayerProgress.metaUnlocked() ? "time played in this Meta" : "time played"} .`,
     effect: () => Decimal.max(Decimal.pow(Time.thisMetaTime.totalHours.div(2), 0.05), 1),
     formatEffect: value => `${formatX(value, 2, 2)}`
   },
@@ -1142,7 +1142,7 @@ export const normalAchievements = [
   {
     id: 155,
     name: "NOW THATS AN ETERNITY",
-    get description() { return `Play for ${formatFloat(5, 1)} billion years. ${ PlayerProgress.metaUnlocked() ? "(in this Meta)" : ""}`},
+    get description() { return `Play for ${formatFloat(5, 1)} billion years. ${PlayerProgress.metaUnlocked() ? "(in this Meta)" : ""}`; },
     checkRequirement: () => Time.thisMetaTime.totalYears.gt(5e9),
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     get reward() { return `Black Hole durations are ${formatPercents(new Decimal(0.1))} longer.`; },
@@ -1221,7 +1221,7 @@ export const normalAchievements = [
   {
     id: 166,
     name: "Nicenice.",
-    get description() { return `Get a Glyph with level exactly ${formatInt(6969)} or over ${format(1e6)}`},
+    get description() { return `Get a Glyph with level exactly ${formatInt(6969)} or over ${format(1e6)}`; },
     checkRequirement: () => gainedGlyphLevel().actualLevel.eq(6969) || gainedGlyphLevel().actualLevel.gte(1e6),
     checkEvent: GAME_EVENT.REALITY_RESET_BEFORE,
     get reward() { return `+${formatInt(69)} to Glyph level.`; },
@@ -1387,7 +1387,7 @@ export const normalAchievements = [
   {
     id: 191,
     name: "I Think Something Is Broken",
-    get description() {return `Start producing Chaos Cores`},
+    get description() { return `Start producing Chaos Cores`; },
     checkRequirement: () => Currency.chaosCores.gt(0),
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
   },
@@ -1395,7 +1395,7 @@ export const normalAchievements = [
     id: 192,
     name: "A Blessing From The Lord",
     displayId: 777,
-    get description() {return `Get a ${format("1e1000")} Sacrifice multiplier from Teresa's Reality`},
+    get description() { return `Get a ${format("1e1000")} Sacrifice multiplier from Teresa's Reality`; },
     checkRequirement: () => Teresa.runRewardMultiplier.gte("1e1000"),
     checkEvent: GAME_EVENT.REALITY_RESET_AFTER,
     get reward() {
@@ -1405,33 +1405,33 @@ export const normalAchievements = [
   {
     id: 193,
     name: "Geting Extreme",
-    get description() {return `Start V's Extreme reality`},
+    get description() { return `Start V's Extreme reality`; },
     checkRequirement: () => V.isRunningExtreme,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
   },
   {
     id: 194,
     name: "Finally, I Can Get The Glitch Glyph",
-    get description() {return `Create A Glitch Glyph`},
+    get description() { return `Create A Glitch Glyph`; },
   },
   {
     id: 195,
     name: "I Guess That Was Expected",
-    get description() {return `Reach the Antimatter hard cap`},
+    get description() { return `Reach the Antimatter hard cap`; },
     checkRequirement: () => Currency.antimatter.gte("ee50") && !Pelle.isDoomed,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
   },
   {
     id: 196,
     name: "Oh-oh, Livin' On A Prayer",
-    get description() {return `Complete Revengeance twice`},
+    get description() { return `Complete Revengeance twice`; },
     checkRequirement: () => player.celestials.v.runUnlocks[10] > 1,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
   },
   {
     id: 197,
     name: "I Think I'm Softlocked",
-    get description() {return `Reset your EX-V Achievements`},
+    get description() { return `Reset your EX-V Achievements`; },
   },
   {
     id: 198,
@@ -1467,7 +1467,7 @@ export const normalAchievements = [
   {
     id: 204,
     name: "You Can Stop Grinding Now",
-    get description() { return `Meta ${format(1000)} times`},
+    get description() { return `Meta ${format(1000)} times`; },
     checkRequirement: () => Currency.metas.gte(1000),
     reward: "You get a meta autobuyer",
     checkEvent: GAME_EVENT.META_RESET_AFTER,
@@ -1475,7 +1475,7 @@ export const normalAchievements = [
   {
     id: 205,
     name: "There's No Stoping You",
-    get description() { return `Meta with only ${format(1)} first Antimatter Dimension`},
+    get description() { return `Meta with only ${format(1)} first Antimatter Dimension`; },
     checkRequirement: () => AntimatterDimension(1).amount.eq(1),
     checkEvent: GAME_EVENT.META_RESET_BEFORE,
     get reward() {
@@ -1487,30 +1487,30 @@ export const normalAchievements = [
   {
     id: 206,
     name: "We don't need more memories",
-    get description() { return `Unlock new memories`},
+    get description() { return `Unlock new memories`; },
     checkRequirement: () => MetaFabricatorUpgrade(25).isBought,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
   },
   {
     id: 207,
     name: "Get Replicated",
-    get description() { return `Unlock Cante`},
+    get description() { return `Unlock Cante`; },
     checkRequirement: () => Ra.unlocks.canteUnlock.isUnlocked,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
   },
   {
     id: 208,
     name: "Is this real?",
-    get description() { return `Get Artificial Matter`},
+    get description() { return `Get Artificial Matter`; },
     checkRequirement: () => Currency.artificialMatter.gt(0),
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
   },
   {
     id: 211,
     name: "Things are getting Chaotic",
-    get description() { return `Get ${Currency.chaosMatter.gt(0) ? "Chaotic Matter" : "???"}`},
+    get description() { return `Get ${Currency.chaosMatter.gt(0) ? "Chaotic Matter" : "???"}`; },
     checkRequirement: () => Currency.chaosMatter.gt(0),
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
   },
-  
+
 ];

@@ -54,7 +54,7 @@ export const Laitela = {
   },
   // Note that entropy goes from 0 to 1, with 1 being completion
   get entropyGainPerSecond() {
-    if(Glitch.isRunning) return DC.D0;
+    if (Glitch.isRunning) return DC.D0;
     return Decimal.clamp(Decimal.pow(Currency.antimatter.value.add(1).log10().div(1e11), 2), 0, 100).div(200);
   },
   get darkMatterMultGain() {
@@ -105,8 +105,8 @@ export const Laitela = {
     Currency.darkMatter.max = DC.D1;
     Currency.darkMatter.reset();
     Currency.singularities.reset();
-    if(!MetaFabricatorUpgrade(10).isBought) this.celestial.fastestCompletion = new Decimal(3600);
-    if(!MetaFabricatorUpgrade(10).isBought) this.celestial.difficultyTier = 0;
+    if (!MetaFabricatorUpgrade(10).isBought) this.celestial.fastestCompletion = new Decimal(3600);
+    if (!MetaFabricatorUpgrade(10).isBought) this.celestial.difficultyTier = 0;
     this.celestial.singularityCapIncreases = DC.D0;
   },
   quotes: Quotes.laitela,

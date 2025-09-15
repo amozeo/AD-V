@@ -45,8 +45,8 @@ export default {
       return "";
     },
     formatGlyphLevel() {
-      const cap = this.glyphLevel.min(Glyphs.levelCap)
-      if (this.glyphLevel.gte(1e4)) return `Glyph level: ${formatInt(this.glyphLevel)} ${ cap.neq(this.glyphLevel) ? `(caped)` : ''}`;
+      const cap = this.glyphLevel.min(Glyphs.levelCap);
+      if (this.glyphLevel.gte(1e4)) return `Glyph level: ${formatInt(this.glyphLevel)} ${cap.neq(this.glyphLevel) ? `(caped)` : ""}`;
       return `Glyph level: ${formatInt(this.glyphLevel)} (${this.nextGlyphPercent} to next)`;
     },
     showShardsRate() {

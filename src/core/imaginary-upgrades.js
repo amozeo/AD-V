@@ -103,7 +103,7 @@ class ImaginaryUpgradeState extends BitPurchasableMechanicState {
     }
     if (this.id === 22) {
       for (const key of Object.keys(player.reality.glyphs.sac)) {
-        if(key == "glitch") continue;
+        if (key == "glitch") continue;
         player.reality.glyphs.sac[key] = ImaginaryUpgrade(22).effectValue;
       }
     }
@@ -140,7 +140,7 @@ class RebuyableImaginaryUpgradeState extends RebuyableMechanicState {
     }
   }
 
-  purchaseHybrid(){
+  purchaseHybrid() {
     const value = Decimal.log(this.currency.value.div(this.config.initialCost), this.config.costMult).add(1).floor();
     this.boughtAmount = value;
   }

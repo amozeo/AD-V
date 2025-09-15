@@ -158,7 +158,7 @@ const targetedEffects = {
   },
   glitchRiftPI: {
     checkFn: MultiplierTabHelper.GRDimCheck,
-    AD: [0,1],
+    AD: [0, 1],
     gamespeed: [3],
   },
 };

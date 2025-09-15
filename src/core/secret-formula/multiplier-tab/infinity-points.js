@@ -126,7 +126,7 @@ export const IP = {
       preInfinityUG(6),
       preInfinityUG(7),
     ),
-    isActive: () => [6,7].some(x => preInfinityUG(x).isBought),
+    isActive: () => [6, 7].some(x => preInfinityUG(x).isBought),
     icon: MultiplierTabIcons.GLITCH_CHALLENGE,
   },
   glitchChallengeBI: {
@@ -137,7 +137,7 @@ export const IP = {
       breakInfinityUG(2),
       breakInfinityUG(3),
     ),
-    isActive: () => [0,1,2,3].some(x => breakInfinityUG(x).isBought),
+    isActive: () => [0, 1, 2, 3].some(x => breakInfinityUG(x).isBought),
     icon: MultiplierTabIcons.GLITCH_CHALLENGE,
   },
   glitchChallengeEternity: {

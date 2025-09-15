@@ -9,14 +9,14 @@ export default {
     PrimaryButton,
   },
   props: {
-    tier:{
+    tier: {
       type: Number,
       required: true,
     }
   },
   data() {
     return {
-      unlockReq: '',
+      unlockReq: "",
       unlocked: false,
       cyc: {},
       amount: new Decimal(),
@@ -36,9 +36,9 @@ export default {
       const x = Math.cos(a) * dst;
       const y = Math.sin(a) * dst;
       return {
-        left: 50 + x + '%',
-        top: 50 + y + '%',
-      }
+        left: `${50 + x}%`,
+        top: `${50 + y}%`,
+      };
     },
   },
   methods: {
@@ -51,13 +51,13 @@ export default {
       this.multiplier.copyFrom(this.cyc.multiplier);
       this.highestUnlocked = NullCycles.highestUnlocked;
     },
-    buy(bulk = false){
-      if(this.unlocked){
+    buy(bulk = false) {
+      if (this.unlocked) {
         this.cyc.buy(bulk);
       }
     },
     data() {
-      return `Cost: ${format(this.cost, 2)} Abyssal Matter`
+      return `Cost: ${format(this.cost, 2)} Abyssal Matter`;
     }
   }
 };
@@ -65,20 +65,20 @@ export default {
 
 <template>
   <PrimaryButton
-  :class="this.tier > 8 ? 'c-null-button-chaos': 'c-null-button'"
-  :style="pos"
-  @click.exact="buy(false)"
-  @click.shift.exact="buy(true)"
+    :class="tier > 8 ? 'c-null-button-chaos': 'c-null-button'"
+    :style="pos"
+    @click.exact="buy(false)"
+    @click.shift.exact="buy(true)"
   >
     <div class="c-cycle-num">
-      {{cyc.shortDisplayName}} Cycle
+      {{ cyc.shortDisplayName }} Cycle
     </div>
     <div v-if="unlocked">
-        {{ formatSmall(amount, 2, 2) }} <br>
-        x{{formatSmall(multiplier) }} 
-        <span style="font-size: 11px;">
-          Cost: {{ format(this.cost, 2, 2) }} AbM
-        </span>
+      {{ formatSmall(amount, 2, 2) }} <br>
+      x{{ formatSmall(multiplier) }}
+      <span style="font-size: 11px;">
+        Cost: {{ format(cost, 2, 2) }} AbM
+      </span>
     </div>
   </PrimaryButton>
 </template>
@@ -119,5 +119,4 @@ export default {
   border: solid 2px white;
   background-image: linear-gradient(white 5%, black 25% 75%, white 100%);
 }
-
 </style>

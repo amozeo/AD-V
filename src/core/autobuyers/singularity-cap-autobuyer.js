@@ -1,8 +1,9 @@
 import { Singularity } from "../globals";
+
 import { AutobuyerState } from "./autobuyer";
 
 export class SingularityCapAutobuyerState extends AutobuyerState {
-  get realTime(){
+  get realTime() {
     return true;
   }
 

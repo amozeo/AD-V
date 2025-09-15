@@ -93,9 +93,11 @@ class AlchemyResourceState extends GameMechanicState {
   get capped() {
     return this.amount.gte(this.cap);
   }
+
   get over25K() {
     return this.amount.gte(25000);
   }
+
   reset() {
     this.amount = DC.D0;
   }
@@ -150,7 +152,7 @@ class AlchemyReaction {
     if (MetaFabricatorUpgrade(17).isBought) return new Decimal(0);
     if (!this._product.isUnlocked || this._reagents.some(r => !r.resource.isUnlocked)) return new Decimal();
     let forcingFactor = (this._reagents
-      .map(r => r.resource.amount))
+      .map(r => r.resource.amount));
     while (forcingFactor.length > 1) {
       if (forcingFactor[0].gt(forcingFactor[1])) forcingFactor.splice(1, 1);
       else forcingFactor.splice(0, 1);
@@ -254,7 +256,7 @@ export const AlchemyResource = mapGameDataToObject(
 export const AlchemyResources = {
   all: AlchemyResource.all,
   base: AlchemyResource.all.filter(r => r.isBaseResource),
-  reset(){
+  reset() {
     AlchemyResources.all.forEach(x => x.amount = DC.D0);
   }
 };

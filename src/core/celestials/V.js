@@ -44,7 +44,7 @@ class VRunUnlockState extends GameMechanicState {
       const modifiedStepCount = (Math.pow(1.15, stepCount) - 1) / 0.15;
       return modifiedStepCount * V.nextHardReductionCost(player.celestials.v.goalReductionSteps[this.id]);
     }
-    else if (this.config.isExtreme) {
+    if (this.config.isExtreme) {
       const modifiedStepCount = (Math.pow(15, stepCount) - 1) / 14;
       return modifiedStepCount * V.nextExtremeReductionCost(player.celestials.v.goalReductionSteps[this.id]);
     }
@@ -79,12 +79,12 @@ class VRunUnlockState extends GameMechanicState {
     player.celestials.v.runUnlocks[this.id] = value;
   }
 
-  reset(){
+  reset() {
     const V = player.celestials.v;
     V.runUnlocks[this.id] = 0;
-    if(this.id == 0) V.runRecords[this.id] = -10;
+    if (this.id == 0) V.runRecords[this.id] = -10;
     else if (this.id == 6) V.runRecords[this.id] = 0;
-    else  V.runRecords[this.id] = DC.D0;
+    else V.runRecords[this.id] = DC.D0;
   }
 
   tryComplete() {
@@ -220,7 +220,7 @@ export const V = {
   },
   reset() {
     const v = player.celestials.v;
-    
+
     if (!MetaFabricatorUpgrade(14).isBought) {
       v.unlockBits = 0;
       v.run = false;
@@ -249,7 +249,7 @@ export const V = {
     return GlitchSpeedUpgrade(4).isBought;
   },
   get isFullyCompleted() {
-    if(this.isExtreme) return this.spaceTheorems.gte(230);
+    if (this.isExtreme) return this.spaceTheorems.gte(230);
     return this.spaceTheorems.gte(110);
   },
   get rageDimPower() {

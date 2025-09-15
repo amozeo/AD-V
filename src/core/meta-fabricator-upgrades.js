@@ -1,4 +1,4 @@
-import { BitPurchasableMechanicState, RebuyableMechanicState, Effect } from "./game-mechanics";
+import { BitPurchasableMechanicState, Effect, RebuyableMechanicState } from "./game-mechanics";
 
 class MetaUpgradeState extends BitPurchasableMechanicState {
   constructor(config) {
@@ -33,16 +33,16 @@ class MetaUpgradeState extends BitPurchasableMechanicState {
   onPurchased() {
     const id = this.id;
 
-    if(id == 10) {
+    if (id == 10) {
       player.celestials.laitela.difficultyTier = 8;
     }
 
-    if(id == 12) {
+    if (id == 12) {
       player.celestials.glitch.upgrades.unlockbits = 8388607;
       player.celestials.glitch.upgrades.speedunlockbits = 31;
     }
 
-    if(id == 14){
+    if (id == 14) {
       for (let i = 0; i < 10; i++) {
         player.celestials.v.runUnlocks[i] = VRunUnlocks.all[i].config.values.length;
       }
@@ -90,7 +90,7 @@ export const MetaFabricatorUpgrades = {
 };
 
 
-export class MetaMilestoneState extends Effect{
+export class MetaMilestoneState extends Effect {
   constructor(config) {
     super(config.effect);
     this.config = config;

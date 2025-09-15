@@ -87,25 +87,27 @@ class ShopPurchaseState extends RebuyableMechanicState {
     const cost = this.config.cost;
     return typeof cost === "function" ? cost() : cost;
   }
-  
+
   // ShopPurchaseData for any particular key is undefined in between page load and STD load,
   // so we need to guard against that causing NaNs to propagate through the save
   get purchases() {
     return player.IAP[this.config.key] ?? DC.D0;
   }
+
   get playerpurchases() {
     return player.IAP[this.config.key] ?? DC.D0;
   }
-  
+
   set purchases(value) {
     if (!Decimal.isFinite(value)) return;
     ShopPurchaseData[this.config.key] = value;
   }
+
   set playerpurchases(value) {
     if (!Decimal.isFinite(value)) return;
     player.IAP[this.config.key] = value;
   }
-  
+
 
   isUnlocked() {
     return player.records.fullGameCompletions > 0 || (this.config.isUnlocked?.() ?? true);
@@ -143,7 +145,7 @@ class ShopPurchaseState extends RebuyableMechanicState {
   formatEffect(effect) {
     return this.config.formatEffect?.(effect) || formatX(effect, 2, 0);
   }
-  
+
   async purchase() {
     if (!this.isAffordable) return false;
     if (GameEnd.creditsEverClosed) return false;
@@ -159,10 +161,10 @@ class ShopPurchaseState extends RebuyableMechanicState {
     this.purchases = this.purchases.add(1);
     player.IAP.STDcoins = player.IAP.STDcoins.sub(this.cost);
 
-    if(this.config.key === "singleCosmeticSet") player.reality.glyphs.cosmetics.unlockedFromNG.push(cosmeticId);
-    if(this.config.key === "allCosmeticSets") dev.unlockAllCosmeticSets();
-    
-    
+    if (this.config.key === "singleCosmeticSet") player.reality.glyphs.cosmetics.unlockedFromNG.push(cosmeticId);
+    if (this.config.key === "allCosmeticSets") dev.unlockAllCosmeticSets();
+
+
     GameUI.update();
     return true;
   }
@@ -176,8 +178,8 @@ export const ShopPurchase = mapGameDataToObject(
 shop.purchaseTimeSkip = function() {
   let time = 3600 * 6;
   Speedrun.setSTDUse(true);
- 
-  if(Enslaved.isStoringRealTime){
+
+  if (Enslaved.isStoringRealTime) {
     player.celestials.enslaved.storedReal = player.celestials.enslaved.storedReal.add(time * 1000);
     time = player.celestials.enslaved.storedReal.sub(Enslaved.storedRealTimeCap).div(1000).toNumber();
     player.celestials.enslaved.storedReal = Decimal.min(player.celestials.enslaved.storedReal, Enslaved.storedRealTimeCap);
@@ -190,8 +192,8 @@ shop.purchaseTimeSkip = function() {
 shop.purchaseLongerTimeSkip = function() {
   let time = 3600 * 24;
   Speedrun.setSTDUse(true);
-  
-  if(Enslaved.isStoringRealTime){
+
+  if (Enslaved.isStoringRealTime) {
     player.celestials.enslaved.storedReal = player.celestials.enslaved.storedReal.add(time * 1000);
     time = player.celestials.enslaved.storedReal.sub(Enslaved.storedRealTimeCap).div(1000).toNumber();
     player.celestials.enslaved.storedReal = Decimal.min(player.celestials.enslaved.storedReal, Enslaved.storedRealTimeCap);

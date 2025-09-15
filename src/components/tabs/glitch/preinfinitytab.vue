@@ -1,21 +1,20 @@
 <script>
 import preinfinityupgradebutton from "./preinfinityupgrade";
-  
+
 export default {
-  name: "preinfinity",
+  name: "Preinfinity",
   components: {
     preinfinityupgradebutton
+  },
+  computed: {
+    upgrades: () => preInfinityUGs.all
   },
   methods: {
     id(row, column) {
       return (row - 1) * 4 + column - 1;
     }
-  },
-  computed: {
-    upgrades: () => preInfinityUGs.all
   }
 };
-  
 </script>
 
 <template>
@@ -25,18 +24,18 @@ export default {
       <br>
       I have some tests for you.
     </div>
-  
-      <div
+
+    <div
       v-for="row in 2"
       :key="row"
-      class="l-reality-upgrade-grid__row">
-        
+      class="l-reality-upgrade-grid__row"
+    >
       <preinfinityupgradebutton
         v-for="column in 4"
         :key="id(row, column)"
-        :upgrade="upgrades[id(row, column)]"/>
+        :upgrade="upgrades[id(row, column)]"
+      />
     </div>
-    
   </div>
 </template>
 

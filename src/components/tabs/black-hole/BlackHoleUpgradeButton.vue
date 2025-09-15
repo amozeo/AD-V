@@ -61,8 +61,8 @@ export default {
       this.isAutoUnlocked = hasAutobuyer && autobuyer.isUnlocked;
       this.isAutobuyerOn = hasAutobuyer && autobuyer.isActive;
     },
-    bulk(){
-      for(let a=0; a < 20; a++) this.config.upgrade.purchase();
+    bulk() {
+      for (let a = 0; a < 20; a++) this.config.upgrade.purchase();
     }
   }
 };

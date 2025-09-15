@@ -8,15 +8,15 @@ const thisInfinityMult = thisInfinity => {
 };
 const passiveIPMult = () => {
   const isEffarigLimited = Effarig.isRunning && Effarig.currentStage === EFFARIG_STAGES.ETERNITY;
-  let a = Perk.studyPassive.isBought ? 1e30 : 1e15;
-  
-  let b = (Perk.studyActiveEP.isBought ? DC.E15 : DC.E15.divide(thisInfinityMult(Time.thisInfinity.totalSeconds)).clampMin(1));
-      
+  const a = Perk.studyPassive.isBought ? 1e30 : 1e15;
+
+  const b = (Perk.studyActiveEP.isBought ? DC.E15 : DC.E15.divide(thisInfinityMult(Time.thisInfinity.totalSeconds)).clampMin(1));
+
   const perkEffect = TimeSpan.fromMinutes(Perk.studyIdleEP.effectOrDefault(0));
   const totalSeconds = Time.thisInfinity.plus(perkEffect).totalSeconds;
-  let c = thisInfinityMult(totalSeconds).divide(1e15).clampMin(1);
-  const normalValue = Decimal.multiply(a,b).times(c);
-  
+  const c = thisInfinityMult(totalSeconds).divide(1e15).clampMin(1);
+  const normalValue = Decimal.multiply(a, b).times(c);
+
   return isEffarigLimited
     ? normalValue.mul(Effarig.eternityCap)
     : normalValue;
@@ -299,14 +299,14 @@ export const normalTimeStudies = [
     requiresST: [121, 123],
     description: () => `You gain more EP based on average eternity ${PlayerProgress.realityUnlocked() ? " (real time)" : "time"} and time in this eternity`,
     effect: () => {
-        let a = (Perk.studyPassive.isBought ? DC.E1 : DC.D5);
-        let b = (Perk.studyActiveEP.isBought ? DC.E1 : Decimal.clamp(Decimal.div(5, Player.averageRealTimePerEternity), 1, 10));
-      
-        const perkEffect = TimeSpan.fromMinutes(Perk.studyIdleEP.effectOrDefault(0));
-        const totalSeconds = Time.thisEternity.plus(perkEffect).totalSeconds;
-                   
-        return Decimal.clampMin(Decimal.sqrt(totalSeconds.div(15)), 1).mul(a.mul(b));
-        },
+      const a = (Perk.studyPassive.isBought ? DC.E1 : DC.D5);
+      const b = (Perk.studyActiveEP.isBought ? DC.E1 : Decimal.clamp(Decimal.div(5, Player.averageRealTimePerEternity), 1, 10));
+
+      const perkEffect = TimeSpan.fromMinutes(Perk.studyIdleEP.effectOrDefault(0));
+      const totalSeconds = Time.thisEternity.plus(perkEffect).totalSeconds;
+
+      return Decimal.clampMin(Decimal.sqrt(totalSeconds.div(15)), 1).mul(a.mul(b));
+    },
     formatEffect: value => (formatX(value, 1, 1)),
   },
   {
@@ -434,8 +434,8 @@ export const normalTimeStudies = [
     requirement: [161, 162],
     reqType: TS_REQUIREMENT_TYPE.AT_LEAST_ONE,
     description: () => `Time Shard requirement for the next Tickspeed upgrade goes up slower
-      ${ formatX(eternityUGs.all[1].isBought ? 1.3 : 1.33, 0, 2)} ➜ ${formatX(GlitchRifts.beta.milestones[2].isUnlocked ? 1.2 : 1.25, 0, 2)}`,
-    effect: () => GlitchRifts.beta.milestones[2].isUnlocked ? 1.2 : 1.25
+      ${formatX(eternityUGs.all[1].isBought ? 1.3 : 1.33, 0, 2)} ➜ ${formatX(GlitchRifts.beta.milestones[2].isUnlocked ? 1.2 : 1.25, 0, 2)}`,
+    effect: () => (GlitchRifts.beta.milestones[2].isUnlocked ? 1.2 : 1.25)
   },
   {
     id: 181,
@@ -451,7 +451,7 @@ export const normalTimeStudies = [
   },
   {
     id: 191,
-    cost: new Decimal (400),
+    cost: new Decimal(400),
     requirement: [181, () => EternityChallenge(10).completions > 0 || (EffarigUnlock.EC10Requirement.canBeApplied && !Pelle.isDoomed)],
     reqType: TS_REQUIREMENT_TYPE.ALL,
     description: () => `After Eternity you permanently keep ${formatPercents(0.05)}
@@ -710,11 +710,11 @@ export const normalTimeStudies = [
     id: 401,
     cost: DC.D0,
     STCost: DC.E2,
-    requirement: [() =>  VUnlocks.newStudies.isUnlocked],
+    requirement: [() => VUnlocks.newStudies.isUnlocked],
     reqType: TS_REQUIREMENT_TYPE.ALL,
     requiresST: [() => true],
     description: "Antimatter Dimension Power based on STs",
-    effect: () => V.isRunningExtreme ? V.spaceTheorems.pow(0.8).div(20).max(1) : V.spaceTheorems.pow(0.8).div(3).max(1),
+    effect: () => (V.isRunningExtreme ? V.spaceTheorems.pow(0.8).div(20).max(1) : V.spaceTheorems.pow(0.8).div(3).max(1)),
     formatEffect: value => formatPow(value, 2, 1),
     unlocked: () => VUnlocks.newStudies.isUnlocked
   },
@@ -722,19 +722,19 @@ export const normalTimeStudies = [
     id: 402,
     cost: DC.D0,
     STCost: DC.E2,
-    requirement: [() =>  VUnlocks.newStudies.isUnlocked],
+    requirement: [() => VUnlocks.newStudies.isUnlocked],
     reqType: TS_REQUIREMENT_TYPE.ALL,
     requiresST: [() => true],
     description: () => `Tickspeed Power based on TSs`,
-    effect: () => V.isRunningExtreme ? V.spaceTheorems.pow(0.92).div(18).max(1) : V.spaceTheorems.pow(0.85).div(3).max(1),
+    effect: () => (V.isRunningExtreme ? V.spaceTheorems.pow(0.92).div(18).max(1) : V.spaceTheorems.pow(0.85).div(3).max(1)),
     formatEffect: value => formatPow(value, 2, 1),
-    unlocked: () =>  VUnlocks.newStudies.isUnlocked
+    unlocked: () => VUnlocks.newStudies.isUnlocked
   },
   {
     id: 403,
     cost: DC.D0,
     STCost: DC.E2,
-    requirement: [() =>  VUnlocks.newStudies.isUnlocked],
+    requirement: [() => VUnlocks.newStudies.isUnlocked],
     reqType: TS_REQUIREMENT_TYPE.ALL,
     requiresST: [() => true],
     description: () => `8th ID purchase cap is higher based on STs`,

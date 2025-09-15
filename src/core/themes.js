@@ -22,7 +22,7 @@ export const Theme = function Theme(name, config) {
   this.isAvailable = function() {
     if (!this.isSecret) return true;
     // Note: match[0] gets the full string of a match, here the initial S and number in a theme name.
-    if(name === "S13") return player.secretUnlocks.themes.some(theme => theme.match(/^S[0-9]*/u)[0] === (name + "0"));
+    if (name === "S13") return player.secretUnlocks.themes.some(theme => theme.match(/^S[0-9]*/u)[0] === (`${name}0`));
     return player.secretUnlocks.themes.some(theme => theme.match(/^S[0-9]*/u)[0] === name);
   };
 
@@ -30,13 +30,13 @@ export const Theme = function Theme(name, config) {
     if (!this.isSecret || !this.isAvailable()) return name;
     // Secret themes are stored as "S9Whatever", so we need to strip the SN part
 
-    if(name === "S15") return "Teresa";
-    if(name === "S16") return "Effarig";
-    if(name === "S17") return "The Nameless Ones'";
-    if(name === "S13") return "V";
-    if(name === "S14") return "Ra";
-    if(name === "S18") return "Lai'tela";
-    if(name === "S19") return "Pelle";
+    if (name === "S15") return "Teresa";
+    if (name === "S16") return "Effarig";
+    if (name === "S17") return "The Nameless Ones'";
+    if (name === "S13") return "V";
+    if (name === "S14") return "Ra";
+    if (name === "S18") return "Lai'tela";
+    if (name === "S19") return "Pelle";
 
     return player.secretUnlocks.themes.find(theme => theme.match(/^S[0-9]*/u)[0] === name).replace(/^S[0-9]*/u, "");
   };
@@ -133,13 +133,13 @@ Theme.tryUnlock = function(name) {
   SecretAchievement(25).unlock();
 
   const c = Theme.celName(name);
-  if(c == "Teresa") SecretAchievement(51).unlock();
-  if(c == "Effarig") SecretAchievement(51).unlock();
-  if(c == "The Nameless Ones'") SecretAchievement(51).unlock();
-  if(c == "V") SecretAchievement(51).unlock();
-  if(c == "Ra") SecretAchievement(51).unlock();
-  if(c == "Lai'tela") SecretAchievement(51).unlock();
-  if(c == "Pelle") SecretAchievement(51).unlock();
+  if (c == "Teresa") SecretAchievement(51).unlock();
+  if (c == "Effarig") SecretAchievement(51).unlock();
+  if (c == "The Nameless Ones'") SecretAchievement(51).unlock();
+  if (c == "V") SecretAchievement(51).unlock();
+  if (c == "Ra") SecretAchievement(51).unlock();
+  if (c == "Lai'tela") SecretAchievement(51).unlock();
+  if (c == "Pelle") SecretAchievement(51).unlock();
 
   if (!isAlreadyUnlocked) {
     GameUI.notify.success(`You have unlocked the ${Theme.celName(name).capitalize()} theme!`, 5000);
@@ -154,17 +154,17 @@ Theme.tryUnlock = function(name) {
 Theme.celName = name => {
   const i = Theme.secretThemeIndex(name);
 
-  if(i === 14) return "Teresa";
-  if(i === 15) return "Effarig";
-  if(i === 16) return "The Nameless Ones'";
-  if(i === 12) return "V";
-  if(i === 13) return "Ra";
-  if(i === 17) return "Lai'tela";
-  if(i === 18) return "Pelle";
+  if (i === 14) return "Teresa";
+  if (i === 15) return "Effarig";
+  if (i === 16) return "The Nameless Ones'";
+  if (i === 12) return "V";
+  if (i === 13) return "Ra";
+  if (i === 17) return "Lai'tela";
+  if (i === 18) return "Pelle";
 
   return name;
 
-}
+};
 
 Theme.create = function(name, settings) {
   const config = {

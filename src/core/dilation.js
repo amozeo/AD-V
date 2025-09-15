@@ -175,7 +175,7 @@ export function getDilationGainPerSecond() {
       Ra.unlocks.continuousTTBoost.effects.dilatedTime,
       Ra.unlocks.peakGamespeedDT
     );
-  if(player.realities.lt(5))dtRate = dtRate.times(3);
+  if (player.realities.lt(5))dtRate = dtRate.times(3);
   dtRate = dtRate.times(realityUGs.all[1].effectOrDefault(1));
   dtRate = dtRate.times(getAdjustedGlyphEffect("dilationDT"));
   dtRate = dtRate.times(ShopPurchase.dilatedTimePurchases.currentMult);
@@ -183,7 +183,7 @@ export function getDilationGainPerSecond() {
     Decimal.clampMin(Decimal.log10(Replicanti.amount.add(1)).mul(getAdjustedGlyphEffect("replicationdtgain")), 1));
   const allow = (Enslaved.isRunning && !Glitch.isRunning);
   const allowed = (allow || Glitch.augmentEffectActive(4));
-  
+
   if (allowed && !dtRate.eq(0)) dtRate = Decimal.pow10(dtRate.plus(1).log10().pow(0.85).sub(1));
   if (V.isRunning) dtRate = dtRate.pow(0.5);
   if (V.isRunningExtreme) dtRate = dtRate.pow(0.2);
@@ -193,7 +193,7 @@ export function getDilationGainPerSecond() {
 export function tachyonGainMultiplier() {
   const allow = (Enslaved.isRunning && !Glitch.isRunning);
   const allowed = (allow || Glitch.augmentEffectActive(4));
-  
+
   if (Pelle.isDisabled("tpMults")) return new Decimal(1).times(realityUGs.all[1].effectOrDefault(1));
   const pow = allowed ? Enslaved.tachyonNerf : 1;
   return DC.D1.timesEffectsOf(
@@ -223,7 +223,7 @@ export function getBaseTP(antimatter, requireEternity) {
 
   const allow = (Enslaved.isRunning && !Glitch.isRunning);
   const allowed = (allow || Glitch.augmentEffectActive(4));
-  
+
   if (allowed) baseTP = baseTP.pow(Enslaved.tachyonNerf);
   return baseTP;
 }
@@ -243,7 +243,7 @@ export function getTachyonGain(requireEternity) {
 export function getTachyonReq() {
   const allow = (Enslaved.isRunning && !Glitch.isRunning);
   const allowed = (allow || Glitch.augmentEffectActive(4));
-  
+
   let effectiveTP = Currency.tachyonParticles.value.dividedBy(tachyonGainMultiplier());
   if (allowed) effectiveTP = effectiveTP.pow(1 / Enslaved.tachyonNerf);
   return Decimal.pow10(
@@ -273,9 +273,9 @@ export function getDilationTimeEstimate(goal) {
 export function dilatedValueOf(value, pre = false) {
   const log10 = value.eq(0) ? DC.D0 : value.log10();
   const ex = player.celestials.pelle.galaxyGenerator.generatedGalaxies.add(1).log10().add(1).log10().div(4).max(0);
-  const dilationPenalty =  Decimal.min(Effects.product(DilationUpgrade.dilationPenalty)
-  .mul(pre ? GlitchSpeedUpgrades.all[0].effectOrDefault(1) : 1).mul(0.75)
-  .add(ex).add(GlitchRifts.delta.milestones[2].effectOrDefault(0)) , 1);
+  const dilationPenalty = Decimal.min(Effects.product(DilationUpgrade.dilationPenalty)
+    .mul(pre ? GlitchSpeedUpgrades.all[0].effectOrDefault(1) : 1).mul(0.75)
+    .add(ex).add(GlitchRifts.delta.milestones[2].effectOrDefault(0)), 1);
   return Decimal.pow10(log10.abs().pow(dilationPenalty).times(Decimal.sign(log10)));
 }
 

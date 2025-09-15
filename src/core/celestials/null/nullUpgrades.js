@@ -15,16 +15,15 @@ class NullUpgradeState extends BitUpgradeState {
   }
 
   purchase() {
-    if(this.config.corrupt){
+    if (this.config.corrupt) {
       if (this.isUnlocked || !Currency.corruptMatter.purchase(this.cost)) return;
-    }
-    else if (this.isUnlocked || !Currency.abyssalMatter.purchase(this.cost)) return;
+    } else if (this.isUnlocked || !Currency.abyssalMatter.purchase(this.cost)) return;
     this.unlock();
     this.config.onPurchased?.();
   }
-  
-  reset(){
-    if(this.isUnlocked) this.bits -= (1 <<this.id);
+
+  reset() {
+    if (this.isUnlocked) this.bits -= (1 << this.id);
   }
 }
 

@@ -327,7 +327,7 @@ export const alchemyResources = {
     isBaseResource: false,
     effect: amount => {
       let eff = Decimal.sqrt(amount.div(25000)).mul(160).mul(GlitchRealityUpgrades.all[2].effectOrDefault(1));
-      if(amount.gt(1e5)) eff = eff.mul(amount.div(1e5)).mul(amount.pow(0.7));
+      if (amount.gt(1e5)) eff = eff.mul(amount.div(1e5)).mul(amount.pow(0.7));
       return eff;
     },
     tier: 4,
@@ -462,7 +462,7 @@ export const alchemyResources = {
       }
     ]
   },
-  
+
   "shifter": {
     id: ALCHEMY_RESOURCE.SHIFTER,
     name: "Sifter",
@@ -496,7 +496,7 @@ export const alchemyResources = {
       }
     ]
   },
-  
+
   "alter": {
     id: ALCHEMY_RESOURCE.ALTER,
     name: "Alter",
@@ -523,7 +523,7 @@ export const alchemyResources = {
     ]
   },
 
-  // glitched T6
+  // Glitched T6
   "glitch": {
     id: ALCHEMY_RESOURCE.GLITCH,
     name: "Glitch",
@@ -532,7 +532,7 @@ export const alchemyResources = {
     effect: amount => amount,
     tier: 6,
     unlockedAt: 45,
-    description: () => `You can create a Glitch Glyph ${ VisualViewport.isExtreme ? '' : '(unlocked later)' }`,
+    description: () => `You can create a Glitch Glyph ${VisualViewport.isExtreme ? "" : "(unlocked later)"}`,
     formatEffect: value => `Create a ${formatInt(value)} level Glitch Glyph`,
     reagents: [
       {

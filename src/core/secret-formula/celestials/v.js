@@ -175,8 +175,8 @@ export const v = {
       name: "Post-destination",
       description: value => `Get ${formatInt(400000)} Time Theorems with a /${format(Decimal.pow10(value), 2, 2)}
         Black Hole or slower, without discharging or entering EC12.`,
-      values: [ 50, 100, 150, 200, 250, 300],
-      condition: () => V.isRunning  && Ra.unlocks.unlockHardV.isUnlocked,
+      values: [50, 100, 150, 200, 250, 300],
+      condition: () => V.isRunning && Ra.unlocks.unlockHardV.isUnlocked,
       currentValue: () => (
         // Dirty hack I know lmao
         Currency.timeTheorems.gte(400000)
@@ -209,7 +209,7 @@ export const v = {
       name: "Corruption",
       description: value => `Reach ${format(Decimal.pow10(value), 2)} Antimatter without time studies or dilation unlocked`,
       values: [1e9, 5e9, 1e10, 5e10, 1e11, 5e11, 1e12],
-      condition: () => V.isRunning && player.timestudy.studies.length == 0 && !PlayerProgress.dilationUnlocked()  && Ra.unlocks.unlockHardV.isUnlocked,
+      condition: () => V.isRunning && player.timestudy.studies.length == 0 && !PlayerProgress.dilationUnlocked() && Ra.unlocks.unlockHardV.isUnlocked,
       currentValue: () => Currency.antimatter.value.log10(),
       formatRecord: x => format(Decimal.pow10(x), 2),
       shardReduction: tiers => 5 * (tiers * 33),
@@ -223,8 +223,8 @@ export const v = {
       name: "Revengeance",
       description: value => `Reach ${format(Decimal.pow10(value), 2)} Antimatter in Glitch's Reality with V's Reality Enabled, you also need  ${STreq[VRunUnlock(10).completions]} ST<br>
       <span style="color: var(--color-bad)">completing this will have dire consequences</span> ${VRunUnlock(10).completions > 0 ? (
-        `<br> you have a ${MetaFabricatorUpgrade(5).effectValue.gte(1000) ? `^${format(V.rageDimPower, 2, 2)} buff` :
-        `^${format(V.rageDimPower.recip(), 2, 2)} nerf`} to AD,ID,TD and tickspeed`) : "" }`,
+    `<br> you have a ${MetaFabricatorUpgrade(5).effectValue.gte(1000) ? `^${format(V.rageDimPower, 2, 2)} buff`
+      : `^${format(V.rageDimPower.recip(), 2, 2)} nerf`} to AD,ID,TD and tickspeed`) : ""}`,
 
       values: [1e40, 1e42, 5e42, 2.5e40],
       condition: value => V.isRunning && Glitch.isRunning && V.isExtreme && V.spaceTheorems.gte(STreq[VRunUnlock(10).completions]) && Currency.antimatter.value.log10().gt(value),
@@ -377,7 +377,7 @@ export const v = {
       id: 8,
       reward: () => `Increase the RM cap based on total STs and you can make Glitch Glyphs`,
       description: () => `Have ${formatInt(140)} V-Achievements`,
-      effect: () => Decimal.max(V.spaceTheorems,1),
+      effect: () => Decimal.max(V.spaceTheorems, 1),
       format: x => formatPow(x, 2, 2),
       requirement: () => V.spaceTheorems.gte(140),
     },
@@ -394,7 +394,7 @@ export const v = {
       reward: () => `Increase the Teresa Glyph Level cap to 15% per upgrade and triple Glyph Refinement cap`,
       description: () => `Have ${formatInt(165)} V-Achievements`,
       effect: 3,
-      format: x => formatX(x, 2, 2) + ", 15%",
+      format: x => `${formatX(x, 2, 2)}, 15%`,
       requirement: () => V.spaceTheorems.gte(165),
     },
     newStudies: {

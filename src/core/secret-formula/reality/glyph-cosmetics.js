@@ -228,6 +228,6 @@ export const glyphCosmeticSets = {
     name: "you know what that means",
     symbol: ["🐟", "🐠", "🐡", "🦐", "🦑", "🐙", "🦞", "🦀"],
     preventBlur: true,
-    color: ["W#6CA0C6","B#15639D"],
+    color: ["W#6CA0C6", "B#15639D"],
   },
 };

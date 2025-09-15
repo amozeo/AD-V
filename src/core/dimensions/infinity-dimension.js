@@ -135,7 +135,7 @@ class InfinityDimensionState extends DimensionState {
       if (V.isRunningExtreme) {
         production = production.pow(0.001);
       }
-      
+
       production = production.pow(V.rageDimPower);
       return production;
     }
@@ -155,7 +155,7 @@ class InfinityDimensionState extends DimensionState {
         tier === 1 ? EternityChallenge(2).reward : null
       );
     const bought = tier === 8 ? Decimal.clampMax(this.baseAmount.div(10), Decimal.pow(1e12, TimeStudy(403).effectOrDefault(1))) : this.baseAmount.div(10);
-    mult = mult.times(Decimal.pow(this.powerMultiplier, Decimal.floor( tier === 8 ? bought.min(1e12) : bought)));
+    mult = mult.times(Decimal.pow(this.powerMultiplier, Decimal.floor(tier === 8 ? bought.min(1e12) : bought)));
 
 
     if (tier === 1) {
@@ -189,13 +189,13 @@ class InfinityDimensionState extends DimensionState {
       mult = mult.pow(0.001);
     }
 
-    if(Glitch.isRunning) mult = mult.pow(Glitch.IDnerf);
+    if (Glitch.isRunning) mult = mult.pow(Glitch.IDnerf);
 
     if (PelleStrikes.powerGalaxies.hasStrike) {
       mult = mult.pow(0.5);
     }
 
-    if(mult.gte("1e1E21")) mult = mult.div(mult.div("1e1E21").pow( MetaFabricatorUpgrade(15).isBought ? 0.95 : 0.99));
+    if (mult.gte("1e1E21")) mult = mult.div(mult.div("1e1E21").pow(MetaFabricatorUpgrade(15).isBought ? 0.95 : 0.99));
 
     return mult;
   }
@@ -234,7 +234,7 @@ class InfinityDimensionState extends DimensionState {
   get purchaseCap() {
     const allow = (Enslaved.isRunning && !Glitch.isRunning);
     const allowed = (allow || Glitch.augmentEffectActive(3));
-    
+
     if (allowed) {
       return DC.D1;
     }
@@ -323,7 +323,7 @@ class InfinityDimensionState extends DimensionState {
 
     if (costScaling.purchases.lte(0)) return false;
 
-    if(Currency.infinityPoints.lt('ee15')) Currency.infinityPoints.purchase(costScaling.totalCost);
+    if (Currency.infinityPoints.lt("ee15")) Currency.infinityPoints.purchase(costScaling.totalCost);
     this.cost = this.cost.times(costScaling.totalCostMultiplier);
     this.bought = this.bought.plus(costScaling.purchases);
     // Because each ID purchase gives 10 IDs
@@ -435,6 +435,6 @@ export const InfinityDimensions = {
   get powerConversionRate() {
     return getAdjustedGlyphEffect("infinityrate").add(7)
       .add(PelleUpgrade.infConversion.effectOrDefault(DC.D0)).add(GlitchRifts.beta.milestones[0].effectOrDefault(DC.D0)
-      .add(GlitchRifts.beta.milestones[1].effectOrDefault(DC.D0))).mul(PelleRifts.paradox.milestones[2].effectOrDefault(1));
+        .add(GlitchRifts.beta.milestones[1].effectOrDefault(DC.D0))).mul(PelleRifts.paradox.milestones[2].effectOrDefault(1));
   }
 };

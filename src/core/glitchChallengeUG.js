@@ -40,20 +40,20 @@ class preInfinityUGState extends BitPurchasableMechanicState {
   }
 
   get isPossible() {
-    if(PlayerProgress.metaUnlocked()) return (this.config.hasFailed ? !this.config.hasFailed() : true);
+    if (PlayerProgress.metaUnlocked()) return (this.config.hasFailed ? !this.config.hasFailed() : true);
     return (this.config.hasFailed ? !this.config.hasFailed() : true) && !this.config.progLock();
   }
-  
+
   get isAvailableForPurchase() {
     return (player.glitch.preinfinity.upgradebits & (1 << this.id)) !== 0;
   }
 
   get isUseless() {
-    if(typeof this.config.isUseless != "undefined") return (this.config.isUseless() && Pelle.isDoomed)
+    if (typeof this.config.isUseless !== "undefined") return (this.config.isUseless() && Pelle.isDoomed);
     return false;
   }
-  
-  get islocked(){
+
+  get islocked() {
     return this.config.progLock() && !PlayerProgress.metaUnlocked();
   }
 
@@ -122,20 +122,20 @@ class breakInfinityUGState extends BitPurchasableMechanicState {
   }
 
   get isPossible() {
-    if(PlayerProgress.metaUnlocked()) return (this.config.hasFailed ? !this.config.hasFailed() : true);
+    if (PlayerProgress.metaUnlocked()) return (this.config.hasFailed ? !this.config.hasFailed() : true);
     return (this.config.hasFailed ? !this.config.hasFailed() : true) && !this.config.progLock();
   }
 
-  get islocked(){
+  get islocked() {
     return this.config.progLock() && !PlayerProgress.metaUnlocked();
   }
-  
+
   get isAvailableForPurchase() {
     return (player.glitch.breakinfinity.upgradebits & (1 << this.id)) !== 0;
   }
 
   get isUseless() {
-    if(typeof this.config.isUseless != "undefined") return (this.config.isUseless() && Pelle.isDoomed)
+    if (typeof this.config.isUseless !== "undefined") return (this.config.isUseless() && Pelle.isDoomed);
     return false;
   }
 
@@ -204,23 +204,23 @@ class eternityUGState extends BitPurchasableMechanicState {
   }
 
   get isPossible() {
-    if(PlayerProgress.metaUnlocked()) return (this.config.hasFailed ? !this.config.hasFailed() : true);
+    if (PlayerProgress.metaUnlocked()) return (this.config.hasFailed ? !this.config.hasFailed() : true);
     return (this.config.hasFailed ? !this.config.hasFailed() : true) && !this.config.progLock();
   }
 
-  get islocked(){
+  get islocked() {
     return this.config.progLock() && !PlayerProgress.metaUnlocked();
   }
-  
+
   get isAvailableForPurchase() {
     return (player.glitch.eternity.upgradebits & (1 << this.id)) !== 0;
   }
 
   get isUseless() {
-    if(typeof this.config.isUseless != "undefined") return (this.config.isUseless() && Pelle.isDoomed)
+    if (typeof this.config.isUseless !== "undefined") return (this.config.isUseless() && Pelle.isDoomed);
     return false;
   }
-  
+
   tryUnlock() {
     if (this.isAvailableForPurchase || !this.config.checkRequirement() || this.islocked) return;
     player.glitch.eternity.upgradebits |= (1 << this.id);
@@ -285,23 +285,23 @@ class realityUGState extends BitPurchasableMechanicState {
   }
 
   get isPossible() {
-    if(PlayerProgress.metaUnlocked()) return (this.config.hasFailed ? !this.config.hasFailed() : true);
+    if (PlayerProgress.metaUnlocked()) return (this.config.hasFailed ? !this.config.hasFailed() : true);
     return (this.config.hasFailed ? !this.config.hasFailed() : true) && !this.config.progLock();
   }
 
-  get islocked(){
+  get islocked() {
     return this.config.progLock() && !PlayerProgress.metaUnlocked();
   }
-  
+
   get isAvailableForPurchase() {
     return (player.glitch.reality.upgradebits & (1 << this.id)) !== 0;
   }
 
   get isUseless() {
-    if(typeof this.config.isUseless != "undefined") return (this.config.isUseless() && Pelle.isDoomed)
+    if (typeof this.config.isUseless !== "undefined") return (this.config.isUseless() && Pelle.isDoomed);
     return false;
   }
-  
+
   tryUnlock() {
     if (this.isAvailableForPurchase || !this.config.checkRequirement() || this.islocked) return;
     player.glitch.reality.upgradebits |= (1 << this.id);

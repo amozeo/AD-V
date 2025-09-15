@@ -45,7 +45,7 @@ export const Effarig = {
         return "Eternity";
       case EFFARIG_STAGES.REALITY:
         return "Reality";
-        case EFFARIG_STAGES.OVERDRIVE:
+      case EFFARIG_STAGES.OVERDRIVE:
         return "Overdrive";
       default:
         return "Overdrive";
@@ -62,7 +62,7 @@ export const Effarig = {
         return new Decimal(1500);
       case EFFARIG_STAGES.REALITY:
         return new Decimal(2000);
-        case EFFARIG_STAGES.OVERDRIVE:
+      case EFFARIG_STAGES.OVERDRIVE:
         return new Decimal(15000);
       default:
         return new Decimal(15000);
@@ -88,8 +88,8 @@ export const Effarig = {
         break;
       case EFFARIG_STAGES.REALITY:
         c = 29.29;
-      break;
-        case EFFARIG_STAGES.OVERDRIVE:
+        break;
+      case EFFARIG_STAGES.OVERDRIVE:
         c = 12.5;
         break;
       default:
@@ -109,7 +109,7 @@ export const Effarig = {
     return Decimal.pow10(Decimal.pow(base, this.tickDilation)).reciprocal();
   },
   multiplier(mult) {
-    if(Decimal.lt(mult, 1)) return mult;
+    if (Decimal.lt(mult, 1)) return mult;
     const base = new Decimal(mult).add(1).log10();
     return Decimal.pow10(Decimal.pow(base, this.multDilation));
   },
@@ -121,7 +121,7 @@ export const Effarig = {
   symbol: "Ϙ",
 
   reset() {
-    if(MetaMilestone.metaKeepEff.isReached) return;
+    if (MetaMilestone.metaKeepEff.isReached) return;
     Currency.relicShards.reset();
     const effarig = player.celestials.effarig;
     effarig.unlockBits = 0;

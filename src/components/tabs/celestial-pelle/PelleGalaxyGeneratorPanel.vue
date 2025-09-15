@@ -1,8 +1,9 @@
 <script>
+import PrimaryToggleButton from "../../PrimaryToggleButton.vue";
+
 import wordShift from "@/core/word-shift";
 
 import PelleUpgrade from "./PelleUpgrade";
-import PrimaryToggleButton from "../../PrimaryToggleButton.vue";
 
 export default {
   name: "GalaxyGeneratorPanel",
@@ -49,7 +50,7 @@ export default {
     }
   },
   watch: {
-    isAutobuyerOn(newValue){
+    isAutobuyerOn(newValue) {
       Autobuyer.galgenSac.isActive = newValue;
     }
   },
@@ -107,52 +108,52 @@ export default {
           <span class="c-galaxies-amount">+{{ format(galaxiesPerSecond, 2, 1) }}/s</span>
         </div>
         <div class="l-spoon-btn-group">
-        <div>
-          <button
-            class="c-increase-cap"
-            :class="{
-              'c-increase-cap-available': isCapped && capRift && !sacrificeActive,
-              'tutorial--glow': cap === Infinity
-            }"
-            @click="increaseCap"
-          >
-            <div
-              class="c-increase-cap-background"
-              :style="{ 'width': `${barWidth * 100}%` }"
-            />
-            <div
-              v-if="isCapped && capRift"
-              class="c-increase-cap-text"
+          <div>
+            <button
+              class="c-increase-cap"
+              :class="{
+                'c-increase-cap-available': isCapped && capRift && !sacrificeActive,
+                'tutorial--glow': cap === Infinity
+              }"
+              @click="increaseCap"
             >
-              {{ sacrificeText }}. <br><br>
-              <span
-                v-if="!sacrificeActive"
-                class="c-big-text"
+              <div
+                class="c-increase-cap-background"
+                :style="{ 'width': `${barWidth * 100}%` }"
+              />
+              <div
+                v-if="isCapped && capRift"
+                class="c-increase-cap-text"
               >
-                Sacrifice your {{ capRiftName }}
-              </span>
-              <span
+                {{ sacrificeText }}. <br><br>
+                <span
+                  v-if="!sacrificeActive"
+                  class="c-big-text"
+                >
+                  Sacrifice your {{ capRiftName }}
+                </span>
+                <span
+                  v-else
+                  class="c-big-text"
+                >
+                  Getting rid of all that {{ capRiftName }}...
+                </span>
+              </div>
+              <div
                 v-else
-                class="c-big-text"
+                class="c-increase-cap-text c-medium-text"
               >
-                Getting rid of all that {{ capRiftName }}...
-              </span>
-            </div>
-            <div
-              v-else
-              class="c-increase-cap-text c-medium-text"
-            >
-              {{ format(generatedGalaxies, 2) }} / {{ format(cap, 2) }} Galaxies generated
-            </div>
-          </button>
-        </div>
-        <PrimaryToggleButton
+                {{ format(generatedGalaxies, 2) }} / {{ format(cap, 2) }} Galaxies generated
+              </div>
+            </button>
+          </div>
+          <PrimaryToggleButton
             v-if="isAutoUnlocked"
             v-model="isAutobuyerOn"
             label="Auto"
             style="margin-top: -.75rem; max-width: 70rem; width: 100%; align-self: center;"
           />
-      </div>
+        </div>
         <div class="l-galaxy-generator-upgrades-container">
           <PelleUpgrade
             v-for="upgrade in upgrades"

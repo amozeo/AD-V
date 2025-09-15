@@ -8,8 +8,8 @@ export default {
   },
   computed: {
     activeComponent() {
-      return"ModernChaosDimensionsTab";
-        
+      return "ModernChaosDimensionsTab";
+
     }
   },
 };

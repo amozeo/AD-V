@@ -144,13 +144,13 @@ export default {
       this.hasNoCharge = this.storedBlackHole.eq(0);
       this.hasReachedCurrentCap = this.storedReal.eq(this.storedRealCap);
     },
-    sName(){
-      if(player.options.themeModern == "S15") return "The Nameless Teresa's'";
-      if(player.options.themeModern == "S16") return "the Nameless Effarig's";
-      if(player.options.themeModern == "S18") return `The Nameless Lai'tela's`;
-      if(player.options.themeModern == "S14") return "The Nameless Ra's";
-      if(player.options.themeModern == "S19") return `The Nameless Pelle's`;
-      if(player.options.themeModern == "S13") return "The Nameless V's";
+    sName() {
+      if (player.options.themeModern == "S15") return "The Nameless Teresa's'";
+      if (player.options.themeModern == "S16") return "the Nameless Effarig's";
+      if (player.options.themeModern == "S18") return `The Nameless Lai'tela's`;
+      if (player.options.themeModern == "S14") return "The Nameless Ra's";
+      if (player.options.themeModern == "S19") return `The Nameless Pelle's`;
+      if (player.options.themeModern == "S13") return "The Nameless V's";
       return "The Nameless Ones'";
     },
     toggleStoreBlackHole() {

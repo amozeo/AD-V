@@ -66,7 +66,7 @@ export const Pelle = {
     }
 
     player.celestials.glitch.run = false;
-    
+
     Glyphs.harshAutoClean();
     if (!Glyphs.unequipAll()) {
       Modal.hideAll();
@@ -164,7 +164,7 @@ export const Pelle = {
     player.celestials.enslaved.isStoringReal = false;
     player.celestials.enslaved.autoStoreReal = false;
     if (PelleStrikes.dilation.hasStrike) player.dilation.active = true;
-    realityUGs.all[13].isBought ? PelleStrikes.all[5].trigger() : false
+    realityUGs.all[13].isBought ? PelleStrikes.all[5].trigger() : false;
     EventHub.dispatch(GAME_EVENT.ARMAGEDDON_AFTER, gainStuff);
   },
 

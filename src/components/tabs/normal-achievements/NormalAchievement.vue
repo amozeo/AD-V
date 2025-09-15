@@ -111,7 +111,7 @@ export default {
   },
   methods: {
     update() {
-      if(!this.achievement) return;
+      if (!this.achievement) return;
       this.isDisabled = Pelle.disabledAchievements.includes(this.id) && Pelle.isDoomed;
       this.isUnlocked = this.achievement.isUnlocked && !this.isDisabled;
       this.isCancer = Theme.current().name === "S4" || player.secretUnlocks.cancerAchievements;
@@ -176,11 +176,11 @@ export default {
 
 <template>
   <div
+    v-if="achievement"
     :class="classObject"
     :style="styleObject"
     @mouseenter="onMouseEnter"
     @mouseleave="onMouseLeave"
-    v-if="this.achievement"
   >
     <HintText
       :key="garbleKey"
@@ -205,7 +205,7 @@ export default {
             v-if="!isObscured"
             :class="{ 'o-pelle-disabled': isDisabled }"
           >
-            Reward: {{ typeof config.reward == "function" ?  config.reward() : config.reward}}
+            Reward: {{ typeof config.reward == "function" ? config.reward() : config.reward }}
             <EffectDisplay
               v-if="config.formatEffect"
               br

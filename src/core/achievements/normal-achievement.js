@@ -32,7 +32,7 @@ class AchievementState extends GameMechanicState {
   }
 
   get isPreMeta() {
-    return this.row < 19 ;
+    return this.row < 19;
   }
 
   get isUnlocked() {
@@ -172,7 +172,7 @@ export const Achievements = {
 
   _power: new Lazy(() => {
     const unlockedRows = Achievements.allRows
-      .countWhere(row => row.every(ach => ach ? ach.isUnlocked : true ));
+      .countWhere(row => row.every(ach => (ach ? ach.isUnlocked : true)));
     const basePower = Decimal.pow(1.25, unlockedRows).mul(Decimal.pow(1.03, Achievements.effectiveCount));
     const exponent = getAdjustedGlyphEffect("effarigachievement").mul(Ra.unlocks.achievementPower.effectOrDefault(1));
     return basePower.pow(exponent);

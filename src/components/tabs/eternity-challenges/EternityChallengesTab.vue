@@ -73,7 +73,7 @@ export default {
       }
       this.hasECR = Perk.studyECRequirement.isBought;
       this.allowECcomplete = PlayerProgress.realityUnlocked();
-      this.ECreq = [undefined,"1e30", "1e30", "1e30", "1e40", "1e50", "1e60", "1e70", "1e80", "1e100","1e150","1e1300","1e1400","1e1E300"];
+      this.ECreq = [undefined, "1e30", "1e30", "1e30", "1e40", "1e50", "1e60", "1e70", "1e80", "1e100", "1e150", "1e1300", "1e1400", "1e1E300"];
       this.isEnslaved = Enslaved.isRunning;
       this.isDoomed = Pelle.isDoomed;
     },
@@ -81,22 +81,22 @@ export default {
       return challenge.completions > 0 || challenge.isUnlocked || challenge.hasUnlocked ||
         (this.showAllChallenges && PlayerProgress.realityUnlocked());
     },
-    ECc(){
-      if(this.isDoomed) return GameUI.notify.error("You know why",3000);
-      if(this.isEnslaved) return GameUI.notify.error("Can't be used in The Nameless Ones' reality",3000);
-      if(Effarig.isRunning && Effarig.currentStage < 4) return GameUI.notify.error("Can't be used in the Effarig's Reality, until the Reality layer is complete",3000)
-      let h=0;
-      for(let i=1; i <= 12; i++){
-        if(!Currency.eternityPoints.gte(this.ECreq[i])) break;
-        if(player.eternityChalls["eterc" + i] < 5 || player.eternityChalls["eterc" + i] == undefined) {
-          player.eternityChalls["eterc" + i] = 5;
+    ECc() {
+      if (this.isDoomed) return GameUI.notify.error("You know why", 3000);
+      if (this.isEnslaved) return GameUI.notify.error("Can't be used in The Nameless Ones' reality", 3000);
+      if (Effarig.isRunning && Effarig.currentStage < 4) return GameUI.notify.error("Can't be used in the Effarig's Reality, until the Reality layer is complete", 3000);
+      let h = 0;
+      for (let i = 1; i <= 12; i++) {
+        if (!Currency.eternityPoints.gte(this.ECreq[i])) break;
+        if (player.eternityChalls[`eterc${i}`] < 5 || player.eternityChalls[`eterc${i}`] == undefined) {
+          player.eternityChalls[`eterc${i}`] = 5;
         }
-          h = i;
+        h = i;
       }
-       if(!Currency.eternityPoints.gte("1e4000")) h == 12 ?  GameUI.notify.eternity("All EC's are completed",3000) : GameUI.notify.eternity("Fully completed EC's up to " + (h) + ", next ec" + (h+1) + " at " + format( new Decimal(this.ECreq[h+1])) + " EP",3000);
+      if (!Currency.eternityPoints.gte("1e4000")) h == 12 ? GameUI.notify.eternity("All EC's are completed", 3000) : GameUI.notify.eternity(`Fully completed EC's up to ${h}, next ec${h + 1} at ${format(new Decimal(this.ECreq[h + 1]))} EP`, 3000);
     },
     pelleText() {
-      return wordShift.wordCycle(['Destoryed','Annihilated','Obliterated']);
+      return wordShift.wordCycle(["Destoryed", "Annihilated", "Obliterated"]);
     },
   }
 };
@@ -108,19 +108,19 @@ export default {
 
     <span v-if="allowECcomplete">
       <PrimaryButton
-      class="o-primary-btn--subtab-option"
-      @click="ECc"
-        >
+        class="o-primary-btn--subtab-option"
+        @click="ECc"
+      >
         <span v-if="isEnslaved">
-        broken by compaction of this reality
+          broken by compaction of this reality
         </span>
         <span v-else-if="isDoomed">
-          {{pelleText()}} by Pelle
+          {{ pelleText() }} by Pelle
         </span>
         <span v-else>
-        complete EC's
+          complete EC's
         </span>
-        
+
       </PrimaryButton>
     </span>
 

@@ -162,9 +162,9 @@ export const GlyphGenerator = {
       effects,
     };
   },
-  
+
   glitchGlyph(level = undefined) {
-    level = new Decimal(level ?? AlchemyResource.glitch.effectValue)
+    level = new Decimal(level ?? AlchemyResource.glitch.effectValue);
     const str = rarityToStrength(250);
     const effects = this.generateGlitchEffects(level);
     return {
@@ -172,7 +172,7 @@ export const GlyphGenerator = {
       idx: null,
       type: "glitch",
       strength: str,
-      level : level,
+      level,
       rawLevel: level,
       effects,
     };
@@ -274,7 +274,7 @@ export const GlyphGenerator = {
     if (RealityUpgrade(17).isBought && random2 < Effects.max(0, RealityUpgrade(17)).toNumber()) {
       num = Math.min(num + 1, maxEffects);
     }
-    if(realityUGs.all[6].isBought) {
+    if (realityUGs.all[6].isBought) {
       num = Math.min(num + 1, maxEffects);
     }
     return Ra.unlocks.glyphEffectCount.canBeApplied ? Math.max(num, 4) : num;

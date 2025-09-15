@@ -37,7 +37,7 @@ export const GameEnd = {
   creditsEverClosed: false,
 
   gameLoop(diffr) {
-    if(!Pelle.isDoomed) return;
+    if (!Pelle.isDoomed) return;
     const diff = isDecimal(diffr) ? diffr.toNumber() : diffr;
     if (this.removeAdditionalEnd) {
       this.additionalEnd -= Math.min(diff / 200, 0.5);

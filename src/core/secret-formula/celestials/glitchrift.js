@@ -1,4 +1,4 @@
-// entropy
+// Entropy
 export const GlitchRifts = {
   alpha: {
     id: 1,
@@ -6,7 +6,7 @@ export const GlitchRifts = {
     name: "pre-break/infinity",
     drainResource: "IP",
     unlock: () => true,
-    percentage: totalFill => { let a = 0; preInfinityUGs.all.forEach(x => x.isBought ? a++ : false); return a; },
+    percentage: totalFill => { let a = 0; preInfinityUGs.all.forEach(x => (x.isBought ? a++ : false)); return a; },
     percentageToFill: 8,
     milestones: [
       {
@@ -30,7 +30,7 @@ export const GlitchRifts = {
         requirement: 0.75,
         description: "Small Game speed multiplier",
         effect: () => 1.5,
-        format: effect => `${formatX(effect,2,1)} Game speed`,
+        format: effect => `${formatX(effect, 2, 1)} Game speed`,
         base: 1,
       },
       {
@@ -38,7 +38,7 @@ export const GlitchRifts = {
         requirement: 1,
         description: "Very small Dimension Boost multiplier based on IP multiplier purchases (caped at 5)",
         effect: () => player.IPMultPurchases.pow(0.11).clamp(1, 5),
-        format: effect => `${formatX(effect,2,2)} dimboost`,
+        format: effect => `${formatX(effect, 2, 2)} dimboost`,
         base: 1,
       },
     ],
@@ -51,8 +51,8 @@ export const GlitchRifts = {
     unlock: () => PlayerProgress.infinityUnlocked(),
     percentage: totalFill => {
       let a = 0;
-      breakInfinityUGs.all.forEach(x => x.isBought ? a++ : false);
-      return a
+      breakInfinityUGs.all.forEach(x => (x.isBought ? a++ : false));
+      return a;
     },
     percentageToFill: 6,
     milestones: [
@@ -61,7 +61,7 @@ export const GlitchRifts = {
         requirement: 0.33,
         description: "+0.02 to Infinity power conversion rate",
         effect: () => new Decimal(0.02),
-        format: effect => `+${format(effect,2,2)} Infinity power conversion rate`,
+        format: effect => `+${format(effect, 2, 2)} Infinity power conversion rate`,
         base: 0,
       },
       {
@@ -69,7 +69,7 @@ export const GlitchRifts = {
         requirement: 0.833,
         description: "+0.03 to Infinity power conversion rate",
         effect: () => 0.03,
-        format: effect => `+${format(effect,2,2)} Infinity power conversion rate`,
+        format: effect => `+${format(effect, 2, 2)} Infinity power conversion rate`,
         base: 0,
       },
       {
@@ -77,7 +77,7 @@ export const GlitchRifts = {
         requirement: 1,
         description: "-0.05 to Free Tickspeed threshold",
         effect: () => 0.05,
-        format: effect => `-${format(effect,2,2)} Free Tickspeed threshold`,
+        format: effect => `-${format(effect, 2, 2)} Free Tickspeed threshold`,
         base: 0,
       },
     ],
@@ -89,8 +89,8 @@ export const GlitchRifts = {
     unlock: () => PlayerProgress.eternityUnlocked() || Currency.infinityPoints.gte(1e250),
     percentage: totalFill => {
       let a = 0;
-      eternityUGs.all.forEach(x => x.isBought ? a++ : false);
-      return a
+      eternityUGs.all.forEach(x => (x.isBought ? a++ : false));
+      return a;
     },
     percentageToFill: 6,
     milestones: [
@@ -99,7 +99,7 @@ export const GlitchRifts = {
         requirement: 0.33,
         description: "Replicanti is 1% faster per Antimatter Galaxy past 125 upto 5x",
         effect: () => Decimal.pow(1.01, player.galaxies.sub(125)).clamp(1, 5),
-        format: effect => `${formatX(effect,2,2)} Replicanti speed`,
+        format: effect => `${formatX(effect, 2, 2)} Replicanti speed`,
         base: 1,
       },
       {
@@ -107,7 +107,7 @@ export const GlitchRifts = {
         requirement: 0.66,
         description: "25 Free Tickspeed upgrades per Time Study brought after 10",
         effect: () => Math.max(25 * (player.timestudy.studies.length - 10), 0),
-        format: effect => `+${format(effect,2)} Free Tickspeed`,
+        format: effect => `+${format(effect, 2)} Free Tickspeed`,
         base: 0,
       },
       {
@@ -115,7 +115,7 @@ export const GlitchRifts = {
         requirement: 1,
         description: "Dilation is slightly weaker by 0.01",
         effect: () => 0.01,
-        format: effect => `+${format(effect,2,2)} to Dilation nerf`,
+        format: effect => `+${format(effect, 2, 2)} to Dilation nerf`,
         base: 0,
       },
     ],
@@ -127,8 +127,8 @@ export const GlitchRifts = {
     unlock: () => PlayerProgress.realityUnlocked() || TimeStudy.reality.isBought,
     percentage: totalFill => {
       let a = 0;
-      realityUGs.all.forEach(x => x.isBought ? a++ : false);
-      return a
+      realityUGs.all.forEach(x => (x.isBought ? a++ : false));
+      return a;
     },
     percentageToFill: 14,
     milestones: [
@@ -137,7 +137,7 @@ export const GlitchRifts = {
         requirement: 0.15,
         description: "TDs gain a 1.01 power",
         effect: () => 1.01,
-        format: effect => `TD ${formatPow(effect,2,2)}`,
+        format: effect => `TD ${formatPow(effect, 2, 2)}`,
         base: 1,
       },
       {
@@ -161,7 +161,7 @@ export const GlitchRifts = {
         requirement: 0.7,
         description: "DMDs gain a 1.05 power",
         effect: () => 1.05,
-        format: effect => `DMD ${formatPow(effect,2,2)}`,
+        format: effect => `DMD ${formatPow(effect, 2, 2)}`,
         base: 1,
       },
       {
@@ -177,7 +177,7 @@ export const GlitchRifts = {
         requirement: 1,
         description: "Unlock Glitch the celestial of Programing, having unique Goals and Upgrades",
         effect: () => 1,
-        format: effect => effect == 0 ? "Locked" : "Unlocked, Glitch",
+        format: effect => (effect == 0 ? "Locked" : "Unlocked, Glitch"),
         base: 0,
       },
     ],

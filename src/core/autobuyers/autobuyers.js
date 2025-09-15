@@ -23,25 +23,20 @@ import { TimeDimensionAutobuyerState } from "./time-dimension-autobuyer";
 import { TimeTheoremAutobuyerState } from "./time-theorem-autobuyer";
 
 
-import { TeresaMemoryAutobuyerState } from "./memory-autobuyer";
-import { EffarigMemoryAutobuyerState } from "./memory-autobuyer";
-import { EnslavedMemoryAutobuyerState } from "./memory-autobuyer";
-import { VMemoryAutobuyerState } from "./memory-autobuyer";
-import { GlitchMemoryAutobuyerState } from "./memory-autobuyer";
-import { CanteMemoryAutobuyerState } from "./memory-autobuyer";
-import { NullMemoryAutobuyerState } from "./memory-autobuyer";
+import { CanteMemoryAutobuyerState, EffarigMemoryAutobuyerState, EnslavedMemoryAutobuyerState, GlitchMemoryAutobuyerState, NullMemoryAutobuyerState, TeresaMemoryAutobuyerState, VMemoryAutobuyerState } from "./memory-autobuyer";
 
-import { NonRepeatableRealityUpgradeAutobuyerState } from "./reality-single-upgrades-autobuyer";
-import { NonRepeatableImaginaryUpgradeAutobuyerState } from "./reality-single-upgrades-autobuyer";
 
-import { GlitchUpgradeAutobuyerState } from "./glitch-upgrade-autobuyer";
-import { NonRepeatableGlitchUpgradeAutobuyerState } from "./glitch-upgrade-autobuyer";
+import { NonRepeatableImaginaryUpgradeAutobuyerState, NonRepeatableRealityUpgradeAutobuyerState } from "./reality-single-upgrades-autobuyer";
+
+
+import { GlitchUpgradeAutobuyerState, NonRepeatableGlitchUpgradeAutobuyerState } from "./glitch-upgrade-autobuyer";
+
 
 import { SingularityCapAutobuyerState } from "./singularity-cap-autobuyer";
 import { TesseractAutobuyerState } from "./tessearact-autobuyer";
 
-import { GalaxyGeneratorUpgradeAutobuyerState } from './galgen-autobuyer';
-import { GalaxyGeneratorSacrificeAutobuyerState } from './galgen-autobuyer';
+import { GalaxyGeneratorSacrificeAutobuyerState, GalaxyGeneratorUpgradeAutobuyerState } from "./galgen-autobuyer";
+
 
 import { MetaAutobuyerState } from "./meta-autobuyer";
 
@@ -74,7 +69,7 @@ export const Autobuyer = {
   timeDimension: TimeDimensionAutobuyerState.createAccessor(),
   timeTheorem: new TimeTheoremAutobuyerState(),
 
-  
+
   teresaMem: TeresaMemoryAutobuyerState.createAccessor(),
   effarigMem: EffarigMemoryAutobuyerState.createAccessor(),
   enslavedMem: EnslavedMemoryAutobuyerState.createAccessor(),

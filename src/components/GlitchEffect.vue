@@ -9,15 +9,15 @@ export default {
       return this.$viewModel.shiftDown || player.options.showHintText[this.type];
     },
   },
-  methods:{
-    clipping(){
-      const l =  () => `${Math.floor(Math.random() * 31)}%`;
-      const u =  () => `${Math.floor(Math.random() * 31) + 70}%`;
+  methods: {
+    clipping() {
+      const l = () => `${Math.floor(Math.random() * 31)}%`;
+      const u = () => `${Math.floor(Math.random() * 31) + 70}%`;
       return {
         clipPath: `polygon(${l()} ${l()}, ${u()} ${l()}, ${u()} ${u()}, ${l()} ${u()})`,
-        position: 'absolute',
-        transform: 'translateX(-50%)',
-        filter: 'invert(1)'
+        position: "absolute",
+        transform: "translateX(-50%)",
+        filter: "invert(1)"
       };
     },
   }
@@ -25,15 +25,16 @@ export default {
 </script>
 
 <template>
-  <span >
-    <span 
-    v-for="a in 3"
-    :style="clipping()"
+  <span>
+    <span
+      v-for="a in 3"
+      :style="clipping()"
     >
       <slot />
     </span>
   </span>
 </template>
+
 <style scoped>
 
 </style>

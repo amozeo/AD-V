@@ -41,7 +41,7 @@ export const ra = {
       memoryProductionMultiplier: () => Ra.unlocks.vXP.effectOrDefault(new Decimal(1))
     },
     glitchyfishys: {
-      id: "glitchyfishys",// i dont want to make a migration just to change this to glitch
+      id: "glitchyfishys", // I dont want to make a migration just to change this to glitch
       name: "Glitch",
       color: "var(--color-ra-pet--glitch)",
       chunkGain: "current RM",
@@ -49,7 +49,7 @@ export const ra = {
       requiredUnlock: () => undefined,
       rawMemoryChunksPerSecond: () => Currency.realityMachines.value.add(1).log10().mul(10).pow(1.8),
       memoryProductionMultiplier: () => Ra.unlocks.glitchyfishysXP.effectOrDefault(new Decimal(1)).mul(
-      Ra.unlocks.memroygain1.effectOrDefault(1) * Ra.unlocks.memroygain2.effectOrDefault(1) *
+        Ra.unlocks.memroygain1.effectOrDefault(1) * Ra.unlocks.memroygain2.effectOrDefault(1) *
       Ra.unlocks.memroygain3.effectOrDefault(1) * Ra.unlocks.memroygain4.effectOrDefault(1) *
       Ra.unlocks.memroygain5.effectOrDefault(1))
     },
@@ -402,7 +402,7 @@ export const ra = {
       reward: () => `Gain a power to Replicanti based on Cante's memory level`,
       effect: () => {
         let e = Decimal.pow(1.5, Ra.pets.cante.level);
-        if(e.gt(1e7)) e = e.div(e.div(1e7).pow(0.9));
+        if (e.gt(1e7)) e = e.div(e.div(1e7).pow(0.9));
         return e;
       },
       pet: "cante",
@@ -450,7 +450,7 @@ export const ra = {
     },
     nullXP: {
       id: 42,
-      reward: () => `Multiply Null and Cantes Memory Chunk gain by x${format(1.9,0,1)} per level`,
+      reward: () => `Multiply Null and Cantes Memory Chunk gain by x${format(1.9, 0, 1)} per level`,
       effect: () => Decimal.pow(1.9, Ra.pets.null.level),
       pet: "null",
       level: 5,
@@ -476,7 +476,7 @@ export const ra = {
       reward: () => `Boost Meta Relay gain based on Antimatter and Null level`,
       effect: () => {
         let pow = (Decimal.pow(1.05, Ra.pets.null.level - 75).mul(0.01));
-        if(pow.gt(0.1)) pow = pow.div(pow.div(0.1).sqrt());
+        if (pow.gt(0.1)) pow = pow.div(pow.div(0.1).sqrt());
         return Currency.antimatter.value.log(1e5).pow(pow);
       },
       pet: "null",

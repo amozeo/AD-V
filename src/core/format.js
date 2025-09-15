@@ -8,25 +8,25 @@ function isEND() {
   return player.celestials.pelle.doomed && Math.random() < threshold;
 }
 
-function invertOOM(x){
+function invertOOM(x) {
   let e = x.log10().floor();
-  let m = x.div(Decimal.pow(10, e));
+  const m = x.div(Decimal.pow(10, e));
   e = e.neg();
   x = new Decimal(10).pow(e).times(m);
 
-  return x
+  return x;
 }
 
 window.formatSmall = function formatSmall(value, places = 2, placesUnder1000 = 3) {
   if (isEND()) return "END";
-  // eslint-disable-next-line no-param-reassign 
+  // eslint-disable-next-line no-param-reassign
   if (!isDecimal(value)) value = new Decimal(value);
-  if(value.gte(1)) return format(value, places, placesUnder1000);
+  if (value.gte(1)) return format(value, places, placesUnder1000);
 
-  if(value.gte(0.01)) return format(value, 3, 3);
+  if (value.gte(0.01)) return format(value, 3, 3);
   value = invertOOM(value);
   const val = Notation.scientific.format(value, places, placesUnder1000);
-  return val.replace(/([^(?:e|F| )]*)$/, '-$1');
+  return val.replace(/([^(?:e|F| )]*)$/, "-$1");
 };
 
 window.format = function format(value, places = 0, placesUnder1000 = 0) {
@@ -110,7 +110,7 @@ window.formatPercents = function formatPercents(value, places) {
 window.formatRarity = function formatRarity(value) {
   // We can, annoyingly, have rounding error here, so even though only rarities
   // are passed in, we can't trust our input to always be some integer divided by 10.
-  if(!isDecimal(value)) value = new Decimal(value);
+  if (!isDecimal(value)) value = new Decimal(value);
   const places = value.mod(1).eq(0) ? 0 : 1;
   return `${format(value, 2, places)}%`;
 };

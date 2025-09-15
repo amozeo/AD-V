@@ -13,34 +13,34 @@ export default {
     PrimaryButton
   },
   props: {
-    upgrade:{
+    upgrade: {
       type: Object,
       required: true,
     }
   },
   data() {
     return {
-      ug: {bought: false, isAfordable: false, purged: false, chaos: false,},
+      ug: { bought: false, isAfordable: false, purged: false, chaos: false, },
     };
   },
   computed: {
     symbol: () => Cante.symbol,
     isDoomed: () => Pelle.isDoomed,
-    classList(){
-      if(this.ug.chaos){
+    classList() {
+      if (this.ug.chaos) {
         return {
-         "c-cante-button-bought-chaos": this.ug.bought,
-         "c-cante-button-buyable-chaos": this.ug.isAfordable && !this.ug.bought,
-         "c-cante-button-unbought": !this.ug.bought && !this.ug.isAfordable,
-         "c-cante-button": true,
-        }
+          "c-cante-button-bought-chaos": this.ug.bought,
+          "c-cante-button-buyable-chaos": this.ug.isAfordable && !this.ug.bought,
+          "c-cante-button-unbought": !this.ug.bought && !this.ug.isAfordable,
+          "c-cante-button": true,
+        };
       }
       return {
-         "c-cante-button-bought": this.ug.bought,
-         "c-cante-button-buyable": this.ug.isAfordable && !this.ug.bought,
-         "c-cante-button-unbought": !this.ug.bought && !this.ug.isAfordable,
-         "c-cante-button": true,
-      }
+        "c-cante-button-bought": this.ug.bought,
+        "c-cante-button-buyable": this.ug.isAfordable && !this.ug.bought,
+        "c-cante-button-unbought": !this.ug.bought && !this.ug.isAfordable,
+        "c-cante-button": true,
+      };
     }
   },
   methods: {
@@ -50,7 +50,7 @@ export default {
       this.ug.purged = Cante.purged;
       this.ug.isAfordable = this.ug.chaos ? Currency.chaosMatter.gte(this.upgrade.config.cost) : Currency.artificialMatter.gte(this.upgrade.config.cost);
     },
-    buy(){
+    buy() {
       this.upgrade.purchase();
     }
   }
@@ -59,21 +59,21 @@ export default {
 
 <template>
   <PrimaryButton
-  :class="classList"
-  @click="buy"
-  v-if='(ug.chaos && ug.purged) || !ug.chaos'
+    v-if="(ug.chaos && ug.purged) || !ug.chaos"
+    :class="classList"
+    @click="buy"
   >
-    <DescriptionDisplay :config='upgrade.config' />
-    <div >
+    <DescriptionDisplay :config="upgrade.config" />
+    <div>
       <CostDisplay
-      :config='upgrade.config'
-      br
-      :name='ug.chaos ? "Chaotic Matter" : "Artificial Matter"'
+        :config="upgrade.config"
+        br
+        :name="ug.chaos ? &quot;Chaotic Matter&quot; : &quot;Artificial Matter&quot;"
       />
 
       <EffectDisplay
-      :config='upgrade.config'
-      br
+        :config="upgrade.config"
+        br
       />
     </div>
   </PrimaryButton>
@@ -108,5 +108,4 @@ export default {
 .c-cante-button-bought-chaos {
   background: var(--color-cante--chaos);
 }
-
 </style>

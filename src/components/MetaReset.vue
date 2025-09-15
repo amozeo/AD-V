@@ -15,13 +15,14 @@ export default {
 
 <template>
   <div>
-      <div class="o-meta-reset outer-connect" />
-      <div class="o-meta-reset outer" />
-      <div class="o-meta-reset inner-connect" />
-      <div class="o-meta-reset inner" />
-      <div class="o-meta-reset meta" />
+    <div class="o-meta-reset outer-connect" />
+    <div class="o-meta-reset outer" />
+    <div class="o-meta-reset inner-connect" />
+    <div class="o-meta-reset inner" />
+    <div class="o-meta-reset meta" />
   </div>
 </template>
+
 <style scoped>
 div{
   position: fixed;
@@ -85,5 +86,4 @@ div{
     filter: blur(0px);
   }
 }
-
 </style>

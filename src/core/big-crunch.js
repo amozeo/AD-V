@@ -39,7 +39,7 @@ export function manualBigCrunchResetRequest() {
 export function bigCrunchResetRequest(disableAnimation = false) {
   if (!Player.canCrunch) return;
 
-  if((!realityUGs.all[6].config.hasFailed() && !realityUGs.all[6].isBought) && player.options.confirmations.glitchCL && Glyphs.activeWithoutCompanion.length > 3 && Effarig.currentStage == 1 && Effarig.isRunning){
+  if ((!realityUGs.all[6].config.hasFailed() && !realityUGs.all[6].isBought) && player.options.confirmations.glitchCL && Glyphs.activeWithoutCompanion.length > 3 && Effarig.currentStage == 1 && Effarig.isRunning) {
     Modal.message.show(`you will fail glitch challenge ${realityUGs.all[6].config.name} <br> which is to ${realityUGs.all[6].config.requirement()} <br> you can disable this for <i>all</i> challenges in confirmations`);
     return;
   }
@@ -83,7 +83,7 @@ function bigCrunchUpdateStatistics() {
   player.records.bestInfinity.bestIPminEternity =
     player.records.bestInfinity.bestIPminEternity.clampMin(player.records.thisInfinity.bestIPmin);
   player.records.thisInfinity.bestIPmin = DC.D0;
-  player.records.bestInfinity.trueTime = Math.min(player.records.bestInfinity.trueTime, player.records.thisInfinity.trueTime)
+  player.records.bestInfinity.trueTime = Math.min(player.records.bestInfinity.trueTime, player.records.thisInfinity.trueTime);
 
   player.records.thisEternity.bestInfinitiesPerMs = player.records.thisEternity.bestInfinitiesPerMs.clampMin(
     gainedInfinities().round().dividedBy(Decimal.clampMin(33, player.records.thisInfinity.realTime))

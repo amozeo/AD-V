@@ -452,7 +452,7 @@ export const GameStorage = {
       if (DEV && player.options.testVersion !== undefined) {
         devMigrations.patch(player);
       }
-      
+
       if (player.version >= 27) {
         const fixGlyph = glyph => {
           glyph.level = new Decimal(glyph.level);
@@ -480,7 +480,7 @@ export const GameStorage = {
         // eslint-disable-next-line max-len
         // Eplayer.reality.glyphs.filter.types[item].score = new Decimal(player.reality.glyphs.filter.types[item].score);
       }
-      
+
       player = migrations.patchPostReality(player);
     }
 
@@ -564,7 +564,7 @@ export const GameStorage = {
     // when online or simulating time. When only storing offline, the condition is never actually entered in the
     // gameLoop due to the option technically being false, so we need to check it on-load too.
     if (player.celestials.enslaved.storedReal.gte(24 * 3600000)) SecretAchievement(46).unlock();
-    
+
     GameUI.update();
 
     for (const resource of AlchemyResources.all) {

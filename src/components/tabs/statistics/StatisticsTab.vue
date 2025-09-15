@@ -128,7 +128,7 @@ export default {
       const eternity = this.eternity;
       const bestEternity = records.bestEternity;
       eternity.isUnlocked = isEternityUnlocked;
-      
+
       if (isEternityUnlocked) {
         eternity.count.copyFrom(Currency.eternities);
         eternity.hasBest = !bestEternity.time.eq(DC.BEMAX);
@@ -148,7 +148,7 @@ export default {
         reality.bestReal.setFrom(bestReality.realTime);
         reality.this.setFrom(records.thisReality.time);
         reality.totalTimePlayed.setFrom(records.totalTimePlayed);
-      // Real time tracking is only a thing once reality is unlocked:
+        // Real time tracking is only a thing once reality is unlocked:
         infinity.thisReal.setFrom(records.thisInfinity.realTime);
         infinity.bankRate = infinity.projectedBanked.div(Decimal.clampMin(33, records.thisEternity.realTime))
           .times(60000);
@@ -174,7 +174,7 @@ export default {
         meta.thisReal.setFrom(thisMeta.realTime);
         meta.bestRate.copyFrom(bestMeta.MRmin);
       }
-      
+
       this.updateMatterScale();
 
       this.isDoomed = Pelle.isDoomed;
@@ -354,7 +354,7 @@ export default {
       <div>Your best Glyph rarity is {{ formatRarity(reality.bestRarity) }}.</div>
       <br>
     </div>
-    
+
     <br>
     <div
       v-if="meta.isUnlocked"
@@ -368,11 +368,11 @@ export default {
       </div>
       <div v-if="meta.hasBest">
         Your fastest Meta was {{ meta.best.toStringShort() }}.
-          ({{ meta.bestReal.toStringShort() }} real time)
-    </div>
+        ({{ meta.bestReal.toStringShort() }} real time)
+      </div>
       <div>
         You have spent {{ meta.this.toStringShort() }} in this Meta.
-          ({{ meta.thisReal.toStringShort() }} real time)
+        ({{ meta.thisReal.toStringShort() }} real time)
       </div>
       <div>Your fastest game-time Meta was {{ meta.best.toStringShort() }}.</div>
       <div>Your fastest real-time Meta was {{ meta.bestReal.toStringShort() }}.</div>

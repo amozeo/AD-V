@@ -91,7 +91,7 @@ export * from "./speedrun";
 
 export * from "./automator/script-templates";
 
-// mod
+// Mod
 export * from "./glitchChallengeUG";
 export * from "./celestials/glitch/glitchrift";
 export * from "./celestials/glitch/glitch";

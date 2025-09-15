@@ -5,7 +5,7 @@ export function effectiveBaseGalaxies() {
   let replicantiGalaxies = Replicanti.galaxies.bought;
   replicantiGalaxies = replicantiGalaxies.mul(
     DC.D1.add(TimeStudy(133).effectOrDefault(0))).add(Ra.unlocks.repEffect.effectOrDefault(0));
-    if (TimeStudy(132).isBought) replicantiGalaxies = replicantiGalaxies.mul(1.2);
+  if (TimeStudy(132).isBought) replicantiGalaxies = replicantiGalaxies.mul(1.2);
   // "extra" galaxies unaffected by the passive/idle boosts come from studies 225/226 and Effarig Infinity
   replicantiGalaxies = replicantiGalaxies.add(Replicanti.galaxies.extra);
   const nonActivePathReplicantiGalaxies = Decimal.min(Replicanti.galaxies.bought,
@@ -25,8 +25,8 @@ export function getTickSpeedMultiplier() {
   if (Ra.isRunning || Glitch.augmentEffectActive(7)) return DC.C1D1_1245.div(GlitchSpeedUpgrades.all[1].effectOrDefault(1));
   let galaxies = effectiveBaseGalaxies();
 
-  let CC = Glitch.chaosCoresBoost;
-  
+  const CC = Glitch.chaosCoresBoost;
+
   const effects = Effects.product(
     InfinityUpgrade.galaxyBoost,
     InfinityUpgrade.galaxyBoost.chargedEffect,
@@ -109,8 +109,8 @@ export function buyMaxTickSpeed() {
       if (purchases.logPrice.eq(player.antimatter.max(1).log10()) && player.dimensions.antimatter[0].amount.eq(0)) {
         purchases.logPrice = Tickspeed.costScale.calculateCost(purchases.quantity.sub(1));
         purchases.quantity = purchases.quantity.sub(1);
-    }
-    Currency.antimatter.subtract(Decimal.pow10(purchases.logPrice));
+      }
+      Currency.antimatter.subtract(Decimal.pow10(purchases.logPrice));
       player.totalTickBought = player.totalTickBought.add(purchases.quantity);
     }
 
@@ -190,7 +190,7 @@ export const Tickspeed = {
       Achievement(66),
       Achievement(83)
     )
-    .times(getTickSpeedMultiplier().pow(this.totalUpgrades));
+      .times(getTickSpeedMultiplier().pow(this.totalUpgrades));
 
     tickspeed = tickspeed.pow(TimeStudy(402).effectOrDefault(1));
 
@@ -199,14 +199,13 @@ export const Tickspeed = {
       tickspeed = tickspeed.pow(0.00025);
     }
 
-    if(tickspeed.gt("ee20")) tickspeed = tickspeed.pow( tickspeed.log10().div(1e20).pow(0.95).recip() );
-    
-    if(tickspeed.gt("ee50")) tickspeed = tickspeed.pow( tickspeed.log10().div(1e50).pow(0.95).recip() );
-    if(tickspeed.gt("ee100")) tickspeed = tickspeed.pow( tickspeed.log10().div(1e100).pow(0.999).recip() );
-    if(tickspeed.gt("ee150")) tickspeed = tickspeed.pow( tickspeed.log10().div(1e100).pow(0.9999).recip() );
-    if(tickspeed.gt("ee200")) tickspeed = tickspeed.pow( tickspeed.log10().div(1e200).pow(0.9999).recip() );
+    if (tickspeed.gt("ee20")) tickspeed = tickspeed.pow(tickspeed.log10().div(1e20).pow(0.95).recip());
 
-    
+    if (tickspeed.gt("ee50")) tickspeed = tickspeed.pow(tickspeed.log10().div(1e50).pow(0.95).recip());
+    if (tickspeed.gt("ee100")) tickspeed = tickspeed.pow(tickspeed.log10().div(1e100).pow(0.999).recip());
+    if (tickspeed.gt("ee150")) tickspeed = tickspeed.pow(tickspeed.log10().div(1e100).pow(0.9999).recip());
+    if (tickspeed.gt("ee200")) tickspeed = tickspeed.pow(tickspeed.log10().div(1e200).pow(0.9999).recip());
+
 
     return tickspeed;
   },
@@ -216,20 +215,21 @@ export const Tickspeed = {
     if (Laitela.continuumActive) boughtTickspeed = this.continuumValue;
     else boughtTickspeed = player.totalTickBought;
     let total = boughtTickspeed.add(player.totalTickGained);
-    if(total.gt(1e20)) total = total.div(total.div(1e20).pow(0.9));
-    if(total.gt(1e50)) total = total.div(total.div(1e50).pow(0.95));
+    if (total.gt(1e20)) total = total.div(total.div(1e20).pow(0.9));
+    if (total.gt(1e50)) total = total.div(total.div(1e50).pow(0.95));
 
     return total;
   },
 
-  get totalForEffect() {    
+  get totalForEffect() {
     let boughtTickspeed;
     if (Laitela.continuumActive) boughtTickspeed = this.continuumValue;
     else boughtTickspeed = player.totalTickBought;
-    let total = boughtTickspeed.add(player.totalTickGained) ;
-    if(total.gt(1e20)) total = total.div(total.div(1e20)).pow(0.9);
+    let total = boughtTickspeed.add(player.totalTickGained);
+    if (total.gt(1e20)) total = total.div(total.div(1e20)).pow(0.9);
 
-    return total;  },
+    return total;
+  },
 
   get perSecond() {
     return Decimal.divide(1000, this.current);
@@ -256,8 +256,8 @@ export const FreeTickspeed = {
     x = x.add(preInfinityUGs.all[5].effectOrDefault(0));
     x = x.add(eternityUGs.all[3].effectOrDefault(0));
     x = x.add(GlitchRifts.delta.milestones[1].effectOrDefault(0));
-    if(!Pelle.isDoomed) x = x.add(eternityUGs.all[5].effectOrDefault(0));
-    
+    if (!Pelle.isDoomed) x = x.add(eternityUGs.all[5].effectOrDefault(0));
+
     return player.totalTickGained.add(x);
   },
 

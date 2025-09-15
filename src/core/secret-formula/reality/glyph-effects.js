@@ -372,7 +372,7 @@ export const glyphEffects = {
     shortDesc: "AD ×{value}",
     effect: (level, strength) => (GlyphAlteration.isEmpowered("power")
       ? DC.D11111.pow(Decimal.times(level, 220))
-      : Decimal.tetrate(Decimal.times(level,strength).times(10), 2)),
+      : Decimal.tetrate(Decimal.times(level, strength).times(10), 2)),
     formatEffect: x => formatPostBreak(x, 2, 0),
     combine: GlyphCombiner.multiplyDecimal,
     alteredColor: () => GlyphAlteration.getEmpowermentColor("power"),
@@ -571,7 +571,7 @@ export const glyphEffects = {
     totalDesc: "Eternity Point gain / {value}",
     shortDesc: "EP / {value}",
     // Divides e666.6 per glyph
-    effect: level => Decimal.pow10(Decimal.div(level,10).neg()),
+    effect: level => Decimal.pow10(Decimal.div(level, 10).neg()),
     formatEffect: x => format(x.reciprocal()),
     combine: GlyphCombiner.multiplyDecimal,
   },
@@ -665,7 +665,7 @@ export const glyphEffects = {
     genericDesc: "C Dim ^x",
     effect: (level, strength) => {
       let eff = new Decimal(level).div(70000).pow(0.6).mul(0.4).add(1.015);
-      if(eff.gt(1.5)) eff = eff.div(eff.div(1.5).pow(0.4));
+      if (eff.gt(1.5)) eff = eff.div(eff.div(1.5).pow(0.4));
       return eff;
     },
     formatEffect: x => format(x, 2, 2),
@@ -676,7 +676,7 @@ export const glyphEffects = {
     id: "glitchADCelPow",
     intID: 39,
     isGenerated: false,
-    glyphTypes: [() =>"glitch"],
+    glyphTypes: [() => "glitch"],
     singleDesc: "ADs ^{value} in Celestial Realitys",
     shortDesc: "AD in Cel ^{value}",
     genericDesc: "AD in Cel ^x",

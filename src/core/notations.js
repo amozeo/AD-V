@@ -1,8 +1,9 @@
 import * as ADLNotations from "adnot-beport-large";
 import * as ADNotations from "adnot-beport-small";
 
-window.ADNotations = ADNotations;
 import { DC } from "./constants";
+
+window.ADNotations = ADNotations;
 
 export const Notation = (function() {
   const N = ADNotations;

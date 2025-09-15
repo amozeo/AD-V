@@ -5,7 +5,7 @@ import { DimensionState } from "./dimension";
 // Multiplier applied to all Chaos Dimensions, regardless of tier. This is cached using a Lazy
 // and invalidated every update.
 export function chaosDimensionCommonMultiplier() {
-  let multiplier = DC.D1;
+  const multiplier = DC.D1;
 
   return multiplier;
 }
@@ -13,7 +13,7 @@ export function chaosDimensionCommonMultiplier() {
 export function getChaosDimensionFinalMultiplierUncached(tier) {
   const dimension = ChaosDimension(tier);
   if (tier < 1 || tier > 8) throw new Error(`Invalid Chaos Dimension tier ${tier}`);
-  
+
   let multiplier = DC.D1;
 
   multiplier = multiplier.mul(Decimal.pow(dimension.perPurchase, dimension.bought));
@@ -22,14 +22,14 @@ export function getChaosDimensionFinalMultiplierUncached(tier) {
 
   multiplier = applyCDPowers(multiplier, tier);
 
-  if(multiplier.gt("1e1E15")) multiplier = multiplier.pow( multiplier.log10().div(1e15).pow(0.5).recip() );
-  
+  if (multiplier.gt("1e1E15")) multiplier = multiplier.pow(multiplier.log10().div(1e15).pow(0.5).recip());
+
   return multiplier;
 }
 
 function applyCDMultipliers(mult, tier) {
-  let multiplier = mult.times(GameCache.chaosDimensionCommonMultiplier.value);
-  
+  const multiplier = mult.times(GameCache.chaosDimensionCommonMultiplier.value);
+
   return multiplier.clampMin(1);
 }
 
@@ -42,7 +42,7 @@ function applyCDPowers(mult, tier) {
 }
 
 function onBuyChaosDimension(tier) {
-  
+
 }
 
 export function maxAllChaos() {
@@ -56,8 +56,8 @@ export function maxAllChaos() {
 export function buyMaxChaosDimension(tier, bulk = Infinity) {
   const dimension = ChaosDimension(tier);
   if (!dimension.isAvailableForPurchase) return;
-  
-  let bulkLeft = new Decimal(bulk);
+
+  const bulkLeft = new Decimal(bulk);
 
   if (bulkLeft.lte(1)) return;
 
@@ -71,8 +71,8 @@ export function buyMaxChaosDimension(tier, bulk = Infinity) {
   let buying = maxBought.quantity;
   if (buying.gt(bulkLeft)) buying = bulkLeft;
   dimension.amount = dimension.amount.add(buying).round();
-  dimension.bought =  dimension.bought.add(buying);
-  if(dimension.currencyAmount.lt('ee15')) dimension.currencyAmount = dimension.currencyAmount.sub(Decimal.pow10(maxBought.logPrice));
+  dimension.bought = dimension.bought.add(buying);
+  if (dimension.currencyAmount.lt("ee15")) dimension.currencyAmount = dimension.currencyAmount.sub(Decimal.pow10(maxBought.logPrice));
 }
 
 class ChaosDimensionState extends DimensionState {
@@ -80,7 +80,7 @@ class ChaosDimensionState extends DimensionState {
     super(() => player.dimensions.chaos, tier);
     const BASE_COSTS = [null, new Decimal(10), new Decimal(100), new Decimal(1e4), new Decimal(1e8), new Decimal(1e16),
       new Decimal(1e21), new Decimal(1e35), new Decimal(1e50), new Decimal("1e1000"),
-      new Decimal("1e2000"),new Decimal("1e5000"), new Decimal("1e15E3")];
+      new Decimal("1e2000"), new Decimal("1e5000"), new Decimal("1e15E3")];
     this._baseCost = BASE_COSTS[tier];
     const BASE_COST_MULTIPLIERS = [null, new Decimal(1e4), new Decimal(1e7), new Decimal(1e12),
       new Decimal(1e15), new Decimal(1e18), new Decimal(1e24), new Decimal(1e30), new Decimal(1e34)];
@@ -119,8 +119,8 @@ class ChaosDimensionState extends DimensionState {
   get rateOfChange() {
     const tier = this.tier;
 
-    let toGain = ChaosDimension(tier + 1).productionPerSecond;
-    
+    const toGain = ChaosDimension(tier + 1).productionPerSecond;
+
     return toGain.times(10).dividedBy(this.amount.max(1));
   }
 
@@ -176,9 +176,9 @@ class ChaosDimensionState extends DimensionState {
 
 
   get productionPerSecond() {
-    if(this.amount.eq(0)) return DC.D0;
-    
-    let production = this.multiplier.mul(this.totalAmount);
+    if (this.amount.eq(0)) return DC.D0;
+
+    const production = this.multiplier.mul(this.totalAmount);
 
     return production;
   }
@@ -207,30 +207,30 @@ export const ChaosDimensions = {
     return this.perPurchase;
   },
 
-  buy(){
+  buy() {
     const dimension = ChaosDimension(this.tier);
     if (!dimension.isAvailableForPurchase || !dimension.isAffordable) return false;
-  
+
     const cost = dimension.cost;
-  
+
     dimension.currencyAmount = dimension.currencyAmount.minus(cost);
-  
+
     dimension.amount = dimension.amount.plus(1);
     dimension.bought++;
-  
+
     onBuyChaosDimension(tier);
-  
+
     return true;
   },
 
-  buyMax(){
+  buyMax() {
     const dimension = ChaosDimension(this.tier);
     if (!dimension.isAvailableForPurchase || !dimension.isAffordable) return false;
 
     const howMany = dimension.howManyCanBuy;
     const cost = dimension.cost.mul(howMany);
-    
-    if(dimension.currencyAmount.lt('ee15')) dimension.currencyAmount = dimension.currencyAmount.sub(cost);
+
+    if (dimension.currencyAmount.lt("ee15")) dimension.currencyAmount = dimension.currencyAmount.sub(cost);
 
     dimension.bought = dimension.bought.add(howMany);
     dimension.amount = dimension.amount.add(howMany);
@@ -243,12 +243,12 @@ export const ChaosDimensions = {
   tick(diff) {
 
     for (let tier = 8; tier > 1; --tier) {
-      ChaosDimension(tier).produceDimensions(ChaosDimension(tier -1), diff.div(10));
+      ChaosDimension(tier).produceDimensions(ChaosDimension(tier - 1), diff.div(10));
     }
 
     ChaosDimension(1).produceCurrency(Currency.chaosCores, diff);
   }
-  
+
 };
 
 export function resetChaosDimensionsAmount() {

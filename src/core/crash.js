@@ -47,6 +47,6 @@ window.onerror = (event, source) => {
   GlobalErrorHandler.onerror(event);
 };
 
-const messages = ['Bruh', 'Did you do that?', 'What were you thinking', 'The dev made an oopsy and crashed your game', 'My bad',
-  'Umm', 'Are you gonna send me that so i can fix it?', 'LOL', 'You should probably stop trying to do that', "That's not my falt",
-]
+const messages = ["Bruh", "Did you do that?", "What were you thinking", "The dev made an oopsy and crashed your game", "My bad",
+  "Umm", "Are you gonna send me that so i can fix it?", "LOL", "You should probably stop trying to do that", "That's not my falt",
+];

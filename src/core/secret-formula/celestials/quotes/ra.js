@@ -19,7 +19,7 @@ export const raQuotes = {
       "I am here! I am the one you are looking for... I think...",
       "What even was I again?",
       "Oh right, the Celestial of Memories.",
-      {text: "Get away from ME.", displayed: () => {return Parallax.parallaxes.gte(4) }, name: 'Null', background: celBackground('null'), glitched: true}
+      { text: "Get away from ME.", displayed: () => Parallax.parallaxes.gte(4), name: "Null", background: celBackground("null"), glitched: true }
 
     ]
   },
@@ -138,8 +138,8 @@ export const raQuotes = {
       "They were right to banish me.",
       "My powers...",
       "They steal, they corrupt.",
-      {text: "Is this the cause of it?", displayed: () => CanteUpgrades.all[19].isUnlocked, name: "Glitch", background: celBackground('glitch'), glitched: true},
-      {text: "Did they take it from here", displayed: () => CanteUpgrades.all[19].isUnlocked, name: "Glitch", background: celBackground('glitch'), glitched: true},
+      { text: "Is this the cause of it?", displayed: () => CanteUpgrades.all[19].isUnlocked, name: "Glitch", background: celBackground("glitch"), glitched: true },
+      { text: "Did they take it from here", displayed: () => CanteUpgrades.all[19].isUnlocked, name: "Glitch", background: celBackground("glitch"), glitched: true },
       "Please leave.",
       "I do not want to hurt you too.",
     ]
@@ -147,10 +147,10 @@ export const raQuotes = {
   CandN: {
     id: 14,
     lines: [
-      { text: "Hi $1, I need you to Remember two other Celestials.", name: "Glitch", background: celBackground("glitch"), 1: RaMulti},
+      { text: "Hi $1, I need you to Remember two other Celestials.", name: "Glitch", background: celBackground("glitch"), 1: RaMulti },
       "Huh why... I don't want to cause any more damage.",
-      { text: "I'm not doing it again... not to the others, I've done enough.", background: flashCelestial},
-      { text: "Ra it's Cante and Null... We need them...", name: "Glitch", background: celBackground("glitch")},
+      { text: "I'm not doing it again... not to the others, I've done enough.", background: flashCelestial },
+      { text: "Ra it's Cante and Null... We need them...", name: "Glitch", background: celBackground("glitch") },
       "Fine, My head will hurt a lot more after this, I better be getting a Reward from this...",
     ],
   },

@@ -13,34 +13,34 @@ export default {
     PrimaryButton
   },
   props: {
-    upgrade:{
+    upgrade: {
       type: Object,
       required: true,
     }
   },
   data() {
     return {
-      ug: {bought: false, isAfordable: false, corrupt: false, corrupted: false},
+      ug: { bought: false, isAfordable: false, corrupt: false, corrupted: false },
     };
   },
   computed: {
     symbol: () => Null.symbol,
     isDoomed: () => Pelle.isDoomed,
-    classList(){
-      if(this.ug.corrupt){
+    classList() {
+      if (this.ug.corrupt) {
         return {
-         "c-null-button-bought-corrupt": this.ug.bought,
-         "c-null-button-buyable-corrupt": this.ug.isAfordable && !this.ug.bought,
-         "c-null-button-unbought": !this.ug.bought && !this.ug.isAfordable,
-         "c-null-button": true,
-        }
+          "c-null-button-bought-corrupt": this.ug.bought,
+          "c-null-button-buyable-corrupt": this.ug.isAfordable && !this.ug.bought,
+          "c-null-button-unbought": !this.ug.bought && !this.ug.isAfordable,
+          "c-null-button": true,
+        };
       }
       return {
-         "c-null-button-bought": this.ug.bought,
-         "c-null-button-buyable": this.ug.isAfordable && !this.ug.bought,
-         "c-null-button-unbought": !this.ug.bought && !this.ug.isAfordable,
-         "c-null-button": true,
-      }
+        "c-null-button-bought": this.ug.bought,
+        "c-null-button-buyable": this.ug.isAfordable && !this.ug.bought,
+        "c-null-button-unbought": !this.ug.bought && !this.ug.isAfordable,
+        "c-null-button": true,
+      };
     }
   },
   methods: {
@@ -50,7 +50,7 @@ export default {
       this.ug.isAfordable = this.ug.corrupt ? Currency.corruptMatter.gte(this.upgrade.config.cost) : Currency.abyssalMatter.gte(this.upgrade.config.cost);
       this.ug.corrupted = Null.isCorrupt;
     },
-    buy(){
+    buy() {
       this.upgrade.purchase();
     }
   }
@@ -59,21 +59,21 @@ export default {
 
 <template>
   <PrimaryButton
-  :class="classList"
-  @click="buy"
-  v-if='(ug.corrupt && ug.corrupted) || !ug.corrupt'
+    v-if="(ug.corrupt && ug.corrupted) || !ug.corrupt"
+    :class="classList"
+    @click="buy"
   >
-    <DescriptionDisplay :config='upgrade.config' />
-    <div >
+    <DescriptionDisplay :config="upgrade.config" />
+    <div>
       <CostDisplay
-      :config='upgrade.config'
-      br
-      :name='ug.corrupt ? "Corrupt Matter" : "Abyssal Matter"'
+        :config="upgrade.config"
+        br
+        :name="ug.corrupt ? &quot;Corrupt Matter&quot; : &quot;Abyssal Matter&quot;"
       />
 
       <EffectDisplay
-      :config='upgrade.config'
-      br
+        :config="upgrade.config"
+        br
       />
     </div>
   </PrimaryButton>
@@ -108,5 +108,4 @@ export default {
 .c-null-button-bought-corrupt {
   background: var(--color-null--corrupt);
 }
-
 </style>

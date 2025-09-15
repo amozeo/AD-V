@@ -308,7 +308,7 @@ export const AD = {
     },
     powValue: () => {
       const totalPow = getAdjustedGlyphEffect("powerpow").mul(getAdjustedGlyphEffect("effarigdimensions"));
-      return totalPow.mul(player.dilation.active ? getAdjustedGlyphEffect("dilationpow") : 1).mul(getAdjustedGlyphEffect('glitchADCelPow'));
+      return totalPow.mul(player.dilation.active ? getAdjustedGlyphEffect("dilationpow") : 1).mul(getAdjustedGlyphEffect("glitchADCelPow"));
     },
     isActive: () => PlayerProgress.realityUnlocked() && !EternityChallenge(11).isRunning,
     icon: MultiplierTabIcons.GENERIC_GLYPH,
@@ -485,20 +485,20 @@ export const AD = {
   glitchChallengePI: {
     name: "Glitch Challenge (PI)",
     multValue: () => DC.D1.timesEffectsOf(
-        preInfinityUG(0),
-        preInfinityUG(1),
-        preInfinityUG(2),
-        preInfinityUG(3),
-      ),
+      preInfinityUG(0),
+      preInfinityUG(1),
+      preInfinityUG(2),
+      preInfinityUG(3),
+    ),
     isActive: () => true,
     icon: MultiplierTabIcons.GLITCH_CHALLENGE,
   },
   glitchRiftPI: {
     name: "Glitch Rift (PI)",
     multValue: () => DC.D1.timesEffectsOf(
-        GlitchRifts.alpha.milestones[0],
-        GlitchRifts.alpha.milestones[1]
-      ),
+      GlitchRifts.alpha.milestones[0],
+      GlitchRifts.alpha.milestones[1]
+    ),
     isActive: () => true,
     icon: MultiplierTabIcons.GLITCH_CHALLENGE,
   },

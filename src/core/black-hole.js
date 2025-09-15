@@ -16,8 +16,8 @@ class BlackHoleUpgradeState {
       DC.E5,
       DC.E1));
 
-    this._infinityAmount = findFirstInfiniteCostPurchase(1e30, initialCost.toNumber(), costMult.toNumber(), costMult.toNumber() / 10 );
-    
+    this._infinityAmount = findFirstInfiniteCostPurchase(1e30, initialCost.toNumber(), costMult.toNumber(), costMult.toNumber() / 10);
+
     this.id = config.id;
     this.hasAutobuyer = config.hasAutobuyer;
     this.onPurchase = config.onPurchase;
@@ -29,7 +29,7 @@ class BlackHoleUpgradeState {
       new Decimal(0.2),
       DC.E310,
       DC.E5,
-      DC.E1)
+      DC.E1);
   }
 
   get value() {
@@ -79,17 +79,17 @@ class BlackHoleUpgradeState {
 
     // Keep the cycle phase consistent before and after purchase so that upgrading doesn't cause weird behavior
     // such as immediately activating it when inactive (or worse, skipping past the active segment entirely).
-    if(Currency.realityMachines.lt('e311')){
+    if (Currency.realityMachines.lt("e311")) {
       const amount = DC.E30.div(this.config.initialCost).log(this.config.costMult).add(1).floor();
-      if(amount.gt(this.boughtAmount)) {
+      if (amount.gt(this.boughtAmount)) {
         const cost = this.hybridCostScaling(amount);
-        if(Currency.realityMachines.gt(cost)) {
+        if (Currency.realityMachines.gt(cost)) {
           this.config.setAmount(amount);
         }
       }
-      if(Decimal.lt(this._lazyValue, this._infinityAmount)) {
+      if (Decimal.lt(this._lazyValue, this._infinityAmount)) {
         const infinityCost = this.hybridCostScaling(amount);
-        if(Currency.realityMachines.gt(infinityCost)) {
+        if (Currency.realityMachines.gt(infinityCost)) {
           this.config.setAmount(new Decimal(this._infinityAmount));
         }
       }
@@ -101,10 +101,10 @@ class BlackHoleUpgradeState {
       costScale: DC.E1,
       scalingCostThreshold: Decimal.NUMBER_MAX_VALUE
     });
-    const amo = expoCost.getMaxBought(new Decimal(0), Currency.realityMachines.value, 1)
-    if(amo != null) {
+    const amo = expoCost.getMaxBought(new Decimal(0), Currency.realityMachines.value, 1);
+    if (amo != null) {
       this.config.setAmount(amo.quantity.add(this._infinityAmount));
-      if(Currency.realityMachines.lt('ee15')) Currency.realityMachines.purchase(amo.cost);
+      if (Currency.realityMachines.lt("ee15")) Currency.realityMachines.purchase(amo.cost);
     }
 
     this._lazyValue.invalidate();
@@ -169,9 +169,9 @@ class BlackHoleState {
    * Exists to avoid recursion in calculation of whether the black hole is permanent.
    */
   get rawInterval() {
-    let c = 1
-    if(Perk.blackHoleBoost.isBought){
-      c = (0.8 ** 5)
+    let c = 1;
+    if (Perk.blackHoleBoost.isBought) {
+      c = (0.8 ** 5);
     }
     return this.intervalUpgrade.value.mul(Achievement(145).effectOrDefault(1)).mul(c);
   }
@@ -194,9 +194,9 @@ class BlackHoleState {
    * Amount of time the black hole is active for.
    */
   get duration() {
-    let c = 1
-    if(Perk.blackHoleBoost.isBought){
-      c = (1.5 ** 5)
+    let c = 1;
+    if (Perk.blackHoleBoost.isBought) {
+      c = (1.5 ** 5);
     }
     return this.durationUpgrade.value.mul(Achievement(155).effectOrDefault(1)).add(c);
   }

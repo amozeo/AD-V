@@ -108,7 +108,7 @@ export const GameSaveSerializer = {
     // and whether it's a save or automator script. We can change the last 3 letters
     // of the string savefiles start with from AAA to something else,
     // if we want a new version of savefile encoding.
-    if(version == 'AAC'){
+    if (version == "AAC") {
       return this.steps.filter(i => (!i.condition) || i.condition(version)).concat({
         encode: x => `${GameSaveSerializer.startingString[type] + GameSaveSerializer.version}${x}`,
         decode: x => x.slice(GameSaveSerializer.startingString[type].length + 3)
@@ -139,7 +139,7 @@ export const GameSaveSerializer = {
       const len = this.startingString[type].length;
       const version = text.slice(len, len + 3);
       return this.getSteps(type, version).reduceRight((x, step) => step.decode(x, type), text);
-    } else if(text.startsWith(this.oldStartingString[type])){
+    } if (text.startsWith(this.oldStartingString[type])) {
       const len = this.oldStartingString[type].length;
       const version = text.slice(len, len + 3);
       return this.getSteps(type, version).reduceRight((x, step) => step.decode(x, type), text);

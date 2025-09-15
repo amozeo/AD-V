@@ -44,7 +44,7 @@ export default {
       this.metaGoal.copyFrom(Player.metaGoal);
       this.headerTextColored = player.options.headerTextColored;
       this.creditsClosed = GameEnd.creditsEverClosed;
-      this.inMetaChallenge = false
+      this.inMetaChallenge = false;
 
       const gainedMR = gainedMetaRelays();
       this.currentMR.copyFrom(Currency.metaRelays);
@@ -71,7 +71,6 @@ export default {
     @mouseover="hover = true"
     @mouseleave="hover = false"
   >
-
     <template v-if="!canMeta">
       Reach {{ format(metaGoal, 2, 2) }} antimatter and have the last V unlock
     </template>

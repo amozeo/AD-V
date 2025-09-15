@@ -80,54 +80,50 @@ export class TimeStudyTreeLayout {
       normalRow(                      TS(91),  TS(92),  TS(93)                        ),
       normalRow(                      TS(101), TS(102), TS(103)                       )
     );
-    
+
 
     this.rows.push(
       normalRow(                      EC(6),  TS(111),  EC(7)                        ),
       normalRow(               null, TS(121), TS(122), TS(123), null                 ),
       normalRow(               null, TS(131), TS(132), TS(133), EC(8)                )
     );
-    
+
     this.rows.push(
       normalRow(                      TS(141), TS(142), TS(143)                       ),
       normalRow(               null,   EC(9), TS(151),   null,   EC(4)                ),
       normalRow(                          TS(161), TS(162)                            )
     );
-    
+
     if (Perk.bypassEC1Lock.isBought && Perk.bypassEC2Lock.isBought && Perk.bypassEC3Lock.isBought) {
-      if(EffarigUnlock.EC10Requirement.canBeApplied && !Pelle.isDoomed){
-      this.rows.push(
-        normalRow(                         EC(1), TS(171),  EC(2)                        ),
-        normalRow(                        EC(10), TS(181),  EC(3)                        )
-      );
-      }else{
-      this.rows.push(
-        normalRow(                         EC(1), TS(171),  EC(2)                        ),
-        normalRow(                        null, TS(181),  EC(3)                          ),
-        normalRow(                                EC(10)                                 )
+      if (EffarigUnlock.EC10Requirement.canBeApplied && !Pelle.isDoomed) {
+        this.rows.push(
+          normalRow(                         EC(1), TS(171),  EC(2)                        ),
+          normalRow(                        EC(10), TS(181),  EC(3)                        )
+        );
+      } else {
+        this.rows.push(
+          normalRow(                         EC(1), TS(171),  EC(2)                        ),
+          normalRow(                        null, TS(181),  EC(3)                          ),
+          normalRow(                                EC(10)                                 )
         );
       }
-      
-    } else {
-      
-      if (EffarigUnlock.EC10Requirement.canBeApplied && !Pelle.isDoomed){
-        this.rows.push(
+
+    } else if (EffarigUnlock.EC10Requirement.canBeApplied && !Pelle.isDoomed) {
+      this.rows.push(
         normalRow(                               TS(171)                                ),
         normalRow(                         EC(1), EC(2), EC(3)                          ),
         normalRow(                         EC(10), TS(181), null                        )
-          );
-      } else {
-        this.rows.push(
+      );
+    } else {
+      this.rows.push(
         normalRow(                               TS(171)                                ),
         normalRow(                         EC(1), EC(2), EC(3)                          ),
         normalRow(                               TS(181)                                ),
         normalRow(                                EC(10)                                )
       );
-        
-      }
-      
+
     }
-    
+
     this.rows.push(
       normalRow(             TS(191),          TS(192),          TS(193)              ),
       normalRow(                               TS(201)                                ),

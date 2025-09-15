@@ -1,4 +1,5 @@
-import { DC } from "./constants"
+import { DC } from "./constants";
+
 window.MetaAnimation = false;
 
 export function isMetaAvailable() {
@@ -13,7 +14,7 @@ export function requestManualMeta() {
     Modal.meta.show();
     return;
   }
-  
+
   startManualMeta(false);
 }
 
@@ -27,8 +28,8 @@ export function startManualMeta() {
 }
 
 export function processManualMeta() {
-    if (!isMetaAvailable()) return;
-    beginProcessMeta();
+  if (!isMetaAvailable()) return;
+  beginProcessMeta();
 }
 
 export function runMetaAnimation() {
@@ -46,9 +47,9 @@ export function runMetaAnimation() {
 
 function updateMetaRecords() {
   const tm = player.records.thisMeta;
-  const thisRunMRmin = Currency.metaRelays.value.div(tm.time)
+  const thisRunMRmin = Currency.metaRelays.value.div(tm.time);
   if (player.records.bestMeta.MRmin.lt(thisRunMRmin)) player.records.bestMeta.MRmin = thisRunMRmin;
-  
+
   player.records.bestMeta.time = Decimal.min(tm.time, player.records.bestMeta.time);
   player.records.bestMeta.realTime = Decimal.min(tm.realTime, player.records.bestMeta.realTime);
   player.records.bestMeta.trueTime = Math.min(tm.trueTime, player.records.bestMeta.trueTime);
@@ -79,13 +80,12 @@ export function beginProcessMeta() {
 
 // eslint-disable-next-line complexity
 export function finishProcessMeta() {
-  
+
   resetReality();
-  if(!MetaMilestone.glyphKeep.isReached) lockAchievementsOnMeta();
-  if(MetaFabricatorUpgrade(22).isBought){
+  if (!MetaMilestone.glyphKeep.isReached) lockAchievementsOnMeta();
+  if (MetaFabricatorUpgrade(22).isBought) {
     resetChaosDimensionsAmount();
-  }
-  else{
+  } else {
     ChaosDimensions.reset();
     Currency.chaosCores.reset();
   }
@@ -113,14 +113,14 @@ export function finishProcessMeta() {
   Currency.infinitiesBanked.reset();
   player.records.bestInfinity.time = DC.BEMAX;
   player.records.bestInfinity.realTime = DC.BEMAX;
-  player.records.thisInfinity.time =  DC.D0;
+  player.records.thisInfinity.time = DC.D0;
   player.records.thisInfinity.lastBuyTime = DC.D0;
   player.records.thisInfinity.realTime = DC.D0;
   player.dimensionBoosts = DC.D0;
   player.galaxies = DC.D0;
   player.partInfinityPoint = 0;
   player.partInfinitied = 0;
-  if(!MetaMilestone.glyphKeep.isReached) player.break = false;
+  if (!MetaMilestone.glyphKeep.isReached) player.break = false;
   player.IPMultPurchases = DC.D0;
   Currency.infinityPower.reset();
   Currency.timeShards.reset();
@@ -151,7 +151,7 @@ export function finishProcessMeta() {
   player.dilation.studies = [];
   player.dilation.active = false;
 
-  
+
   player.dilation.upgrades.clear();
   player.dilation.rebuyables = {
     1: DC.D0,
@@ -161,7 +161,7 @@ export function finishProcessMeta() {
     12: DC.D0,
     13: DC.D0
   };
-  
+
   Currency.tachyonParticles.reset();
   player.dilation.nextThreshold = DC.E3;
   player.dilation.baseTachyonGalaxies = DC.D0;
@@ -208,7 +208,7 @@ export function finishProcessMeta() {
     MR: DC.D0,
     bestMRmin: DC.D0,
     bestMRminVal: DC.D0,
-  }
+  };
 
   resetTimeDimensions();
   resetTickspeed();
@@ -231,7 +231,7 @@ export function finishProcessMeta() {
   }
 }
 
-function resetReality(){
+function resetReality() {
   const R = player.reality;
   const G = R.glyphs;
 
@@ -250,9 +250,9 @@ function resetReality(){
     effarig: DC.D0,
     reality: DC.D0,
     glitch: DC.D0
-  }
+  };
   const companions = JSON.stringify(Glyphs.allGlyphs.filter(g => g.type === "companion"));
-  if(MetaMilestone.glyphKeep.isReached){
+  if (MetaMilestone.glyphKeep.isReached) {
     G.active.forEach(g => g.level = DC.D1);
     G.inventory.filter(g => g.type != "cursed").forEach(g => g.level = DC.D1);
   } else {
@@ -267,15 +267,15 @@ function resetReality(){
 
 
   R.seed = 1;
-  
+
   R.rebuyables = {
     1: DC.D0,
     2: DC.D0,
     3: DC.D0,
     4: DC.D0,
     5: DC.D0,
-  }
-  
+  };
+
   R.imaginaryRebuyables = {
     1: DC.D0,
     2: DC.D0,
@@ -287,19 +287,19 @@ function resetReality(){
     8: DC.D0,
     9: DC.D0,
     10: DC.D0,
-  }
-  
-  if(!MetaMilestone.realityStart.isReached) R.upgReqs = 0;
+  };
+
+  if (!MetaMilestone.realityStart.isReached) R.upgReqs = 0;
   R.upgradeBits = 0;
-  if(!MetaMilestone.metaBoost.isReached) R.imaginaryUpgReqs = 0;
+  if (!MetaMilestone.metaBoost.isReached) R.imaginaryUpgReqs = 0;
   R.imaginaryUpgradeBits = 0;
 
   R.reqLock = {
     reality: 0,
     imaginary: 0,
-  }
+  };
 
-  if(!MetaFabricatorUpgrade(18).isBought) R.perks = new Set();
+  if (!MetaFabricatorUpgrade(18).isBought) R.perks = new Set();
   R.perks.add(0);
   R.respec = false;
   R.perkPoints = DC.D0;
@@ -319,15 +319,15 @@ function resetReality(){
     bh.durationUpgrades = MetaMilestone.metaKeepEff.isReached ? DC.D1.mul(50) : DC.D0;
     bh.phase = DC.D0;
     bh.active = false;
-    bh.unlocked = MetaMilestone.metaKeepEff.isReached ? true : false;
+    bh.unlocked = Boolean(MetaMilestone.metaKeepEff.isReached);
     bh.activations = DC.D0;
-  })
+  });
 
   player.blackHolePause = false;
   player.blackHoleNegative = DC.D1;
 
   player.records.timePlayedAtBHUnlock = DC.D0;
-  
+
   player.records.thisReality = {
     time: DC.D0,
     realTime: DC.D0,
@@ -340,7 +340,7 @@ function resetReality(){
     maxDT: DC.D0,
     bestRSmin: DC.D0,
     bestRSminVal: DC.D0,
-  }
+  };
 
   player.records.bestReality = {
     time: Decimal.NUMBER_MAX_VALUE,
@@ -358,7 +358,7 @@ function resetReality(){
     speedSet: [],
     iMCapSet: [],
     laitelaSet: [],
-  }
+  };
 
 }
 
@@ -368,12 +368,12 @@ function lockAchievementsOnMeta() {
   }
 }
 
-/*
-vaticiny:	a prophecy
-vast: very big or infinite
-volition: the act of making a choice
-vetanda:	forbidden things
-vetust:	very ancient
-vis:  power, force, or strength
-vulnerate:	to wound or harm
-*/
+//
+// vaticiny:	a prophecy
+// vast: very big or infinite
+// volition: the act of making a choice
+// vetanda:	forbidden things
+// vetust:	very ancient
+// vis:  power, force, or strength
+// vulnerate:	to wound or harm
+//

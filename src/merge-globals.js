@@ -27,8 +27,8 @@ mergeIntoGlobal(GameDB);
 // any more globals to the component files
 
 import * as AutomatorBlockEditor from "@/components/tabs/automator/AutomatorBlockEditor";
- mergeIntoGlobal(AutomatorBlockEditor);
- 
+mergeIntoGlobal(AutomatorBlockEditor);
+
 import * as AutomatorBlocks from "@/components/tabs/automator/AutomatorBlocks";
 mergeIntoGlobal(AutomatorBlocks);
 

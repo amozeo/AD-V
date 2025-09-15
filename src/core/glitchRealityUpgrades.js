@@ -14,7 +14,7 @@ class GlitchRealityUpgradeState extends BitPurchasableMechanicState {
   }
 
   get name() {
-    return typeof this.config.name == "function" ? this.config.name() : this.config.name;
+    return typeof this.config.name === "function" ? this.config.name() : this.config.name;
   }
 
   get shortDescription() {
@@ -54,21 +54,21 @@ class GlitchRealityUpgradeState extends BitPurchasableMechanicState {
   }
 
   onPurchased() {
-    if(this.id == 16) Glitch.quotes.glitchFinishPowerUGs.show();
+    if (this.id == 16) Glitch.quotes.glitchFinishPowerUGs.show();
   }
 
   tryUnlock() {
-    if ( this.isAvailableForPurchase  || !this.config.checkRequirement()) return;
+    if (this.isAvailableForPurchase || !this.config.checkRequirement()) return;
     player.celestials.glitch.upgrades.unlockbits |= (1 << this.id);
     GameUI.notify.error(`You've unlocked ${this.name} from Glitch's Reality`, 5000);
   }
-  
+
 }
 
 class RebuyableGlitchRealityUpgradeState extends RebuyableMechanicState {
-  constructor(config){
-    super(config)
-    this._infinityAmount = findFirstInfiniteCostPurchase(1e50, this.config.initialCost.toNumber(), this.config.costMult.toNumber(), this.config.costMult.toNumber() / 10 );
+  constructor(config) {
+    super(config);
+    this._infinityAmount = findFirstInfiniteCostPurchase(1e50, this.config.initialCost.toNumber(), this.config.costMult.toNumber(), this.config.costMult.toNumber() / 10);
   }
 
   get currency() {
@@ -84,34 +84,34 @@ class RebuyableGlitchRealityUpgradeState extends RebuyableMechanicState {
   }
 
   get name() {
-    return typeof this.config.name == "function" ? this.config.name() : this.config.name;
+    return typeof this.config.name === "function" ? this.config.name() : this.config.name;
   }
-  
-  purchaseHybrid(){
-    if(this.currency.lt('e310')){
+
+  purchaseHybrid() {
+    if (this.currency.lt("e310")) {
       const amount = E50.div(this.config.initialCost).log(this.config.costMult).add(1).floor();
-      if(amount.gt(this.boughtAmount)) {
+      if (amount.gt(this.boughtAmount)) {
         const cost = this.config.hybridCostScaling(amount);
-        if(this.currency.gt(cost)) {
+        if (this.currency.gt(cost)) {
           this.boughtAmount = amount;
         }
       }
-      if(this.boughtAmount.lt(this._infinityAmount)) {
+      if (this.boughtAmount.lt(this._infinityAmount)) {
         const infinityCost = this.config.hybridCostScaling(amount);
-        if(this.currency.gt(infinityCost)) {
+        if (this.currency.gt(infinityCost)) {
           this.boughtAmount = new Decimal(this._infinityAmount);
         }
       }
     }
 
     const expoCost = new ExponentialCostScaling({
-        baseCost: new Decimal('e309'),
-        baseIncrease: new Decimal(3),
-        costScale: this.config.initialCost.times(this.config.costMult),
-        scalingCostThreshold: Decimal.NUMBER_MAX_VALUE
-      });
-    const amo = expoCost.getMaxBought(new Decimal(0), this.currency.value, 1)
-    if(amo != null) this.boughtAmount = amo.quantity.add(this._infinityAmount);
+      baseCost: new Decimal("e309"),
+      baseIncrease: new Decimal(3),
+      costScale: this.config.initialCost.times(this.config.costMult),
+      scalingCostThreshold: Decimal.NUMBER_MAX_VALUE
+    });
+    const amo = expoCost.getMaxBought(new Decimal(0), this.currency.value, 1);
+    if (amo != null) this.boughtAmount = amo.quantity.add(this._infinityAmount);
 
   }
 
@@ -141,7 +141,6 @@ export const GlitchRealityUpgrades = {
 };
 
 
-
 class GlitchSpeedUpgradeState extends BitPurchasableMechanicState {
   constructor(config) {
     super(config);
@@ -153,7 +152,7 @@ class GlitchSpeedUpgradeState extends BitPurchasableMechanicState {
   }
 
   get name() {
-    return typeof this.config.name == "function" ? this.config.name() : this.config.name;
+    return typeof this.config.name === "function" ? this.config.name() : this.config.name;
   }
 
   get shortDescription() {
@@ -193,15 +192,15 @@ class GlitchSpeedUpgradeState extends BitPurchasableMechanicState {
   }
 
   onPurchased() {
-    if(this.id == 4) Glitch.quotes.glitchBuySpeed4.show()
+    if (this.id == 4) Glitch.quotes.glitchBuySpeed4.show();
   }
 
   tryUnlock() {
-    if ( this.isAvailableForPurchase  || !this.config.checkRequirement() || player.records.fullGameCompletions == 0) return;
+    if (this.isAvailableForPurchase || !this.config.checkRequirement() || player.records.fullGameCompletions == 0) return;
     player.celestials.glitch.upgrades.speedunlockbits |= (1 << this.id);
     GameUI.notify.error(`You've unlocked ${this.name} from Glitch's Speedy Reality`, 5000);
   }
-  
+
 }
 
 GlitchSpeedUpgradeState.index = mapGameData(
@@ -221,7 +220,7 @@ export const GlitchSpeedUpgrades = {
    */
   all: GlitchSpeedUpgradeState.index.compact(),
   get allBought() {
-    return (player.celestials.glitch.upgrades.speedbroughtbits >> 6) + 1 === 1 << (GameDatabase.celestials.glitchSpeedUpgrades );
+    return (player.celestials.glitch.upgrades.speedbroughtbits >> 6) + 1 === 1 << (GameDatabase.celestials.glitchSpeedUpgrades);
   }
 };
 

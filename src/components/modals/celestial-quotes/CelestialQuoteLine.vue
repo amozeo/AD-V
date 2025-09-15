@@ -51,9 +51,9 @@ export default {
   computed: {
     line() {
       let hidden = 0;
-      for (let x=0; x <= Math.min(this.currentLine + hidden, this.quote.totalLines); x++){
-        if(this.quote.line(x) == undefined) continue;
-        if(!this.quote.line(x).isDisplayed) hidden++;
+      for (let x = 0; x <= Math.min(this.currentLine + hidden, this.quote.totalLines); x++) {
+        if (this.quote.line(x) == undefined) continue;
+        if (!this.quote.line(x).isDisplayed) hidden++;
       }
       return this.quote.line(this.currentLine + hidden);
     },
@@ -87,16 +87,16 @@ export default {
       this.displayed = line.displayed;
       this.glitched = line.glitched;
     },
-    trembling(){
-      if(!this.tremble) return {};
+    trembling() {
+      if (!this.tremble) return {};
 
-      const rand1 = (Math.random() - 0.5) *2;
-      const rand2 = (Math.random() - 0.5) *2;
+      const rand1 = (Math.random() - 0.5) * 2;
+      const rand2 = (Math.random() - 0.5) * 2;
 
       return {
         left: `calc(50% + ${5 * rand1}px)`,
         top: `${5 * rand2}px`,
-        transitionDuration: player.options.updateRate + "ms",
+        transitionDuration: `${player.options.updateRate}ms`,
         transform: "translateX(-50%)",
         position: "absolute"
       };
@@ -107,21 +107,21 @@ export default {
 
 <template>
   <CelestialQuoteBackground
+    v-if="displayed"
     :celestial-symbols="celestialSymbols"
     :celestials="celestials"
     :primary="primary"
     :glitched="glitched"
-    v-if="displayed"
   >
     <span
       v-if="line.showCelestialName"
       class="c-modal-celestial-name"
     >
       <GlitchEffect v-if="glitched">
-        {{ celestialName }}  
+        {{ celestialName }}
       </GlitchEffect>
       <span v-else>
-        {{ celestialName }}  
+        {{ celestialName }}
       </span>
     </span>
 
@@ -130,14 +130,17 @@ export default {
       @click="$emit('progress-in', 'left')"
     />
 
-    <span class="l-modal-celestial-quote__text" :style="trembling() ">
+    <span
+      class="l-modal-celestial-quote__text"
+      :style="trembling() "
+    >
       <GlitchEffect v-if="glitched">
         {{ message }}
       </GlitchEffect>
       <span v-else>
         {{ message }}
       </span>
-      
+
     </span>
 
     <i

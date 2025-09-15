@@ -1,9 +1,8 @@
 <script>
-  
 import GlitchRift from "./glitchrift";
-  
+
 export default {
-  name: "entropy",
+  name: "Entropy",
   components: {
     GlitchRift
   },
@@ -21,23 +20,22 @@ export default {
 </script>
 
 <template>
-    <div class="c-entropy-infotext">
-      Hello destroyer.
-      Fill these please.
-      <br>
-      They will fill based on how many of my challenges you complete.
-      <br>
-      Also some challenges can not be completed later so do them before than, I will warn you when you are going to be unable to complete them
+  <div class="c-entropy-infotext">
+    Hello destroyer.
+    Fill these please.
+    <br>
+    They will fill based on how many of my challenges you complete.
+    <br>
+    Also some challenges can not be completed later so do them before than, I will warn you when you are going to be unable to complete them
 
-      <div>
+    <div>
       <GlitchRift
-          v-for="rift in rifts"
-          :key="rift.config.id"
-          :rift="rift"
-        />
-        </div>
+        v-for="rift in rifts"
+        :key="rift.config.id"
+        :rift="rift"
+      />
     </div>
-  
+  </div>
 </template>
 
 <style scoped>

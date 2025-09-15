@@ -15,15 +15,15 @@ Math.PI_2 = Math.PI * 2;
 
 Decimal.cbrt = value => {
   const neg = value.sign < 0;
-  const v = value.abs().pow(1/3);
+  const v = value.abs().pow(1 / 3);
   return neg ? v.neg() : v;
-}
+};
 
 Decimal.powNeg = (value, pow) => {
   const neg = value.sign < 0;
   const v = value.abs().pow(pow);
   return neg ? v.neg() : v;
-}
+};
 /**
  * This is a file for general math utilities that can be used by many mechanics
  */
@@ -556,9 +556,9 @@ window.ExponentialCostScaling = class ExponentialCostScaling {
     const logCost =
       excess.sign > 0
         ? currentPurchases
-            .mul(logMult)
-            .add(logBase)
-            .add(excess.mul(excess.add(1)).mul(this._logCostScale).mul(0.5))
+          .mul(logMult)
+          .add(logBase)
+          .add(excess.mul(excess.add(1)).mul(this._logCostScale).mul(0.5))
         : currentPurchases.mul(logMult).add(logBase);
     return DC.E1.pow(logCost);
   }
@@ -1757,9 +1757,9 @@ window.HyperExponentialCostScaling = class HyperExponentialCostScaling {
     const logCost =
       excess.sign > 0
         ? currentPurchases
-            .mul(logMult)
-            .add(logBase)
-            .add(excess.mul(excess.add(1)).mul(this._logCostScale).mul(0.5))
+          .mul(logMult)
+          .add(logBase)
+          .add(excess.mul(excess.add(1)).mul(this._logCostScale).mul(0.5))
         : currentPurchases.mul(logMult).add(logBase);
     return DC.E1.pow(logCost);
   }

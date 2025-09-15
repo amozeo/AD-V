@@ -82,7 +82,7 @@ TimeStudy.allConnections = (function() {
 
     [TS(111), EC(6), () => !TeresaUnlocks.EC6RequireActive.canBeApplied],
     [TS(121), EC(6), () => TeresaUnlocks.EC6RequireActive.canBeApplied],
-    
+
     [TS(123), EC(8)],
 
     [TS(131), TS(141)],
@@ -114,11 +114,11 @@ TimeStudy.allConnections = (function() {
     [EC(3), TS(181), () => Perk.bypassEC3Lock.isBought],
 
     [TS(181), EC(10)],
-    
+
     [TS(181), TS(191), () => !EffarigUnlock.EC10Requirement.canBeApplied],
     [TS(181), TS(192), () => !EffarigUnlock.EC10Requirement.canBeApplied],
     [TS(181), TS(193), () => !EffarigUnlock.EC10Requirement.canBeApplied],
-    
+
     [EC(10), TS(191), () => EffarigUnlock.EC10Requirement.canBeApplied],
     [EC(10), TS(192), () => EffarigUnlock.EC10Requirement.canBeApplied],
     [EC(10), TS(193), () => EffarigUnlock.EC10Requirement.canBeApplied],

@@ -17,7 +17,7 @@ export default {
         visibility: this.visible ? "visible" : "hidden",
       };
     },
-    glitchresettext(){
+    glitchresettext() {
       return GlitchRealityUpgrade(16).isBought ? "but keep some Celestial stuff" : "";
     },
   },
@@ -52,8 +52,9 @@ export default {
       and Companion Glyph.
     </h2>
     <h3>You can use the button in the top-right to view the game as it is right now.</h3>
-    <div class="c-new-game-button-container"
-    v-if="!isMeta"
+    <div
+      v-if="!isMeta"
+      class="c-new-game-button-container"
     >
       <button
         class="c-new-game-button"
@@ -62,8 +63,9 @@ export default {
         Start over? {{ glitchresettext }}
       </button>
     </div>
-    <div class="c-new-game-button-container"
+    <div
       v-else
+      class="c-new-game-button-container"
     >
       <button
         class="c-new-game-button"

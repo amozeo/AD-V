@@ -2,7 +2,7 @@
 import CelestialQuoteHistory from "@/components/CelestialQuoteHistory";
 import PrimaryButton from "@/components/PrimaryButton";
 import NullRep from "./NullCycle";
-import nullUpgrade from "./NullUpgrade"
+import nullUpgrade from "./NullUpgrade";
 
 export default {
   name: "NullTab",
@@ -35,8 +35,8 @@ export default {
       ${GameDatabase.celestials.descriptions[8].description()}`;
     },
     isDoomed: () => Pelle.isDoomed,
-    posRad(){
-      return (42 * ((this.highestUnlocked / 16) ** 0.8)).toString() + '%';
+    posRad() {
+      return `${(42 * ((this.highestUnlocked / 16) ** 0.8)).toString()}%`;
     }
   },
   methods: {
@@ -54,7 +54,7 @@ export default {
       if (this.isDoomed) return;
       Modal.celestials.show({ name: "Null's", number: 8 });
     },
-      // this should work
+    // This should work
     updateDisplayValue() {
       this.displayValue = this.actualValue;
     },
@@ -67,54 +67,62 @@ export default {
       this.isFocused = true;
     },
     handleChange(event) {
-      console.log(this.displayValue)
+      console.log(this.displayValue);
       if (HASH(this.displayValue) == Null.passcode) {
-        if(Null.isCorrupt) player.celestials.null.isUnlocked |= (1 << 6);
+        if (Null.isCorrupt) player.celestials.null.isUnlocked |= (1 << 6);
         player.celestials.null.isUnlocked |= (1 << Parallax.parallaxes.min(5).toNumber());
       }
       this.isFocused = false;
       event.target.blur();
     },
-    parallaxReset(){
+    parallaxReset() {
       Parallax.resetStuff();
     },
-    corruptReset(){
+    corruptReset() {
       Corrupt.resetStuff();
     },
-    parallaxInfo(){
-      return `Parallax (${Parallax.parallaxes}) <br> Multiply all Cycles by ${formatX(Parallax.boost)}${NullUpgrades.all[7].isUnlocked ? ` & add a ${formatPow(Parallax.powBoost,2,2)}` : ''},
-      total ${formatX(Parallax.multiplier,2 ,2)} ${NullUpgrades.all[7].isUnlocked ? ` & a ${formatPow(Parallax.power,2,2)}` : ''} <br> Requires ${format(Parallax.requirement.amount)} 1st Cycle`
+    parallaxInfo() {
+      return `Parallax (${Parallax.parallaxes}) <br> Multiply all Cycles by ${formatX(Parallax.boost)}${NullUpgrades.all[7].isUnlocked ? ` & add a ${formatPow(Parallax.powBoost, 2, 2)}` : ""},
+      total ${formatX(Parallax.multiplier, 2, 2)} ${NullUpgrades.all[7].isUnlocked ? ` & a ${formatPow(Parallax.power, 2, 2)}` : ""} <br> Requires ${format(Parallax.requirement.amount)} 1st Cycle`;
     },
-    corruptInfo(){
+    corruptInfo() {
       return `Corrupt (${Corrupt.corrupts}) <br> Multiply AbM by ${formatX(Corrupt.boost)},
-      total ${formatX(Corrupt.multiplier,2 ,2)} <br> Requires ${format(Corrupt.requirement.amount)} Parallaxes`
+      total ${formatX(Corrupt.multiplier, 2, 2)} <br> Requires ${format(Corrupt.requirement.amount)} Parallaxes`;
     },
   }
 };
 </script>
 
 <template>
-  <div  class="c-null-tab">
+  <div class="c-null-tab">
     <div
-    v-if="isUnlocked"
+      v-if="isUnlocked"
     >
-        <CelestialQuoteHistory celestial="null" />
-        <div>
-          You Have <span style="font-size: 2.5rem; color: var(--color-null--base)">{{ format(abyssalMatter, 2, 2) }}</span> Abyssal Matter
-          <span
+      <CelestialQuoteHistory celestial="null" />
+      <div>
+        You Have <span style="font-size: 2.5rem; color: var(--color-null--base)">{{ format(abyssalMatter, 2, 2) }}</span> Abyssal Matter
+        <span
           v-if="corruptUnlocked"
-          > 
+        >
           and
-          <span style="font-size: 2.5rem; color: var(--color-null--corrupt)"> {{format(corruptMatter, 2, 2)}}</span>
+          <span style="font-size: 2.5rem; color: var(--color-null--corrupt)"> {{ format(corruptMatter, 2, 2) }}</span>
           Corrupt Matter
         </span>
-        </div>
-        <div
-        style='position: relative; width: 63rem; height: 63rem; justify-self: center;margin: 25px'
+      </div>
+      <div
+        style="position: relative; width: 63rem; height: 63rem; justify-self: center;margin: 25px"
+      >
+        <svg
+          data-v-aa8473bf=""
+          class="l-alchemy-orbit-canvas"
         >
-        <svg data-v-aa8473bf="" class="l-alchemy-orbit-canvas">
-          <circle data-v-aa8473bf="" cx="50%" cy="50%" :r="posRad" class="o-alchemy-orbit">
-          </circle>
+          <circle
+            data-v-aa8473bf=""
+            cx="50%"
+            cy="50%"
+            :r="posRad"
+            class="o-alchemy-orbit"
+          />
         </svg>
         <NullRep
           v-for="k in amo"
@@ -123,43 +131,41 @@ export default {
         />
       </div>
       <PrimaryButton
-      class="parallax"
-      @click="parallaxReset"
-      v-html="parallaxInfo()"
+        class="parallax"
+        @click="parallaxReset"
+        v-html="parallaxInfo()"
       />
       <PrimaryButton
-      class="corrupt"
-      @click="corruptReset"
-      v-if="corruptUnlocked"
-      v-html="corruptInfo()"
+        v-if="corruptUnlocked"
+        class="corrupt"
+        @click="corruptReset"
+        v-html="corruptInfo()"
       />
       <div class="o-null-upgrades">
         <div
-        v-for="ug in upgrades">
+          v-for="ug in upgrades"
+        >
           <div>
             <nullUpgrade
-            :upgrade="ug"
-            ></nullUpgrade>
+              :upgrade="ug"
+            />
           </div>
         </div>
       </div>
-      
     </div>
     <div
-    v-else
+      v-else
     >
-    <CelestialQuoteHistory celestial="null" /> <br><br>
-    <input
-      :value="displayValue"
-      class="o-autobuyer-input"
-      @focus="handleFocus"
-      @change="handleChange"
-      @input="handleInput"
-    >
-
+      <CelestialQuoteHistory celestial="null" /> <br><br>
+      <input
+        :value="displayValue"
+        class="o-autobuyer-input"
+        @focus="handleFocus"
+        @change="handleChange"
+        @input="handleInput"
+      >
     </div>
-
-</div>
+  </div>
 </template>
 
 <style scoped>
@@ -200,5 +206,4 @@ export default {
   width: 1030px;
   margin: 2px;
 }
-
 </style>

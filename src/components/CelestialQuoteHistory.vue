@@ -13,16 +13,16 @@ export default {
     };
   },
   computed: {
-    
+
     possessiveForm() {
-    if(player.options.themeModern == "S15") return `Teresa's`;
-    if(player.options.themeModern == "S16") return `Effarig's`;
-    if(player.options.themeModern == "S17") return `The Nameless Ones'`;
-    if(player.options.themeModern == "S18") return `Lai'tela's`;
-    if(player.options.themeModern == "S19") return `Pelle's`;
-    if(player.options.themeModern == "S13") return `V's`;
-    if(player.options.themeModern == "S14") return `Ra's`;
-    return Celestials[this.celestial].possessiveName;
+      if (player.options.themeModern == "S15") return `Teresa's`;
+      if (player.options.themeModern == "S16") return `Effarig's`;
+      if (player.options.themeModern == "S17") return `The Nameless Ones'`;
+      if (player.options.themeModern == "S18") return `Lai'tela's`;
+      if (player.options.themeModern == "S19") return `Pelle's`;
+      if (player.options.themeModern == "S13") return `V's`;
+      if (player.options.themeModern == "S14") return `Ra's`;
+      return Celestials[this.celestial].possessiveName;
     },
     color() {
       return `var(--color-${this.sCelestial()}--base)`;
@@ -32,14 +32,14 @@ export default {
     update() {
       this.isShown = Celestials[this.celestial].quotes.all.some(x => x.isUnlocked);
     },
-    sCelestial(){
-      if(player.options.themeModern == "S15") return `teresa`;
-      if(player.options.themeModern == "S16") return `effarig`;
-      if(player.options.themeModern == "S17") return `enslaved`;
-      if(player.options.themeModern == "S18") return `laitela`;
-      if(player.options.themeModern == "S19") return `pelle`;
-      if(player.options.themeModern == "S14") return `ra`;
-      if(player.options.themeModern == "S13") return `v`;
+    sCelestial() {
+      if (player.options.themeModern == "S15") return `teresa`;
+      if (player.options.themeModern == "S16") return `effarig`;
+      if (player.options.themeModern == "S17") return `enslaved`;
+      if (player.options.themeModern == "S18") return `laitela`;
+      if (player.options.themeModern == "S19") return `pelle`;
+      if (player.options.themeModern == "S14") return `ra`;
+      if (player.options.themeModern == "S13") return `v`;
       return this.celestial;
     },
     show() {

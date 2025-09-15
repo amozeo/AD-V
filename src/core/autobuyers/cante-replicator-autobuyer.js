@@ -1,7 +1,7 @@
 import { IntervaledAutobuyerState } from "./autobuyer";
 
 export class CanteReplicatorAutobuyerState extends IntervaledAutobuyerState {
-  get realTime(){
+  get realTime() {
     return true;
   }
 
@@ -28,7 +28,7 @@ export class CanteReplicatorAutobuyerState extends IntervaledAutobuyerState {
   get hasUnlimitedBulk() {
     return true;
   }
-  
+
   get isUnlocked() {
     return CanteUpgrades.all[8].canBeApplied;
   }

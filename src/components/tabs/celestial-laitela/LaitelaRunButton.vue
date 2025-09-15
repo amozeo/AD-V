@@ -18,22 +18,22 @@ export default {
     };
   },
   computed: {
-    sName(){
-      if(player.options.themeModern == "S15") return "Teresa-Lai'tela's";
-      if(player.options.themeModern == "S16") return "Effarig-Lai'tela's";
-      if(player.options.themeModern == "S17") return `The Nameless Lai'tela's`;
-      if(player.options.themeModern == "S14") return "Ra-Lai'tela's";
-      if(player.options.themeModern == "S19") return `Pelle-Lai'tela's`;
-      if(player.options.themeModern == "S13") return "V-Lai'tela's";
+    sName() {
+      if (player.options.themeModern == "S15") return "Teresa-Lai'tela's";
+      if (player.options.themeModern == "S16") return "Effarig-Lai'tela's";
+      if (player.options.themeModern == "S17") return `The Nameless Lai'tela's`;
+      if (player.options.themeModern == "S14") return "Ra-Lai'tela's";
+      if (player.options.themeModern == "S19") return `Pelle-Lai'tela's`;
+      if (player.options.themeModern == "S13") return "V-Lai'tela's";
       return "Lai'tela's";
     },
-    sCel(){
-      if(player.options.themeModern == "S15") return "Teresa-Lai'tela";
-      if(player.options.themeModern == "S16") return "Effarig-Lai'tela";
-      if(player.options.themeModern == "S17") return `The Nameless Lai'tela`;
-      if(player.options.themeModern == "S14") return "Ra-Lai'tela";
-      if(player.options.themeModern == "S19") return `Pelle-Lai'tela`;
-      if(player.options.themeModern == "S13") return "V-Lai'tela";
+    sCel() {
+      if (player.options.themeModern == "S15") return "Teresa-Lai'tela";
+      if (player.options.themeModern == "S16") return "Effarig-Lai'tela";
+      if (player.options.themeModern == "S17") return `The Nameless Lai'tela`;
+      if (player.options.themeModern == "S14") return "Ra-Lai'tela";
+      if (player.options.themeModern == "S19") return `Pelle-Lai'tela`;
+      if (player.options.themeModern == "S13") return "V-Lai'tela";
       return "Lai'tela";
     },
     completionTime() {
@@ -61,13 +61,13 @@ export default {
     startRun() {
       if (this.isDoomed) return;
 
-      if ((!realityUGs.all[11].config.hasFailed() && !realityUGs.all[11].isBought) && (player.options.confirmations.glitchCL && 
- !PlayerProgress.metaUnlocked())){
+      if ((!realityUGs.all[11].config.hasFailed() && !realityUGs.all[11].isBought) && (player.options.confirmations.glitchCL &&
+ !PlayerProgress.metaUnlocked())) {
         Modal.message.show(`you will fail glitch challenge ${realityUGs.all[11].config.name} <br> which is to ${realityUGs.all[11].config.requirement()} <br> you can disable this for <i>all</i> challenges in confirmations`);
         return;
       }
-      else if((!realityUGs.all[12].config.hasFailed() && !realityUGs.all[12].isBought) && (player.options.confirmations.glitchCL && 
- !PlayerProgress.metaUnlocked()) && Laitela.difficultyTier == 2){
+      if ((!realityUGs.all[12].config.hasFailed() && !realityUGs.all[12].isBought) && (player.options.confirmations.glitchCL &&
+ !PlayerProgress.metaUnlocked()) && Laitela.difficultyTier == 2) {
         Modal.message.show(`you will fail glitch challenge ${realityUGs.all[12].config.name} <br> which is to ${realityUGs.all[12].config.requirement()} <br> you can disable this for <i>all</i> challenges in confirmations`);
         return;
       }
@@ -95,7 +95,7 @@ export default {
 <template>
   <button :class="classObject()">
     <span :class="{ 'o-pelle-disabled': isDoomed }">
-      <b>Start {{sName}} Reality</b>
+      <b>Start {{ sName }} Reality</b>
     </span>
     <div
       :class="runButtonClassObject()"

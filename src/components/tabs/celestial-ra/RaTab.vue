@@ -61,24 +61,24 @@ export default {
         pet: Ra.pets.glitchyfishys,
         scalingUpgradeVisible: () => Ra.unlocks.memroygain1.isUnlocked,
         scalingUpgradeText: () => {
-          const  memory = Ra.unlocks.glitchyfishysXP.effectOrDefault(1);
-          return `x${format(memory,2,2)} memory gain.`;
+          const memory = Ra.unlocks.glitchyfishysXP.effectOrDefault(1);
+          return `x${format(memory, 2, 2)} memory gain.`;
         },
       },
       {
         pet: Ra.pets.cante,
         scalingUpgradeVisible: () => Ra.unlocks.repMul.isUnlocked,
         scalingUpgradeText: () => {
-          const  memory = Ra.unlocks.repMul.effectOrDefault(1);
-          return `${format(memory,2,2)} Replicanti Power.`;
+          const memory = Ra.unlocks.repMul.effectOrDefault(1);
+          return `${format(memory, 2, 2)} Replicanti Power.`;
         },
       },
       {
         pet: Ra.pets.null,
         scalingUpgradeVisible: () => Ra.unlocks.nullInfCap.isUnlocked,
         scalingUpgradeText: () => {
-          const  memory = Ra.unlocks.nullXP.effectOrDefault(1);
-          return `x${format(memory,2,2)} Infinity Dimensions cap.`;
+          const memory = Ra.unlocks.nullXP.effectOrDefault(1);
+          return `x${format(memory, 2, 2)} Infinity Dimensions cap.`;
         },
       },
     ],
@@ -102,11 +102,11 @@ export default {
     },
     memoryDescription() {
       let n = "Ra's";
-      if(player.options.themeModern == "S15") n = "Teresa-Ra's";
-      if(player.options.themeModern == "S16") return "Effarig-Ra's";
-      if(player.options.themeModern == "S13") n = "V-Ra's";
-      if(player.options.themeModern == "S18") return `Lai'tela-Ra's`;
-      if(player.options.themeModern == "S19") return `Pelle-Ra's`;
+      if (player.options.themeModern == "S15") n = "Teresa-Ra's";
+      if (player.options.themeModern == "S16") return "Effarig-Ra's";
+      if (player.options.themeModern == "S13") n = "V-Ra's";
+      if (player.options.themeModern == "S18") return `Lai'tela-Ra's`;
+      if (player.options.themeModern == "S19") return `Pelle-Ra's`;
       return `Within ${n} Reality, Memory Chunks for Celestial Memories
         will be generated based on certain resource amounts.`;
     },
@@ -127,13 +127,13 @@ export default {
       this.memoryBoosts = Ra.memoryBoostResources;
       this.meta25 = MetaFabricatorUpgrade(25).isBought;
     },
-    sName(){
-      if(player.options.themeModern == "S15") return "Teresa-Ra's";
-      if(player.options.themeModern == "S16") return "Effarig-Ra's";
-      if(player.options.themeModern == "S17") return `The Nameless Ra's`;
-      if(player.options.themeModern == "S18") return `Lai'tela-Ra's`;
-      if(player.options.themeModern == "S19") return `Pelle-Ra's`;
-      if(player.options.themeModern == "S13") return "V-Ra's";
+    sName() {
+      if (player.options.themeModern == "S15") return "Teresa-Ra's";
+      if (player.options.themeModern == "S16") return "Effarig-Ra's";
+      if (player.options.themeModern == "S17") return `The Nameless Ra's`;
+      if (player.options.themeModern == "S18") return `Lai'tela-Ra's`;
+      if (player.options.themeModern == "S19") return `Pelle-Ra's`;
+      if (player.options.themeModern == "S13") return "V-Ra's";
       return "Ra's";
     },
     startRun() {
@@ -154,7 +154,7 @@ export default {
       <div v-if="!isRaCapped">
         Each Memory Chunk generates a base of one Memory per second<span v-if="memoriesPerChunk.gt(1)">,
           which has been increased to {{ quantify("Memory", memoriesPerChunk, 2, 3) }} per second</span>.
-          <span v-if="meta25"><br>Which has been increased to {{ quantify("Memory", memoriesPerCandNChunk, 2, 3) }} per second for Cante and Null</span>.
+        <span v-if="meta25"><br>Which has been increased to {{ quantify("Memory", memoriesPerCandNChunk, 2, 3) }} per second for Cante and Null</span>.
         <br>
         Storing real time prevents Memory Chunk generation, but Memories will still be gained normally.
         <span v-if="memoriesPerChunk.gt(1)">
@@ -183,7 +183,7 @@ export default {
         <h2 :class="{ 'o-pelle-disabled': isDoomed }">
           <span v-if="isRunning">You are in </span>
           <span v-else>Start </span>
-          {{sName()}} Reality
+          {{ sName() }} Reality
         </h2>
         <div
           :class="runButtonClassObject"

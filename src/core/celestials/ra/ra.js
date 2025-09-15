@@ -96,8 +96,8 @@ class RaPetState extends GameMechanicState {
   }
 
   get isUnlocked() {
-    if(this.name == "Glitch") return realityUGs.all[9].isBought;
-    if(typeof this.requiredUnlock == 'boolean') return this.requiredUnlock;
+    if (this.name == "Glitch") return realityUGs.all[9].isBought;
+    if (typeof this.requiredUnlock === "boolean") return this.requiredUnlock;
     return this.requiredUnlock == undefined || this.requiredUnlock.isUnlocked;
   }
 
@@ -144,7 +144,7 @@ class RaPetState extends GameMechanicState {
   }
 
   get canGetMemoryChunks() {
-    if(Ra.unlocks.gainoutside.isUnlocked && !Pelle.isDoomed){
+    if (Ra.unlocks.gainoutside.isUnlocked && !Pelle.isDoomed) {
       return true;
     }
     return this.isUnlocked && Ra.isRunning;
@@ -213,22 +213,22 @@ class RaPetState extends GameMechanicState {
       .filter(x => x.pet === this)
       .sort((a, b) => a.level - b.level);
   }
-  
-  get maxMemories(){ return DC.E309 }
+
+  get maxMemories() { return DC.E309; }
 
   tick(realDiff, generateChunks) {
     const seconds = realDiff.div(1000);
-    if(this.name == "Cante" || this.name == "Null") {
-      if(!this.isUnlocked) return;
+    if (this.name == "Cante" || this.name == "Null") {
+      if (!this.isUnlocked) return;
       const newMemoryChunks = generateChunks ? seconds.mul(Ra.CandNChunkProduction).mul(this.memoryChunksPerSecond).div(100) : DC.D0;
 
       const newMemories = seconds.mul(this.memoryChunks.add(newMemoryChunks.div(2)))
-      .mul(this.memoryUpgradeCurrentMult);
+        .mul(this.memoryUpgradeCurrentMult);
 
       this.memoryChunks = this.memoryChunks.add(newMemoryChunks);
       this.memories = this.memories.add(newMemories);
-      if(this.memories.gt(this.maxMemories)) this.memories = this.maxMemories;
-      if(this.memoryChunks.gt(this.maxMemories)) this.memoryChunks = this.maxMemories;
+      if (this.memories.gt(this.maxMemories)) this.memories = this.maxMemories;
+      if (this.memoryChunks.gt(this.maxMemories)) this.memoryChunks = this.maxMemories;
 
       return;
     }
@@ -275,13 +275,13 @@ export const Ra = {
     data.run = false;
     data.disCharge = false;
     data.peakGamespeed = DC.D1;
-    if(MetaFabricatorUpgrade(24).isBought) return;
-    if(player.reality.showSidebarPanel == 3) player.reality.showSidebarPanel = 0;
+    if (MetaFabricatorUpgrade(24).isBought) return;
+    if (player.reality.showSidebarPanel == 3) player.reality.showSidebarPanel = 0;
     data.petWithRemembrance = "";
     data.charged = new Set();
     data.unlockBits = 0;
-      for (const pet of Ra.pets.all) {
-      if(pet.name == "Glitch" && MetaMilestone.metaRaAndLai.isReached) continue;
+    for (const pet of Ra.pets.all) {
+      if (pet.name == "Glitch" && MetaMilestone.metaRaAndLai.isReached) continue;
       pet.reset();
     }
   },
@@ -292,13 +292,13 @@ export const Ra = {
   get productionPerMemoryChunk() {
     let res = Effects.product(Ra.unlocks.continuousTTBoost.effects.memories, Achievement(168));
     for (const pet of Ra.pets.all) {
-      if (pet.isUnlocked) res = res.mul(Decimal.max(pet.memoryProductionMultiplier,1));
+      if (pet.isUnlocked) res = res.mul(Decimal.max(pet.memoryProductionMultiplier, 1));
     }
     return res.pow(MetaMilestone.metaProgress.effectOrDefault(DC.D1));
   },
   get CandNChunkProduction() {
-    return DC.D1.mul(Decimal.max( Ra.pets.null.memoryProductionMultiplier, 1))
-    .mul(Decimal.max( Ra.pets.cante.memoryProductionMultiplier, 1)).pow(NullUpgrades.all[19].isUnlocked ? 2.63 : 1);
+    return DC.D1.mul(Decimal.max(Ra.pets.null.memoryProductionMultiplier, 1))
+      .mul(Decimal.max(Ra.pets.cante.memoryProductionMultiplier, 1)).pow(NullUpgrades.all[19].isUnlocked ? 2.63 : 1);
 
   },
   get memoryBoostResources() {
@@ -348,7 +348,7 @@ export const Ra = {
   },
   get maxTotalPetLevel() {
     return (this.levelCap) * (this.pets.all.filter(pet => pet.isUnlocked).length);
-  }, 
+  },
   checkForUnlocks() {
     if (!VUnlocks.raUnlock.canBeApplied) return;
     for (const unl of Ra.unlocks.all) {
@@ -404,14 +404,14 @@ export const Ra = {
   updateAlchemyFlow(realityRealTime) {
     if (MetaFabricatorUpgrade(17).isBought) return;
     const perSecond = Decimal.div(1000, realityRealTime);
-    
-    let primeboost = AlchemyResource.shifter.effectOrDefault(0);
-    
+
+    const primeboost = AlchemyResource.shifter.effectOrDefault(0);
+
     for (const resource of AlchemyResources.all) {
-      if (resource.id < 5 || resource.id == 10){
-          if (resource.amount.lt(primeboost)) resource.amount = primeboost;
+      if (resource.id < 5 || resource.id == 10) {
+        if (resource.amount.lt(primeboost)) resource.amount = primeboost;
       }
-      
+
       resource.ema.addValue((resource.amount.sub(resource.before)).mul(perSecond));
       resource.before = resource.amount;
     }
@@ -429,8 +429,8 @@ export const Ra = {
   },
   get alchemyResourceCap() {
     let cap = GlitchRealityUpgrades.all[2].effectOrDefault(DC.D0).add(30000).mul(VUnlocks.glyphCap.isUnlocked ? 3 : 1);
-    if(cap.gt(1e6)) cap = cap.div(cap.div(1e6).pow(0.9));
-    return cap
+    if (cap.gt(1e6)) cap = cap.div(cap.div(1e6).pow(0.9));
+    return cap;
   },
   get momentumValue() {
     const hoursFromUnlock = TimeSpan.fromMilliseconds(player.celestials.ra.momentumTime).totalHours;

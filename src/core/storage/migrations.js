@@ -416,13 +416,13 @@ export const migrations = {
       player.celestials.glitch.riftForce = player.celestials.glitch.riftforce;
       delete player.celestials.glitch.riftforce;
 
-      player.celestials.v.runUnlocks.push([0,0,0,0,0,0]);
+      player.celestials.v.runUnlocks.push([0, 0, 0, 0, 0, 0]);
       player.celestials.v.runUnlocks = player.celestials.v.runUnlocks.flat();
 
-      player.celestials.v.runRecords.push([0,0,0,0,0,0]);
+      player.celestials.v.runRecords.push([0, 0, 0, 0, 0, 0]);
       player.celestials.v.runRecords = player.celestials.v.runRecords.flat();
 
-      player.celestials.v.goalReductionSteps.push([0,0,0,0,0,0]);
+      player.celestials.v.goalReductionSteps.push([0, 0, 0, 0, 0, 0]);
       player.celestials.v.goalReductionSteps = player.celestials.v.goalReductionSteps.flat();
 
     },
@@ -431,7 +431,7 @@ export const migrations = {
       Array.range(0, 10).map(() => ({
         bought: new Decimal(1),
         amount: new Decimal(1)
-      }))
+      }));
     },
     27: player => {
       beMigration(player);

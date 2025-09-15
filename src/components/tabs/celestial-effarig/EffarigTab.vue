@@ -28,22 +28,22 @@ export default {
     };
   },
   computed: {
-    sName(){
-      if(player.options.themeModern == "S15") return "Teresa-Effarig";
-      if(player.options.themeModern == "S14") return "Ra-Effarig";
-      if(player.options.themeModern == "S17") return `The Nameless Effarig's`;
-      if(player.options.themeModern == "S18") return `Lai'tela-Effarig's`;
-      if(player.options.themeModern == "S19") return `Pelle-Effarig's`;
-      if(player.options.themeModern == "S13") return "V-Effarig";
+    sName() {
+      if (player.options.themeModern == "S15") return "Teresa-Effarig";
+      if (player.options.themeModern == "S14") return "Ra-Effarig";
+      if (player.options.themeModern == "S17") return `The Nameless Effarig's`;
+      if (player.options.themeModern == "S18") return `Lai'tela-Effarig's`;
+      if (player.options.themeModern == "S19") return `Pelle-Effarig's`;
+      if (player.options.themeModern == "S13") return "V-Effarig";
       return "Effarig";
     },
-    sCel(){
-      if(player.options.themeModern == "S15") return "Teresa-Effarig";
-      if(player.options.themeModern == "S14") return "Ra-Effarig";
-      if(player.options.themeModern == "S17") return `The Nameless Effarig`;
-      if(player.options.themeModern == "S18") return `Lai'tela-Effarig`;
-      if(player.options.themeModern == "S19") return `Pelle-Effarig`;
-      if(player.options.themeModern == "S13") return "V-Effarig";
+    sCel() {
+      if (player.options.themeModern == "S15") return "Teresa-Effarig";
+      if (player.options.themeModern == "S14") return "Ra-Effarig";
+      if (player.options.themeModern == "S17") return `The Nameless Effarig`;
+      if (player.options.themeModern == "S18") return `Lai'tela-Effarig`;
+      if (player.options.themeModern == "S19") return `Pelle-Effarig`;
+      if (player.options.themeModern == "S13") return "V-Effarig";
       return "Effarig";
     },
     shopUnlocks: () => [
@@ -176,7 +176,7 @@ export default {
       >
         <div class="c-effarig-run-description">
           <span :class="{ 'o-pelle-disabled': isDoomed }">
-            Enter {{sName}} Reality.
+            Enter {{ sName }} Reality.
           </span>
         </div>
         <div

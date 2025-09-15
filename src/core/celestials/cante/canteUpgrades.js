@@ -15,16 +15,15 @@ class CanteUpgradeState extends BitUpgradeState {
   }
 
   purchase() {
-    if(this.config.chaos){
+    if (this.config.chaos) {
       if (this.isUnlocked || !Currency.chaosMatter.purchase(this.cost)) return;
-    }
-    else if (this.isUnlocked || !Currency.artificialMatter.purchase(this.cost)) return;
+    } else if (this.isUnlocked || !Currency.artificialMatter.purchase(this.cost)) return;
     this.unlock();
     this.config.onPurchased?.();
   }
-  
-  reset(){
-    if(this.isUnlocked) this.bits -= (1 <<this.id);
+
+  reset() {
+    if (this.isUnlocked) this.bits -= (1 << this.id);
   }
 }
 

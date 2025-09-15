@@ -1987,7 +1987,7 @@ export const celestialNavigation = {
       const pathStart = 0.5 * Math.PI;
       const pathEnd = pathStart + 10 * Math.PI;
       const path = LogarithmicSpiral.fromPolarEndpoints(pelleStarPosition(0, 0),
-      pathStart, 150, pathEnd, 1250);
+        pathStart, 150, pathEnd, 1250);
       return {
         pathStart,
         pathEnd,
@@ -1999,6 +1999,6 @@ export const celestialNavigation = {
         noBG: true,
       };
     }()),
-    
+
   },
 };

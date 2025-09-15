@@ -77,11 +77,10 @@ export default {
       this.memories.copyFrom(pet.memories);
       this.requiredMemories.copyFrom(pet.requiredMemories);
       this.memoryChunks.copyFrom(pet.memoryChunks);
-      if(pet.name == "Cante" || pet.name == "Null") {
+      if (pet.name == "Cante" || pet.name == "Null") {
         this.memoryChunksPerSecond = pet.memoryChunksPerSecond.mul(Ra.CandNChunkProduction);
         this.memoriesPerSecond = pet.memoryChunks.mul(this.currentMemoryMult);
-      }
-      else {
+      } else {
         this.memoryChunksPerSecond = pet.memoryChunksPerSecond;
         this.memoriesPerSecond = pet.memoryChunks.mul(Ra.productionPerMemoryChunk).mul(this.currentMemoryMult);
       }

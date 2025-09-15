@@ -49,7 +49,7 @@ export default {
   },
   watch: {
     isAutobuyerOn(newValue) {
-      //Autobuyer.realityUpgrade(this.upgrade.id).isActive = newValue;
+      // Autobuyer.realityUpgrade(this.upgrade.id).isActive = newValue;
     }
   },
   methods: {
@@ -60,7 +60,7 @@ export default {
       this.isBought = !upgrade.isRebuyable && upgrade.isBought;
       this.isPossible = upgrade.isPossible;
       this.isAutoUnlocked = false;
-      // if (this.isRebuyable) this.isAutobuyerOn = Autobuyer.metaUpgrade(upgrade.id).isActive;
+      // If (this.isRebuyable) this.isAutobuyerOn = Autobuyer.metaUpgrade(upgrade.id).isActive;
     },
   }
 };
@@ -79,19 +79,19 @@ export default {
       >
         {{ config.name }}
       </HintText>
-        <DescriptionDisplay :config="config" />
-        <template>
-          <EffectDisplay
-            :config="config"
-            br
-          />
-          <CostDisplay
-            v-if="!isBought"
-            :config="config"
-            br
-            name="Meta Relay"
-          />
-        </template>
+      <DescriptionDisplay :config="config" />
+      <template>
+        <EffectDisplay
+          :config="config"
+          br
+        />
+        <CostDisplay
+          v-if="!isBought"
+          :config="config"
+          br
+          name="Meta Relay"
+        />
+      </template>
     </button>
     <PrimaryToggleButton
       v-if="isRebuyable && isAutoUnlocked"

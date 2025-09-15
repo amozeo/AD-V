@@ -5,7 +5,7 @@ import HintText from "@/components/HintText";
 import PrimaryToggleButton from "@/components/PrimaryToggleButton";
 
 export default {
-  name: "preinfinityupgradebutton",
+  name: "Preinfinityupgradebutton",
   components: {
     PrimaryToggleButton,
     DescriptionDisplay,
@@ -67,10 +67,12 @@ export default {
   <div class="l-spoon-btn-group">
     <button
       :class="classObject"
-      class="l-reality-upgrade-btn c-reality-upgrade-btn">
+      class="l-reality-upgrade-btn c-reality-upgrade-btn"
+    >
       <HintText
         type="realityUpgrades"
-        class="l-hint-text--reality-upgrade c-hint-text--reality-upgrade">
+        class="l-hint-text--reality-upgrade c-hint-text--reality-upgrade"
+      >
         {{ config.name }}
       </HintText>
       <span :class="{ 'o-pelle-disabled': pelle }">
@@ -91,7 +93,6 @@ export default {
         </template>
       </span>
     </button>
-
   </div>
 </template>
 

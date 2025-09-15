@@ -1,17 +1,17 @@
 import { DC } from "../constants";
 import { GlyphInfo } from "../secret-formula/reality/core-glyph-info";
 
-export const orderedEffectList = [ "powerpow", "powermult", "powerdimboost", "powerbuy10",
-                                  "infinitypow", "infinityinfmult", "infinityIP", "infinityrate",
-                                  "replicationpow", "replicationdtgain", "replicationspeed", "replicationglyphlevel",
-                                  "timepow", "timeEP", "timeetermult", "timespeed","timeshardpow",  
-                                  "dilationpow", "dilationTTgen", "dilationDT", "dilationgalaxyThreshold",
-                                  "effarigrm", "effarigglyph", "effarigblackhole", "effarigachievement",
-                                  "effarigforgotten", "effarigdimensions", "effarigantimatter",
-                                  "cursedgalaxies", "cursedtickspeed", "curseddimensions", "cursedEP",
-                                  "realityglyphlevel", "realitygalaxies", "realityrow1pow", "realityDTglyph",
-                                  "companiondescription", "companionEP",
-                                  "glitchChaosPow", "glitchADCelPow"];
+export const orderedEffectList = ["powerpow", "powermult", "powerdimboost", "powerbuy10",
+  "infinitypow", "infinityinfmult", "infinityIP", "infinityrate",
+  "replicationpow", "replicationdtgain", "replicationspeed", "replicationglyphlevel",
+  "timepow", "timeEP", "timeetermult", "timespeed", "timeshardpow",
+  "dilationpow", "dilationTTgen", "dilationDT", "dilationgalaxyThreshold",
+  "effarigrm", "effarigglyph", "effarigblackhole", "effarigachievement",
+  "effarigforgotten", "effarigdimensions", "effarigantimatter",
+  "cursedgalaxies", "cursedtickspeed", "curseddimensions", "cursedEP",
+  "realityglyphlevel", "realitygalaxies", "realityrow1pow", "realityDTglyph",
+  "companiondescription", "companionEP",
+  "glitchChaosPow", "glitchADCelPow"];
 
 function getGlyphTypes() {
   const v = { ...GlyphInfo };
@@ -546,7 +546,7 @@ export const Glyphs = {
   isObjectivelyUseless(glyph, threshold, inventoryIn) {
     if (player.reality.applyFilterToPurge && AutoGlyphProcessor.wouldKeep(glyph)) return false;
     function hasSomeBetterEffects(glyphA, glyphB, comparedEffects) {
-      if (glyphA.level.gte(glyphB.level)){
+      if (glyphA.level.gte(glyphB.level)) {
         if (glyphA.strength.gte(glyphB.strength)) return true;
       }
       for (const effect of comparedEffects) {
@@ -565,8 +565,8 @@ export const Glyphs = {
         (g.level.gte(glyph.level) || g.strength.gte(glyph.strength)) &&
         // eslint-disable-next-line eqeqeq
         (glyph.effects.every(el => g.effects.includes(el)))
-      )
-    let compareThreshold = ["effarig", "reality", 'glitch'].includes(glyph.type) ? 1 : 5;
+      );
+    let compareThreshold = ["effarig", "reality", "glitch"].includes(glyph.type) ? 1 : 5;
     compareThreshold = Math.clampMax(compareThreshold, threshold);
     if (toCompare.length < compareThreshold) return false;
     const comparedEffects = getGlyphEffectsFromArray(glyph.effects).filter(x => x.id.startsWith(glyph.type));
@@ -686,7 +686,7 @@ export const Glyphs = {
   get chaosInstabilityThreshold() {
     return new Decimal(5e7);
   },
-  
+
   clearUndo() {
     player.reality.glyphs.undo = [];
   },
@@ -778,7 +778,7 @@ export const Glyphs = {
     const currCount = activeGlyphList.length - 4 * activeGlyphList.filter(x => x && x.type === "cursed").length;
     if (startingReality) player.requirementChecks.reality.maxGlyphs = currCount;
     player.requirementChecks.reality.maxGlyphs = Math.max(player.requirementChecks.reality.maxGlyphs, currCount);
-    if(currCount != 0) player.requirementChecks.meta.noGlyphs = true;
+    if (currCount != 0) player.requirementChecks.meta.noGlyphs = true;
   },
   // Modifies a basic glyph to have timespeed, and adds the new effect to time glyphs
   applyGamespeed(glyph) {
@@ -791,8 +791,8 @@ export const Glyphs = {
     }
   },
   swapIntoActive(glyph, targetSlot) {
-    if( this.active[targetSlot].type == "cursed" && this.active.filter(x => x == null ? false : x.type == "cursed" ).length <= Glitch.forceGlyphs && Glitch.isRunning) {
-        Modal.message.show(`you can not swap due to being forced have at least ${Glitch.forceGlyphs} cursed glyphs`, { closeEvent: GAME_EVENT.GLYPHS_CHANGED });
+    if (this.active[targetSlot].type == "cursed" && this.active.filter(x => (x == null ? false : x.type == "cursed")).length <= Glitch.forceGlyphs && Glitch.isRunning) {
+      Modal.message.show(`you can not swap due to being forced have at least ${Glitch.forceGlyphs} cursed glyphs`, { closeEvent: GAME_EVENT.GLYPHS_CHANGED });
       return;
     }
     this.removeFromInventory(glyph);
@@ -824,10 +824,10 @@ export const Glyphs = {
     }
     return hash;
   },
-  activeToChar(){
+  activeToChar() {
     let s = "";
     for (let i = 0; i < 5; i++) {
-      s = s + this.active[i]?.type.charAt(0).capitalize();
+      s += this.active[i]?.type.charAt(0).capitalize();
     }
     return s;
   },
@@ -851,9 +851,9 @@ export const Glyphs = {
         { closeEvent: GAME_EVENT.GLYPHS_CHANGED });
       return;
     }
-      this.addToInventory(GlyphGenerator.glitchGlyph(15));
-      GameUI.notify.error("Created a glitched Glyph");
-    }
+    this.addToInventory(GlyphGenerator.glitchGlyph(15));
+    GameUI.notify.error("Created a glitched Glyph");
+  }
 };
 
 export function recalculateAllGlyphs() {

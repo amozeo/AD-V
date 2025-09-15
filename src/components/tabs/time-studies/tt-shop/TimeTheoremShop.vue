@@ -280,13 +280,13 @@ export default {
       </PrimaryButton>
       <PrimaryButton
         :class="respecClassObject()"
-         @click="tsrespec"
+        @click="tsrespec"
       >
         <span v-if="respec">
-            Respec
+          Respec
         </span>
         <span v-else>
-            Respec
+          Respec
         </span>
       </PrimaryButton>
       <PrimaryButton
@@ -295,9 +295,7 @@ export default {
       >
         Import
       </PrimaryButton>
-      
     </div>
-    
   </div>
 </template>
 

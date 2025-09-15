@@ -13,7 +13,7 @@ export const preInfinityUG = [
     formatEffect: value => formatX(value, 2, 2),
   },
   {
-  name: "Dimensional Limits",
+    name: "Dimensional Limits",
     id: 1,
     requirement: () => `Have ${format(1e25)} Antimatter with only one Dimension Boost, no Galaxies (pre-Infinity)`,
     hasFailed: () => false,
@@ -25,7 +25,7 @@ export const preInfinityUG = [
     formatEffect: value => formatX(value, 2, 2)
   },
   {
-  name: "Vector 2",
+    name: "Vector 2",
     id: 2,
     requirement: () => `Have ${format(1e35)} Antimatter with upto two Dimension Boosts, no galaxies (pre-Infinity)`,
     hasFailed: () => false,
@@ -58,7 +58,7 @@ export const preInfinityUG = [
     checkEvent: GAME_EVENT.GAME_TICK_BEFORE,
     description: "Additional Tickspeed purchases based on their amount",
     effect: () => Tickspeed.totalForEffect.add(2).log2().pow(2).floor().sub(1),
-    formatEffect: value => "+" + formatInt(value)
+    formatEffect: value => `+${formatInt(value)}`
   },
   {
     name: "Galactic Limitation",
@@ -70,7 +70,7 @@ export const preInfinityUG = [
     checkEvent: GAME_EVENT.GAME_TICK_BEFORE,
     description: "Additional Tickspeed purchases based on Dimension Boosts and Galaxies",
     effect: () => player.dimensionBoosts.mul(player.galaxies).add(1).log2().pow(1.75).floor(),
-    formatEffect: value => "+" + formatInt(value)
+    formatEffect: value => `+${formatInt(value)}`
   },
   {
     name: "Galactic Capacity",
@@ -96,5 +96,5 @@ export const preInfinityUG = [
     effect: () => 3,
     formatEffect: value => formatX(value, 2, 2)
   },
-  
+
 ];

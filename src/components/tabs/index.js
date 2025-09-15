@@ -42,7 +42,7 @@ import TimeDimensionsTab from "./time-dimensions/TimeDimensionsTab";
 import TimeStudiesTab from "./time-studies/TimeStudiesTab";
 import VTab from "./celestial-v/VTab";
 
-// mod
+// Mod
 import entropy from "./glitch/entropy";
 import preinfinity from "./glitch/preinfinitytab";
 import glitchbreak from "./glitch/breakinfinitytab";
@@ -53,7 +53,7 @@ import GlitchTab from "./celestial-glitch/GlitchTab";
 
 import ChaosDimensionsTab from "./chaos-dimensions/ChaosDimensionsTab";
 
-// meta
+// Meta
 
 import MetaFabricatorTab from "./meta/MetaFabricatorTab";
 import MetaMilestonesTab from "./meta/MetaMilestonesTab";
@@ -110,7 +110,7 @@ const TabComponents = {
   glitcheternity,
   glitchreality,
   GlitchTab,
-  ChaosDimensionsTab, // meta
+  ChaosDimensionsTab, // Meta
   MetaFabricatorTab,
   MetaMilestonesTab,
   CanteTab,

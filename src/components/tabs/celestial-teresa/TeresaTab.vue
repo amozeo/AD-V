@@ -37,22 +37,22 @@ export default {
     };
   },
   computed: {
-    sName(){
-      if(player.options.themeModern == "S14") return "Ra-Teresa's";
-      if(player.options.themeModern == "S16") return "Effarig-Teresa's";
-      if(player.options.themeModern == "S17") return `The Nameless Teresa's`;
-      if(player.options.themeModern == "S18") return `Lai'tela-Teresa's`;
-      if(player.options.themeModern == "S19") return `Pelle-Teresa's`;
-      if(player.options.themeModern == "S13") return "V-Teresa's";
+    sName() {
+      if (player.options.themeModern == "S14") return "Ra-Teresa's";
+      if (player.options.themeModern == "S16") return "Effarig-Teresa's";
+      if (player.options.themeModern == "S17") return `The Nameless Teresa's`;
+      if (player.options.themeModern == "S18") return `Lai'tela-Teresa's`;
+      if (player.options.themeModern == "S19") return `Pelle-Teresa's`;
+      if (player.options.themeModern == "S13") return "V-Teresa's";
       return "Teresa's";
     },
-    sCel(){
-      if(player.options.themeModern == "S14") return "Ra-Teresa";
-      if(player.options.themeModern == "S16") return "Effarig-Teresa";
-      if(player.options.themeModern == "S17") return `The Nameless Teresa'`;
-      if(player.options.themeModern == "S18") return `Lai'tela-Teresa`;
-      if(player.options.themeModern == "S19") return `Pelle-Teresa`;
-      if(player.options.themeModern == "S13") return "V-Teresa";
+    sCel() {
+      if (player.options.themeModern == "S14") return "Ra-Teresa";
+      if (player.options.themeModern == "S16") return "Effarig-Teresa";
+      if (player.options.themeModern == "S17") return `The Nameless Teresa'`;
+      if (player.options.themeModern == "S18") return `Lai'tela-Teresa`;
+      if (player.options.themeModern == "S19") return `Pelle-Teresa`;
+      if (player.options.themeModern == "S13") return "V-Teresa";
       return "Teresa";
     },
     unlockInfos: () => TeresaUnlocks.all,
@@ -69,7 +69,7 @@ export default {
         PerkShopUpgrade.musicGlyph,
       ];
       if (this.raisedPerkShop) upgrades.push(PerkShopUpgrade.fillMusicGlyph);
-      if (realityUGs.all[12].isBought){
+      if (realityUGs.all[12].isBought) {
         upgrades.unshift(PerkShopUpgrade.infinityPow);
         upgrades.unshift(PerkShopUpgrade.maxGlyphLevel);
       }
@@ -176,7 +176,7 @@ export default {
       >
         <div class="c-teresa-unlock c-teresa-run-button">
           <span :class="{ 'o-pelle-disabled': isDoomed }">
-            Start {{sName}} Reality.
+            Start {{ sName }} Reality.
           </span>
           <div
             :class="runButtonClassObject"
@@ -190,19 +190,19 @@ export default {
             This Reality can be repeated for a stronger reward based on the antimatter gained within it.
             <br><br>
             <span v-if="showRunReward">
-              Your record antimatter in {{sName}} Reality is {{ format(bestAM, 2) }},
+              Your record antimatter in {{ sName }} Reality is {{ format(bestAM, 2) }},
               achieved with {{ lastMachinesString }}.
               <br><br>
-              {{sCel}} Glyph Set used:
+              {{ sCel }} Glyph Set used:
               <GlyphSetPreview
-                text='Best Glyph Set'
+                text="Best Glyph Set"
                 :text-hidden="true"
                 :force-name-color="false"
                 :glyphs="bestAMSet"
               />
             </span>
             <span v-else>
-              You have not completed {{sName}} Reality yet.
+              You have not completed {{ sName }} Reality yet.
             </span>
           </div>
         </div>
@@ -210,7 +210,7 @@ export default {
           v-if="showRunReward"
           class="c-teresa-unlock"
         >
-        {{sName}} Reality reward: Glyph Sacrifice power {{ formatX(runReward, 2, 2) }}
+          {{ sName }} Reality reward: Glyph Sacrifice power {{ formatX(runReward, 2, 2) }}
         </div>
         <div
           v-if="hasEPGen"

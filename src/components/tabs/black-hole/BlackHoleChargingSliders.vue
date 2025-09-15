@@ -35,7 +35,7 @@ export default {
         "${ImaginaryUpgrade(24).name}"`;
     },
     typeFunctions() {
-      const functions = AutobuyerInputFunctions["float"];
+      const functions = AutobuyerInputFunctions.float;
       if (functions === undefined) {
         throw new Error("Unknown autobuyer input type");
       }
@@ -57,10 +57,10 @@ export default {
       this.maxNegativeBlackHole = (GlitchSpeedUpgrades.all[2].isBought ? 1e300 : 300);
       this.lowermax = GlitchSpeedUpgrades.all[2].isBought;
 
-      this.extra = `The input is exponential so ${format(10)} would be ${format(1e10)}`
+      this.extra = `The input is exponential so ${format(10)} would be ${format(1e10)}`;
       if (this.isFocused) return;
       this.updateDisplayValue();
-      
+
     },
     adjustSliderNegative(value) {
       this.negativeSlider = value;
@@ -71,15 +71,14 @@ export default {
       );
     },
     adjustInput(value) {
-      if(Number.parseFloat(value)) {value = 1; this.isValid = false}
-      else this.isValid = true; 
+      if (Number.parseFloat(value)) { value = 1; this.isValid = false; } else this.isValid = true;
 
       this.negativeSlider = value;
       player.blackHoleNegative = Decimal.pow(10, this.negativeSlider);
       player.requirementChecks.reality.slowestBH = Decimal.min(
         player.requirementChecks.reality.slowestBH,
         player.blackHoleNegative);
-        
+
       this.isFocused = false;
       event.target.blur();
     },
@@ -131,8 +130,8 @@ export default {
     },
   }
 };
-  
- const AutobuyerInputFunctions = {
+
+const AutobuyerInputFunctions = {
   decimal: {
     areEqual: (value, other) => Decimal.eq(value, other),
     formatValue: value => Notation.scientific.format(value, 2, 2),
@@ -194,9 +193,10 @@ export default {
         </span>)
         <br>
         <div
-        v-if="lowermax">
-        {{ extra }}
-      </div>
+          v-if="lowermax"
+        >
+          {{ extra }}
+        </div>
       </b>
 
       <SliderComponent
@@ -216,7 +216,7 @@ export default {
         @focus="handleFocus"
         @input="handleInput"
       >
-      
+
       <div
         v-else
         class="l-lock-text"

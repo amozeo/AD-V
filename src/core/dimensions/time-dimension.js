@@ -4,8 +4,8 @@ import { DimensionState } from "./dimension";
 
 export function buySingleTimeDimension(tier, auto = false) {
   const dim = TimeDimension(tier);
-  if((!eternityUGs.all[1].config.hasFailed() && !eternityUGs.all[1].isBought) && (player.options.confirmations.glitchCL && 
- !PlayerProgress.metaUnlocked()) && player.eternities.eq(1)){
+  if ((!eternityUGs.all[1].config.hasFailed() && !eternityUGs.all[1].isBought) && (player.options.confirmations.glitchCL &&
+ !PlayerProgress.metaUnlocked()) && player.eternities.eq(1)) {
     Modal.message.show(`you will fail glitch challenge ${eternityUGs.all[1].config.name} <br> which is to ${eternityUGs.all[1].config.requirement} <br> you can disable this for <i>all</i> challenges in confirmations`);
     return;
   }
@@ -17,10 +17,10 @@ export function buySingleTimeDimension(tier, auto = false) {
     }
   }
   if (Currency.eternityPoints.lt(dim.cost)) return false;
-  
+
   const allow = (Enslaved.isRunning && !Glitch.isRunning);
   const allowed = (allow || Glitch.augmentEffectActive(3));
-  
+
   if (allowed && dim.bought.gt(0)) return false;
   if (ImaginaryUpgrade(15).isLockingMechanics && EternityChallenge(7).completions > 0) {
     if (!auto) {
@@ -97,15 +97,15 @@ export function calcHighestPurchaseableTD(tier, currency) {
 }
 
 export function buyMaxTimeDimension(tier, portionToSpend = 1, isMaxAll = false) {
-  if((!eternityUGs.all[1].config.hasFailed() && !eternityUGs.all[1].isBought) && (player.options.confirmations.glitchCL && 
- !PlayerProgress.metaUnlocked()) && player.eternities.eq(1)){
+  if ((!eternityUGs.all[1].config.hasFailed() && !eternityUGs.all[1].isBought) && (player.options.confirmations.glitchCL &&
+ !PlayerProgress.metaUnlocked()) && player.eternities.eq(1)) {
     Modal.message.show(`you will fail glitch challenge ${eternityUGs.all[1].config.name} <br> which is to ${eternityUGs.all[1].config.requirement} <br> you can disable this for <i>all</i> challenges in confirmations`);
     return;
   }
   const canSpend = Currency.eternityPoints.value.times(portionToSpend);
   const dim = TimeDimension(tier);
   if (canSpend.lt(dim.cost)) return false;
-  if(dim.bought.gte(1e15)) return false; // capped
+  if (dim.bought.gte(1e15)) return false; // Capped
 
   if (tier > 4) {
     if (!TimeStudy.timeDimension(tier).isBought) return false;
@@ -121,16 +121,16 @@ export function buyMaxTimeDimension(tier, portionToSpend = 1, isMaxAll = false) 
     }
     return false;
   }
-  
+
   const allow = (Enslaved.isRunning && !Glitch.isRunning);
   const allowed = (allow || Glitch.augmentEffectActive(3));
 
-  
+
   if (allowed) return buySingleTimeDimension(tier);
   const pur = Decimal.sub(calcHighestPurchaseableTD(tier, canSpend), dim.bought).clampMin(0);
   const cost = dim.nextCost(pur.add(dim.bought).sub(1).min(1e15));
   if (pur.lte(0)) return false;
-  if(Currency.eternityPoints.lt('ee15')) Currency.eternityPoints.subtract(cost);
+  if (Currency.eternityPoints.lt("ee15")) Currency.eternityPoints.subtract(cost);
   dim.amount = dim.amount.add(pur).min(1e15);
   dim.bought = dim.bought.add(pur).min(1e15);
   dim.cost = dim.nextCost(dim.bought);
@@ -266,7 +266,7 @@ class TimeDimensionState extends DimensionState {
       if (V.isRunningExtreme) {
         production = production.pow(0.001);
       }
-      
+
       production = production.pow(V.rageDimPower);
       return production;
     }
@@ -298,20 +298,20 @@ class TimeDimensionState extends DimensionState {
     if (V.isRunningExtreme) {
       mult = mult.pow(0.001);
     }
-    
+
     mult = mult.pow(V.rageDimPower);
 
     if (Effarig.isRunning) mult = Effarig.multiplier(mult);
-    
+
     if (V.isRunning) mult = mult.pow(0.5);
 
-    if(Glitch.isRunning) mult = mult.pow(Glitch.TDnerf);
+    if (Glitch.isRunning) mult = mult.pow(Glitch.TDnerf);
 
-    
-    if(mult.gt("ee50")) mult = mult.pow( mult.log10().div(1e50).pow(0.3).recip() );
-    if(mult.gt("ee100")) mult = mult.pow( mult.log10().div(1e100).pow(0.75).recip() );
-    if(mult.gt("ee200")) mult = mult.pow( mult.log10().div(1e200).pow(0.95).recip() );
-    
+
+    if (mult.gt("ee50")) mult = mult.pow(mult.log10().div(1e50).pow(0.3).recip());
+    if (mult.gt("ee100")) mult = mult.pow(mult.log10().div(1e100).pow(0.75).recip());
+    if (mult.gt("ee200")) mult = mult.pow(mult.log10().div(1e200).pow(0.95).recip());
+
     return mult;
   }
 

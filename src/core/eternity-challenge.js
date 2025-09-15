@@ -327,7 +327,7 @@ export const EternityChallenges = {
 
   autoComplete: {
     tick() {
-      if(Glitch.isRunning) return;
+      if (Glitch.isRunning) return;
       const shouldPreventEC7 = TimeDimension(1).amount.gt(0);
       const hasUpgradeLock = RealityUpgrade(12).isLockingMechanics ||
         (ImaginaryUpgrade(15).isLockingMechanics && shouldPreventEC7 &&

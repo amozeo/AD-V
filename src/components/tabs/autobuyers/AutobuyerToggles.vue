@@ -41,32 +41,31 @@ export default {
       this.showContinuum = Laitela.isUnlocked;
       this.disableContinuum = player.auto.disableContinuum;
       this.allAutobuyersDisabled = Autobuyers.unlocked.every(autobuyer => !autobuyer.isActive);
-      
+
       this.maxed = true;
       let m = 0;
 
       this.ADs.forEach(ad => {
-        if(m === 0 && Autobuyer.tickspeed.interval <= 100) m++;
-        if(ad.bulk >= 512 && ad.interval <= 100) m++;
-        if(m == 9) this.maxed = false;
-      })
+        if (m === 0 && Autobuyer.tickspeed.interval <= 100) m++;
+        if (ad.bulk >= 512 && ad.interval <= 100) m++;
+        if (m == 9) this.maxed = false;
+      });
     },
     bulk() {
-      if(this.ADbulk) {
-       player.auto.antimatterDims.all.every(x => x.mode = 10)
-      }
-      else{
-        player.auto.antimatterDims.all.every(x => x.mode = 1)
+      if (this.ADbulk) {
+        player.auto.antimatterDims.all.every(x => x.mode = 10);
+      } else {
+        player.auto.antimatterDims.all.every(x => x.mode = 1);
       }
     },
     upmax() {
       for (const adb of this.ADs) {
-        if(adb.isUnlocked && adb.canBeUpgraded) {
-          if(adb.interval > 100) adb.upgradeInterval();
-          if(adb.interval <= 100 && adb.bulk < 512) adb.upgradeBulk();
+        if (adb.isUnlocked && adb.canBeUpgraded) {
+          if (adb.interval > 100) adb.upgradeInterval();
+          if (adb.interval <= 100 && adb.bulk < 512) adb.upgradeBulk();
         }
       }
-      if(Autobuyer.tickspeed.canBeBought && Autobuyer.tickspeed.interval > 100) Autobuyer.tickspeed.upgradeInterval();
+      if (Autobuyer.tickspeed.canBeBought && Autobuyer.tickspeed.interval > 100) Autobuyer.tickspeed.upgradeInterval();
     },
     toggleAllAutobuyers() {
       for (const autobuyer of Autobuyers.unlocked) {
@@ -91,13 +90,14 @@ export default {
     >
       {{ allAutobuyersDisabled ? "Enable" : "Disable" }} all autobuyers
     </PrimaryButton>
-    
-      <PrimaryButton
+
+    <PrimaryButton
       class="o-primary-btn--subtab-option"
-      @click="bulk()">
-        Switch ADs to buy {{ ADbulk ? "max" : "single" }}
+      @click="bulk()"
+    >
+      Switch ADs to buy {{ ADbulk ? "max" : "single" }}
     </PrimaryButton>
-    
+
     <span v-if="isDoomed">
       <PrimaryButton
         v-if="showContinuum"
@@ -117,11 +117,12 @@ export default {
     </span>
 
     <span v-if="maxed">
-        <PrimaryButton
-          class="o-primary-btn--subtab-option"
-          @click="upmax()">
-          Upgrade all AD autobuyers
-        </PrimaryButton>
+      <PrimaryButton
+        class="o-primary-btn--subtab-option"
+        @click="upmax()"
+      >
+        Upgrade all AD autobuyers
+      </PrimaryButton>
     </span>
   </div>
 </template>

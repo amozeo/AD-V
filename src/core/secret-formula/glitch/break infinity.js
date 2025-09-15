@@ -4,7 +4,7 @@ export const breakInfinityUG = [
     name: "Limited Space",
     id: 0,
     requirement: () => `Reach ${format("1e450")} Antimatter up to 4 Dimension Boosts, one galaxy (pre-Eternity)`,
-    checkRequirement: () => player.antimatter.gte('1e450'),
+    checkRequirement: () => player.antimatter.gte("1e450"),
     hasFailed: () => false,
     progLock: () => player.dimensionBoosts.gt(4) || player.galaxies.gt(1) || PlayerProgress.eternityUnlocked(),
     checkEvent: GAME_EVENT.GAME_TICK_BEFORE,
@@ -13,10 +13,10 @@ export const breakInfinityUG = [
     formatEffect: value => formatX(value, 2, 2)
   },
   {
-  name: "Infinitely Limiting",
+    name: "Infinitely Limiting",
     id: 1,
     requirement: () => `Reach ${format(2000)} (pending) Infinity Points with up to four Dimension Boosts and one Antimatter galaxy (pre-Eternity)`,
-    checkRequirement: () =>  gainedInfinityPoints().gt(2000),
+    checkRequirement: () => gainedInfinityPoints().gt(2000),
     hasFailed: () => false,
     progLock: () => player.dimensionBoosts.gt(4) || player.galaxies.gt(1) || PlayerProgress.eternityUnlocked(),
     checkEvent: GAME_EVENT.GAME_TICK_BEFORE,
@@ -25,9 +25,9 @@ export const breakInfinityUG = [
     formatEffect: value => formatX(value, 2, 2)
   },
   {
-  name: "Chaos",
+    name: "Chaos",
     id: 2,
-    requirement:  "Finish IC1 without Infinity Dimensions",
+    requirement: "Finish IC1 without Infinity Dimensions",
     hasFailed: () => player.dimensions.infinity[0].amount.gt(0),
     checkRequirement: () => player.antimatter.gte("1e650") && player.challenge.infinity.current == 1 && !player.dimensions.infinity[0].amount.gt(0),
     progLock: () => false,
@@ -73,5 +73,5 @@ export const breakInfinityUG = [
     effect: () => player.replicanti.galaxies.pow(1.2).div(38).add(1),
     formatEffect: value => formatX(value, 2, 2)
   },
-  
+
 ];

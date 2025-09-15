@@ -139,7 +139,7 @@ GameDatabase.celestials.descriptions = [
   {
     name: "Glitch",
     effects() {
-        if(Glitch.tier == 0){
+      if (Glitch.tier == 0) {
         return `AD's ^0.95
         ID's ^0.15
         TD's ^0.33
@@ -148,11 +148,11 @@ GameDatabase.celestials.descriptions = [
         You are forced to have ${Glitch.forceGlyphs} cursed glyphs equipped.
         Plus the effects you have chosen.`;
       }
-      
+
       return "null";
     },
     description() {
-      if(Glitch.tier == 0){
+      if (Glitch.tier == 0) {
         return "While in glitch's Reality you can gain Rift Force (all effects active) witch can unlock upgrades after completing their goals.";
       }
     },
@@ -160,7 +160,7 @@ GameDatabase.celestials.descriptions = [
   {
     name: "Cante",
     effects() {
-        return `You will fail.`;
+      return `You will fail.`;
     },
     description() {
       return `Enjoy.`;
@@ -169,7 +169,7 @@ GameDatabase.celestials.descriptions = [
   {
     name: "Null",
     effects() {
-        return `You will fail.`;
+      return `You will fail.`;
     },
     description() {
       return `Enjoy.`;

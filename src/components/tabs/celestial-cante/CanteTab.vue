@@ -2,7 +2,7 @@
 import CelestialQuoteHistory from "@/components/CelestialQuoteHistory";
 import PrimaryButton from "@/components/PrimaryButton";
 import CanteRep from "./CanteRep";
-import canteUpgrade from "./CanteUpgrade"
+import canteUpgrade from "./CanteUpgrade";
 
 export default {
   name: "CanteTab",
@@ -20,7 +20,7 @@ export default {
       artMatter: new Decimal(),
       chaosMatter: new Decimal(),
       chaosEffect: new Decimal(),
-      artGain: '',
+      artGain: "",
       data: {
         hasPurge: false,
         purgeAvaliable: false,
@@ -56,9 +56,9 @@ export default {
       this.artMatter.copyFrom(Currency.artificialMatter);
       this.chaosMatter.copyFrom(Currency.chaosMatter);
       this.artGain = format(this.apendingAM(), 2, 2);
-      this.chaosGain = format(CanteReplicators.chaosMatterGain, 2, 2)
+      this.chaosGain = format(CanteReplicators.chaosMatterGain, 2, 2);
       this.upgrades = CanteUpgrades.all;
-      this.data.purgeAvaliable = Currency.artificialMatter.gte('1e50000');
+      this.data.purgeAvaliable = Currency.artificialMatter.gte("1e50000");
       this.data.hasPurge = Cante.purged;
       this.chaosEffect.copyFrom(Decimal.NUMBER_MAX_VALUE.pow(Currency.chaosMatter.value.add(10).log10().pow(2)));
     },
@@ -66,16 +66,16 @@ export default {
       if (this.isDoomed) return;
       Modal.celestials.show({ name: "Cante's", number: 7 });
     },
-    reforge(){
+    reforge() {
       CanteReplicators.reforge();
     },
-    purge(){
+    purge() {
       CanteReplicators.purge();
     },
-    apendingAM(){
+    apendingAM() {
       return CanteReplicators.totalArtMatterGain();
     },
-    softCaps(){
+    softCaps() {
       return `
       1e308 : ^0.003 <br>
       1e1000 : ^0.05 <br>
@@ -84,7 +84,7 @@ export default {
       1e1E80 : ^ 0.5 <br>
       1e1E150 : ^ 0.8 <br>
       1e1E250 : ^ 0.99 <br>
-      `
+      `;
     }
   }
 };
@@ -92,7 +92,7 @@ export default {
 
 <template>
   <div>
-      <CelestialQuoteHistory celestial="cante" />
+    <CelestialQuoteHistory celestial="cante" />
     <div>
       <div>
         You Have <span style="font-size: 2.5rem; color: var(--color-cante--base)">{{ format(artMatter, 2, 2) }}</span> Artificial Matter
@@ -106,30 +106,29 @@ export default {
         <br>
         shift clicking buys max
         softcaps
-        <span v-tooltip="softCaps()"><i class="fas fa-question-circle"></i></span><br>
-
+        <span v-tooltip="softCaps()"><i class="fas fa-question-circle" /></span><br>
       </div><br>
       <div class="c-cante-tab">
         <div
-        v-for="k in 10"
+          v-for="k in 10"
         >
           <CanteRep
-          :key="k"
-          :tier="k"
+            :key="k"
+            :tier="k"
           />
         </div>
       </div>
       <PrimaryButton
-      class="o-reforge"
-      @click="reforge"
+        class="o-reforge"
+        @click="reforge"
       >
         Reforge your Replicators for {{ artGain }} Artificial Matter.<br>
         This only applies to Replicators past {{ format(1.79e308, 2) }}.
       </PrimaryButton>
       <PrimaryButton
-      class="o-purge"
-      v-if="data.hasPurge || data.purgeAvaliable"
-      @click="purge"
+        v-if="data.hasPurge || data.purgeAvaliable"
+        class="o-purge"
+        @click="purge"
       >
         Purge your Replicators, Upgrades and Artificial Matter for {{ chaosGain }} Chaotic Matter.<br>
         req: {{ format('1e75000', 2, 2) }} Artificial Matter.
@@ -137,17 +136,17 @@ export default {
 
       <div class="o-cante-upgrades">
         <div
-        v-for="ug in upgrades">
+          v-for="ug in upgrades"
+        >
           <div>
             <canteUpgrade
-            :upgrade="ug"
-            ></canteUpgrade>
+              :upgrade="ug"
+            />
           </div>
         </div>
       </div>
-      
     </div>
-</div>
+  </div>
 </template>
 
 <style scoped>
@@ -174,19 +173,19 @@ export default {
 @keyframes pulse {
   0%{
     background-position: 0% 0px;
-  } 
+  }
   100%{
     background-position: -100% 0px;
-  } 
+  }
 }
 
 @keyframes unpulse {
   0%{
     background-position: 0% 0px;
-  } 
+  }
   100%{
     background-position: 100% 0px;
-  } 
+  }
 }
 
 .o-cante-upgrades{
@@ -222,38 +221,37 @@ export default {
   0%{
     --x: 0%;
     --y: 0%;
-  } 
+  }
   25%{
     --x: 80%;
     --y: 45%;
-  } 
+  }
   75%{
     --x: 50%;
     --y: 5%;
-  } 
+  }
   100%{
     --x: 0%;
     --y: 0%;
-  } 
+  }
 }
 
 @keyframes redunpulse {
   0%{
     --x: 100%;
     --y: 100%;
-  } 
+  }
   25%{
     --x: 80%;
     --y: 20%;
-  } 
+  }
   75%{
     --x: 0%;
     --y: 0%;
-  } 
+  }
   100%{
     --x: 100%;
     --y: 100%;
-  } 
+  }
 }
-
 </style>

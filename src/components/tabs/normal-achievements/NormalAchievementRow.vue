@@ -29,13 +29,13 @@ export default {
         "c-achievement-grid__row--completed": this.isCompleted
       };
     },
-    inRow(){
+    inRow() {
       return this.row.filter(x => x != undefined);
     },
   },
   methods: {
     update() {
-      this.isCompleted = this.row.every(a => a ? a.isUnlocked : true );
+      this.isCompleted = this.row.every(a => (a ? a.isUnlocked : true));
       this.isHidden = this.isCompleted && player.options.hideCompletedAchievementRows;
     },
   }

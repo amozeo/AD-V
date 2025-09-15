@@ -20,7 +20,7 @@ export function watchLatestCommit() {
         }
 
         Modal.message.show(
-          `${json.author}` + " did something, lets hope it doesn't break the game " + 
+          `${json.author}` + " did something, lets hope it doesn't break the game " +
           "<br> Refresh the page (game will be saved), we've got new stuff: " +
           `"${json.message}"`,
           {
