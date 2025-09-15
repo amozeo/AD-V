@@ -385,7 +385,7 @@ window.LinearMultiplierScaling = class LinearMultiplierScaling {
   }
 };
 
-// This function is used once. I get why its seperated, but why make it a window function not a local one?????
+// This function is used once. I get why its separated, but why make it a window function not a local one?????
 window.getCostWithLinearCostScaling = function getCostWithLinearCostScaling(
   amountOfPurchases, costScalingStart, initialCost, costMult, costMultGrowth
 ) {

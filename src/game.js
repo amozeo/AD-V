@@ -482,7 +482,7 @@ export function getGameSpeedupForDisplay() {
   return speedFactor;
 }
 
-// Seperated for organisation - Very few things should need this
+// Separated for organisation - Very few things should need this
 export function trueTimeMechanics(trueDiff) {
   player.IAP.STDcoins = player.IAP.STDcoins.add(trueDiff / (1000 * 150));
 

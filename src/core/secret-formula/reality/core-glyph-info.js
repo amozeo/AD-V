@@ -471,7 +471,7 @@ export const GlyphInfo = {
   }
 };
 
-// No point having a seperate file for this, so we'll extract it and place it here since these are purely cosmetic
+// No point having a separate file for this, so we'll extract it and place it here since these are purely cosmetic
 export const cosmeticGlyphs = {
   music: {
     id: "music",

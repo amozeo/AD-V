@@ -39,7 +39,7 @@ export const preInfinityUG = [
   {
     name: "8th Dimensional",
     id: 3,
-    requirement: () => `Have ${format(1e50)} Antimatter with upto four Dimension Boosts, no Galaxies and only one of each Dimension tier brought (pre-Infinity)`,
+    requirement: () => `Have ${format(1e50)} Antimatter with upto four Dimension Boosts, no Galaxies and only one of each Dimension tier bought (pre-Infinity)`,
     hasFailed: () => AntimatterDimensions.all.some(ad => ad.bought.gt(1)),
     checkRequirement: () => player.antimatter.gte(1e50) && AntimatterDimensions.all.some(ad => ad.bought.lt(2)),
     progLock: () => player.dimensionBoosts.gt(4) || player.galaxies.gt(0) || PlayerProgress.infinityUnlocked(),

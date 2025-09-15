@@ -1,5 +1,5 @@
 ---
-name: Visual bug or grammer
+name: Visual bug or grammar
 about: Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
 title: ''
 labels: visual bug

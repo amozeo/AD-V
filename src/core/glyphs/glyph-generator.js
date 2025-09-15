@@ -298,7 +298,7 @@ export const GlyphGenerator = {
   },
 
   // eslint-disable-next-line max-params
-  generateEffects(type, count, rng, guarenteedEffects = []) {
+  generateEffects(type, count, rng, guaranteedEffects = []) {
     const glyphTypeEffects = GlyphInfo[type].effects();
     const effectValues = glyphTypeEffects.mapToObject(x => x.intID, () => rng.uniform());
     // Get a bunch of random numbers so that we always use 250 here. Can be increased if you *really* need to
@@ -315,14 +315,14 @@ export const GlyphGenerator = {
       }
     }
 
-    for (let i = 0; i < guarenteedEffects.length; i++) {
+    for (let i = 0; i < guaranteedEffects.length; i++) {
       // eslint-disable-next-line no-loop-func
-      effectValues[GlyphInfo[type].effects().filter(e => e.id === guarenteedEffects[i])[0].intID] = 2;
+      effectValues[GlyphInfo[type].effects().filter(e => e.id === guaranteedEffects[i])[0].intID] = 2;
     }
 
     if (GlyphInfo[type].primaryEffect !== undefined) {
       // eslint-disable-next-line no-param-reassign
-      count = Math.max(count, guarenteedEffects.length + 1);
+      count = Math.max(count, guaranteedEffects.length + 1);
     }
     // Sort from highest to lowest value.
     const effects = Object.keys(effectValues).sort((a, b) => effectValues[b] - effectValues[a]).slice(0, count);

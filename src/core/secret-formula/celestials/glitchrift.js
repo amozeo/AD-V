@@ -105,7 +105,7 @@ export const GlitchRifts = {
       {
         resource: "delta",
         requirement: 0.66,
-        description: "25 Free Tickspeed upgrades per Time Study brought after 10",
+        description: "25 Free Tickspeed upgrades per Time Study bought after 10",
         effect: () => Math.max(25 * (player.timestudy.studies.length - 10), 0),
         format: effect => `+${format(effect, 2)} Free Tickspeed`,
         base: 0,
